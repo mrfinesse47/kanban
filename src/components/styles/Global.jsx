@@ -7,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
     }  
 
   body {
-    background: ${({ theme }) => theme.backgroundMain};
-    color: ${({ theme }) => theme.textMain};
+    background: ${({ theme }) => theme.colors.backgroundMain};
+    color: ${({ theme }) => theme.colors.textMain};
     font-family: 'Plus Jakarta Sans', sans-serif;
     box-sizing: border-box;
     margin: 0;

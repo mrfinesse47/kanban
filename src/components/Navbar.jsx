@@ -4,7 +4,9 @@ import { StyledNav } from './styles/Navbar.styled';
 const Navbar = () => {
   return (
     <StyledNav>
-      <img src='./assets/logo-light.svg' alt='kanban' />
+      <div className='logo-container'>
+        <img src='./assets/logo-light.svg' alt='kanban' />
+      </div>
     </StyledNav>
   );
 };
