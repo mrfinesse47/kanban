@@ -26,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .test{
-    background-color:red;
+  
     height: 100vh;
     width:50%;
   }

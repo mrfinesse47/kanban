@@ -23,16 +23,29 @@ function App() {
       <GlobalStyles />
       <Navbar isLight={isLight} />
       <div className='App'>
-        <AnimatePresence>
+        <LayoutGroup>
           <SideDrawer
             showSideDrawer={showSideDrawer}
             setShowSideDrawer={setShowSideDrawer}
           ></SideDrawer>
-        </AnimatePresence>
 
-        <p>hello world </p>
-        {boards.length &&
-          boards.map((board, index) => <div key={index}>{board.name}</div>)}
+          <motion.div
+            layout
+            transition={{ transform: 100, duration: 0.7 }}
+            className='test'
+          >
+            <p>hello world </p>
+            {boards.length &&
+              boards.map((board, index) => <div key={index}>{board.name}</div>)}
+            <button
+              onClick={() => {
+                setShowSideDrawer(true);
+              }}
+            >
+              show drawer
+            </button>
+          </motion.div>
+        </LayoutGroup>
       </div>
     </ThemeProvider>
   );

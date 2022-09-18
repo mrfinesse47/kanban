@@ -8,7 +8,7 @@ export const StyledSideDrawer = styled.aside`
     height: 100vh;
     /* border-radius: 10px; */
     text-align: center;
-    z-index: 5;
+    z-index: 7;
   }
 
   .container {

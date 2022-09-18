@@ -6,10 +6,11 @@ const backdrop = { visible: { opacity: 1 }, hidden: { opacity: 0 } };
 
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer, children }) => {
   return (
-    <AnimatePresence wait>
+    <AnimatePresence>
       {showSideDrawer && (
         <StyledSideDrawer>
           <motion.div
+            layout
             onClick={(e) => e.stopPropagation()}
             className='sideDrawer'
             initial={{ x: '-100vw' }}
@@ -19,7 +20,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer, children }) => {
             exit={{
               x: '-100vw',
             }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.7 }}
+            transition={{ type: 'spring', bounce: 0, duration: 1.2 }}
           >
             <div className='container'>
               <div className='menu'>
