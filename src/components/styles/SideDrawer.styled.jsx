@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledSideDrawer = styled.aside`
+  .container {
+    transform: translateX('-300px');
+  }
   .menu {
     width: 300px;
     margin-top: 15px;

@@ -42,7 +42,9 @@ const GlobalStyles = createGlobalStyle`
 
   .App{
     display:flex;
+    height:100vh;
   }
+
   
 
 `;
