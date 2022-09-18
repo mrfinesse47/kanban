@@ -7,6 +7,7 @@ const getTheme = (isLight) => {
     textAccent: '#828FA3',
     buttonText: '#FFF',
     lines: '#E4EBFA;',
+    mediumGray: '#828FA3',
   };
 
   const dark = {
@@ -17,6 +18,7 @@ const getTheme = (isLight) => {
     textAccent: '#828FA3',
     ButtonText: '#FFF',
     lines: '#3E3F4E',
+    mediumGray: '#828FA3',
   };
 
   const media = {

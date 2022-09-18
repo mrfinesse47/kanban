@@ -15,6 +15,15 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+  p,h1,h2,h3,h4,ul{
+    margin:0;
+    padding:0;
+  }
+
+  ul{
+    list-style:none
+  }
+
   h1{
     font-weight: 700;
     font-size: 24px;

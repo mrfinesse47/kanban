@@ -3,17 +3,19 @@ import styled from 'styled-components';
 export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
+  padding: 25px 0px 23px;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   .logo-container {
-    width: 201px;
+    display: flex;
+    padding-left: 34px;
+    align-items: center;
+    width: 300px;
     border-right: 1px solid ${({ theme }) => theme.colors.lines};
-    img {
-      padding: 28px 24.47px 26.78px 24px;
-    }
   }
   .container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex: 1; //fills the remainder of space
   }
