@@ -14,6 +14,28 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  h1{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 25px;
+  }
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
+  .test{
+    background-color:red;
+    height: 100vh;
+    width:50%;
+  }
+
+  .App{
+    display:flex;
+  }
+  
+
 `;
 
 export default GlobalStyles;
