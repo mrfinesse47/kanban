@@ -5,6 +5,15 @@ import { motion } from 'framer-motion';
 import { toggleIsLight } from '../features/lightDark/lightDarkSlice';
 
 const StyledLightDarkSwitch = styled.div`
+  .switch-container {
+    margin: 0 auto 8px;
+    background-color: ${({ theme }) => theme.colors.backgroundMain};
+    width: 83.667%;
+    padding: 14px 0px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+  }
   .switch {
     width: 40px;
     height: 20px;
@@ -38,15 +47,17 @@ const LightDarkSwitch = () => {
   };
   return (
     <StyledLightDarkSwitch isLight={isLight}>
-      <button
-        onClick={() => {
-          dispatch(toggleIsLight(!isLight));
-        }}
-      >
-        <div className='switch'>
-          <motion.div className='handle' layout transition={spring} />
-        </div>
-      </button>
+      <div className='switch-container'>
+        <button
+          onClick={() => {
+            dispatch(toggleIsLight(!isLight));
+          }}
+        >
+          <div className='switch'>
+            <motion.div className='handle' layout transition={spring} />
+          </div>
+        </button>
+      </div>
     </StyledLightDarkSwitch>
   );
 };
