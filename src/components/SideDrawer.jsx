@@ -3,6 +3,7 @@ import { StyledSideDrawer } from './styles/SideDrawer.styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import IconBoard from './icons/IconBoard';
+import LightDarkSwitch from './LightDarkSwitch';
 
 const drawerVariants = {
   hide: {
@@ -19,7 +20,6 @@ const drawerVariants = {
 };
 
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
-  const { isLight } = useSelector((state) => state.lightDark);
   const { boards, selectedIndex } = useSelector((state) => state.board);
 
   const determineIconColor = (isSelected) => {
@@ -71,6 +71,11 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                 close modal
               </button>
             </div>
+            <footer>
+              <div className='toggle-container'>
+                <LightDarkSwitch />
+              </div>
+            </footer>
           </div>
         </StyledSideDrawer>
       </motion.div>

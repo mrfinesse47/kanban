@@ -53,7 +53,7 @@ button:focus {
 
   .App{
     display:flex;
-    height:100vh;
+    height: calc(100vh - 97px);
   }
 
 `;

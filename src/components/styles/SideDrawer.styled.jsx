@@ -2,13 +2,17 @@ import styled from 'styled-components';
 
 export const StyledSideDrawer = styled.aside`
   .container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     transform: translateX('-300px');
+    height: calc(100vh - 97px);
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
   }
   .menu {
     width: 300px;
     border-right: 1px solid ${({ theme }) => theme.colors.lines};
-    background: ${({ theme }) => theme.colors.backgroundSecondary};
-    height: 100vh;
+
     /* border-radius: 10px; */
     z-index: 7;
     display: flex;
@@ -24,12 +28,6 @@ export const StyledSideDrawer = styled.aside`
     }
   }
 
-  /* button {
-    border-color: #444;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 24px;
-  } */
   p {
     font-weight: bold;
   }
