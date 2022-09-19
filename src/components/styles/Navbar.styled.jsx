@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const StyledNav = styled.nav`
   display: flex;
   align-items: center;
-  padding: 25px 0px 23px;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   .logo-container {
     display: flex;
     padding-left: 34px;
+    height: 97px;
     align-items: center;
     width: 300px;
     border-right: 1px solid ${({ theme }) => theme.colors.lines};
