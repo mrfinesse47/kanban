@@ -28,7 +28,6 @@ const StyledLightDarkSwitch = styled.div`
 `;
 
 const LightDarkSwitch = () => {
-  console.log('renders');
   const { isLight } = useSelector((state) => state.lightDark);
   const dispatch = useDispatch();
 
@@ -39,14 +38,15 @@ const LightDarkSwitch = () => {
   };
   return (
     <StyledLightDarkSwitch isLight={isLight}>
-      <div
-        className='switch'
+      <button
         onClick={() => {
           dispatch(toggleIsLight(!isLight));
         }}
       >
-        <motion.div className='handle' layout transition={spring} />
-      </div>
+        <div className='switch'>
+          <motion.div className='handle' layout transition={spring} />
+        </div>
+      </button>
     </StyledLightDarkSwitch>
   );
 };

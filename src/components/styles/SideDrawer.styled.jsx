@@ -53,7 +53,7 @@ export const StyledSideDrawer = styled.aside`
   }
   .selected {
     background-color: ${({ theme }) => theme.colors.buttonMain};
-    color: ${({ theme }) => theme.colors.textMain};
+    color: #fff;
   }
   .new-board {
     color: #635fc7;
