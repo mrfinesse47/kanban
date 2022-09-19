@@ -21,6 +21,11 @@ const drawerVariants = {
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   const { isLight } = useSelector((state) => state.lightDark);
   const { boards, selectedIndex } = useSelector((state) => state.board);
+
+  const determineIconColor = (isSelected) => {
+    return isSelected ? '#fff' : '#828FA3';
+  };
+
   return (
     <AnimatePresence>
       <motion.div
@@ -41,11 +46,25 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                       index === selectedIndex && 'selected'
                     }`}
                   >
-                    <button>{board.name}</button>
+                    <button>
+                      <div className='left'>
+                        <IconBoard
+                          color={`${determineIconColor(
+                            index === selectedIndex
+                          )}`}
+                        />
+                      </div>
+                      <div className='right'>{board.name}</div>
+                    </button>
                   </li>
                 ))}
                 <li className='list-boards-item new-board'>
-                  <button>+ Create New Board</button>
+                  <button>
+                    <div className='left'>
+                      <IconBoard color='#635FC7' />
+                    </div>
+                    <div className='right'>+ Create New Board</div>
+                  </button>
                 </li>
               </ul>
               <button onClick={() => setShowSideDrawer('hide')}>

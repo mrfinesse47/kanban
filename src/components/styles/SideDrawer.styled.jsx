@@ -45,6 +45,13 @@ export const StyledSideDrawer = styled.aside`
     border-radius: 0px 100px 100px 0px;
     width: 92%;
     color: ${({ theme }) => theme.colors.textAccent};
+    button {
+      display: flex;
+      .left {
+        padding-right: 16px;
+        padding-top: 2px;
+      }
+    }
   }
   .selected {
     background-color: ${({ theme }) => theme.colors.buttonMain};
