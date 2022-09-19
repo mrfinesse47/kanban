@@ -6,11 +6,12 @@ import getTheme from './theme/getTheme';
 import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
 import { LayoutGroup } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 import Navbar from './components/Navbar';
 
 function App() {
-  const [isLight, setIsLight] = useState(false); //will use local storage for this eventually
+  const { isLight } = useSelector((state) => state.lightDark);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
 
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');

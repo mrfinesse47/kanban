@@ -3,6 +3,7 @@ import boardService from './boardService';
 
 const initialState = {
   boards: [],
+  selectedIndex: null,
   isLoading: false,
   isSuccess: false,
 };
@@ -34,6 +35,9 @@ export const boardSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.boards = action.payload;
+        if (state.boards.length > 0) {
+          state.selectedIndex = 0;
+        }
       })
       .addCase(getBoards.rejected, (state, action) => {
         state.isLoading = false;

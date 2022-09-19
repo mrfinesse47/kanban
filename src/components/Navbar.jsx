@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyledNav } from './styles/Navbar.styled';
+import { useSelector } from 'react-redux';
 
-const Navbar = ({ isLight }) => {
+const Navbar = () => {
+  const { isLight } = useSelector((state) => state.lightDark);
   return (
     <StyledNav>
       <div className='logo-container'>

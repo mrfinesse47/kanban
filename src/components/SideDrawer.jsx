@@ -2,6 +2,7 @@ import React from 'react';
 import { StyledSideDrawer } from './styles/SideDrawer.styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import IconBoard from './icons/IconBoard';
 
 const drawerVariants = {
   hide: {
@@ -18,7 +19,8 @@ const drawerVariants = {
 };
 
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
-  const { boards } = useSelector((state) => state.board);
+  const { isLight } = useSelector((state) => state.lightDark);
+  const { boards, selectedIndex } = useSelector((state) => state.board);
   return (
     <AnimatePresence>
       <motion.div
@@ -30,13 +32,21 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
         <StyledSideDrawer>
           <div className='container'>
             <div className='menu'>
-              <h4>All Boards ({boards.length})</h4>
+              <h4>ALL BOARDS ({boards.length})</h4>
               <ul className='list-boards'>
                 {boards.map((board, index) => (
-                  <li key={index} className='list-boards-item'>
-                    {board.name}
+                  <li
+                    key={index}
+                    className={`list-boards-item ${
+                      index === selectedIndex && 'selected'
+                    }`}
+                  >
+                    <button>{board.name}</button>
                   </li>
                 ))}
+                <li className='list-boards-item new-board'>
+                  <button>+ Create New Board</button>
+                </li>
               </ul>
               <button onClick={() => setShowSideDrawer('hide')}>
                 close modal

@@ -32,7 +32,18 @@ const GlobalStyles = createGlobalStyle`
   button {
     all: unset;
     cursor: pointer;
+    padding:0;
+    margin:0;
   }
+
+  button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
 
   .test{
   
