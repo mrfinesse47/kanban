@@ -45,8 +45,6 @@ const GlobalStyles = createGlobalStyle`
     height:100vh;
   }
 
-  
-
 `;
 
 export default GlobalStyles;

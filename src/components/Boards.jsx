@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBoards } from '.././features/boards/boardSlice';
 import { motion } from 'framer-motion';
+import StyledBoards from './styles/Boards.styled';
 
 const mainVariants = {
   hide: {
