@@ -36,7 +36,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
         animate={showSideDrawer}
         className='drawer'
       >
-        <StyledSideDrawer>
+        <StyledSideDrawer showSideDrawer={showSideDrawer}>
           <div className='container'>
             <div className='menu'>
               <h4>ALL BOARDS ({boards.length})</h4>

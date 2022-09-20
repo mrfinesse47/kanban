@@ -6,6 +6,12 @@ const GlobalStyles = createGlobalStyle`
      box-sizing: border-box;
     }  
 
+    html{
+      width:100vw;
+    }
+
+ 
+
   body {
     background: ${({ theme }) => theme.colors.backgroundMain};
     color: ${({ theme }) => theme.colors.textMain};
@@ -13,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+ 
   }
 
   p,h1,h2,h3,h4,ul{
@@ -54,6 +61,9 @@ button:focus {
   .App{
     display:flex;
     height: calc(100vh - 97px);
+    position:relative;
+    top:97px;
+    overflow-x: hidden;
   }
 
 `;

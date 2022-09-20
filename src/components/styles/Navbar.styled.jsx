@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
+  position: fixed;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-x: hidden;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   .logo-container {
     display: flex;

@@ -33,15 +33,17 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
       className='main'
     >
       <StyledBoards>
-        {selectedIndex !== null &&
-          boards[selectedIndex].columns.map((row, index) => (
-            <div key={`row_${index}`}>
-              {row.name}
-              {row.tasks.map((task, index) => (
-                <li key={`task_${index}`}>{task.title}</li>
-              ))}
-            </div>
-          ))}
+        <div id='scroll'>
+          {selectedIndex !== null &&
+            boards[selectedIndex].columns.map((row, index) => (
+              <div className='column' key={`row_${index}`}>
+                {row.name}
+                {row.tasks.map((task, index) => (
+                  <li key={`task_${index}`}>{task.title}</li>
+                ))}
+              </div>
+            ))}
+        </div>
       </StyledBoards>
 
       <button

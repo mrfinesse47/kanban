@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const StyledSideDrawer = styled.aside`
   .container {
     display: flex;
+    left: 300px;
     justify-content: space-between;
     flex-direction: column;
     transform: translateX('-300px');
