@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoards } from '.././features/boards/boardSlice';
+import { getBoards } from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
-import StyledBoards from './styles/Boards.styled';
+import { StyledBoards } from './styles/Boards.styled';
 
 const mainVariants = {
   hide: {
@@ -19,7 +19,8 @@ const mainVariants = {
 };
 
 const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
-  const { boards, isLoading, isSuccess } = useSelector((state) => state.board);
+  const { boards, selectedIndex } = useSelector((state) => state.board);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBoards());
@@ -31,8 +32,18 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
       animate={showSideDrawer}
       className='main'
     >
-      {boards.length &&
-        boards.map((board, index) => <div key={index}>{board.name}</div>)}
+      <StyledBoards>
+        {selectedIndex !== null &&
+          boards[selectedIndex].columns.map((row, index) => (
+            <div key={`row_${index}`}>
+              {row.name}
+              {row.tasks.map((task, index) => (
+                <li key={`task_${index}`}>{task.title}</li>
+              ))}
+            </div>
+          ))}
+      </StyledBoards>
+
       <button
         onClick={() => {
           setShowSideDrawer('show');

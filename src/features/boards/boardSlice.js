@@ -39,7 +39,8 @@ export const boardSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.boards = action.payload;
-        if (state.boards.length > 0) {
+        console.log(state.boards);
+        if (state?.boards && state.boards.length > 0) {
           state.selectedIndex = 0;
         }
       })

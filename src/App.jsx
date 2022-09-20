@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Boards from './components/Boards';
+import Boards from './components/Boards/Boards';
 import { ThemeProvider } from 'styled-components';
 import { useMediaQuery } from '@react-hook/media-query';
 import getTheme from './theme/getTheme';
