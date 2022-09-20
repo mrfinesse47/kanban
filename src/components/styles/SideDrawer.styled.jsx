@@ -54,8 +54,19 @@ export const StyledSideDrawer = styled.aside`
   .selected {
     background-color: ${({ theme }) => theme.colors.buttonMain};
     color: #fff;
+    button {
+      cursor: unset;
+    }
   }
   .new-board {
     color: #635fc7;
+  }
+  .close-container {
+    margin-left: 31px;
+    padding: 22px 0 30px 0;
+    span {
+      margin-left: 15px;
+      color: ${({ theme }) => theme.colors.textAccent};
+    }
   }
 `;

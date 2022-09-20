@@ -67,13 +67,16 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                   </button>
                 </li>
               </ul>
-              <button onClick={() => setShowSideDrawer('hide')}>
-                close modal
-              </button>
             </div>
             <footer>
               <div className='toggle-container'>
                 <LightDarkSwitch />
+              </div>
+              <div className='close-container'>
+                <button onClick={() => setShowSideDrawer('hide')}>
+                  <img src='./assets/icon-hide-sidebar.svg' alt='close menu' />
+                  <span>Hide Sidebar</span>
+                </button>
               </div>
             </footer>
           </div>
