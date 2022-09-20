@@ -13,6 +13,7 @@ const StyledLightDarkSwitch = styled.div`
     border-radius: 6px;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   .switch {
     width: 40px;
@@ -34,6 +35,14 @@ const StyledLightDarkSwitch = styled.div`
     background-color: white;
     border-radius: 50%;
   }
+  button {
+    padding: 0 23.67px;
+  }
+
+  img {
+    width: 15px;
+    height: 15px;
+  }
 `;
 
 const LightDarkSwitch = () => {
@@ -48,6 +57,7 @@ const LightDarkSwitch = () => {
   return (
     <StyledLightDarkSwitch isLight={isLight}>
       <div className='switch-container'>
+        <img src='./assets/icon-light-theme.svg' alt='light theme' />
         <button
           onClick={() => {
             dispatch(toggleIsLight(!isLight));
@@ -57,6 +67,7 @@ const LightDarkSwitch = () => {
             <motion.div className='handle' layout transition={spring} />
           </div>
         </button>
+        <img src='./assets/icon-dark-theme.svg' alt='dark theme' />
       </div>
     </StyledLightDarkSwitch>
   );
