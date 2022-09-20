@@ -8,6 +8,8 @@ const GlobalStyles = createGlobalStyle`
 
     html{
       width:100vw;
+      margin:0;
+      padding:0;
     }
 
  
@@ -63,7 +65,11 @@ button:focus {
     height: calc(100vh - 97px);
     position:relative;
     top:97px;
-    overflow-x: hidden;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    
+    -webkit-overflow-scrolling: touch;
   }
 
 `;

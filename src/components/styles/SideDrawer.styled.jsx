@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledSideDrawer = styled.aside`
+  position: fixed;
+  z-index: 8;
+
   .container {
     display: flex;
-    left: 300px;
+    /* left: 300px; */
     justify-content: space-between;
     flex-direction: column;
-    transform: translateX('-300px');
+    /* transform: translateX('-300px'); */
     height: calc(100vh - 97px);
     background: ${({ theme }) => theme.colors.backgroundSecondary};
   }

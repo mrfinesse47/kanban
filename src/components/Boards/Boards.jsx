@@ -41,18 +41,17 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                 {row.tasks.map((task, index) => (
                   <li key={`task_${index}`}>{task.title}</li>
                 ))}
+                <button
+                  onClick={() => {
+                    setShowSideDrawer('show');
+                  }}
+                >
+                  show drawer
+                </button>
               </div>
             ))}
         </div>
       </StyledBoards>
-
-      <button
-        onClick={() => {
-          setShowSideDrawer('show');
-        }}
-      >
-        show drawer
-      </button>
     </motion.div>
   );
 };
