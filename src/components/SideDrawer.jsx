@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyledSideDrawer } from './styles/SideDrawer.styled';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectBoardIndex } from '../features/boards/boardSlice';
 import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
 
@@ -21,6 +22,7 @@ const drawerVariants = {
 
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   const { boards, selectedIndex } = useSelector((state) => state.board);
+  const dispatch = useDispatch();
 
   const determineIconColor = (isSelected) => {
     return isSelected ? '#fff' : '#828FA3';
@@ -46,7 +48,11 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                       index === selectedIndex && 'selected'
                     }`}
                   >
-                    <button>
+                    <button
+                      onClick={() => {
+                        dispatch(selectBoardIndex(index));
+                      }}
+                    >
                       <div className='left'>
                         <IconBoard
                           color={`${determineIconColor(

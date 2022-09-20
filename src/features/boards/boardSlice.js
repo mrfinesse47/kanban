@@ -25,7 +25,11 @@ export const getBoards = createAsyncThunk(
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {},
+  reducers: {
+    selectBoardIndex: (state, action) => {
+      state.selectedIndex = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBoards.pending, (state) => {
@@ -47,7 +51,7 @@ export const boardSlice = createSlice({
   },
 });
 
-// export const { reset } = boardSlice.actions;
+export const { selectBoardIndex } = boardSlice.actions;
 // export of a normal reducer
 
 export default boardSlice.reducer;

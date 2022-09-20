@@ -64,9 +64,16 @@ export const StyledSideDrawer = styled.aside`
   .close-container {
     margin-left: 31px;
     padding: 22px 0 30px 0;
+    button {
+      display: flex;
+      align-items: center;
+    }
     span {
       margin-left: 15px;
       color: ${({ theme }) => theme.colors.textAccent};
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 19px;
     }
   }
 `;
