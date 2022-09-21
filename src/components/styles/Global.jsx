@@ -11,9 +11,7 @@ const GlobalStyles = createGlobalStyle`
       margin:0;
       padding:0;
     }
-
- 
-
+    
   body {
     background: ${({ theme }) => theme.colors.backgroundMain};
     color: ${({ theme }) => theme.colors.textMain};
@@ -29,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
     padding:0;
   }
 
-  ul{
+  ul,li{
     list-style:none
   }
 

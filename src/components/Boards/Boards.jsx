@@ -38,9 +38,21 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
             boards[selectedIndex].columns.map((row, index) => (
               <div className='column' key={`row_${index}`}>
                 {row.name}
-                {row.tasks.map((task, index) => (
-                  <li key={`task_${index}`}>{task.title}</li>
-                ))}
+                {row.tasks.map((task, index) => {
+                  return (
+                    <li key={`task_${index}`}>
+                      <h4>{task.title}</h4>
+                      <div>
+                        {
+                          task.subtasks.filter(
+                            (subtask) => subtask.isCompleted === true
+                          ).length
+                        }{' '}
+                        of {task.subtasks.length} Subtasks
+                      </div>
+                    </li>
+                  );
+                })}
                 <button
                   onClick={() => {
                     setShowSideDrawer('show');
