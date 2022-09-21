@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBoards } from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
 import { StyledBoards } from './styles/Boards.styled';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 import Task from './Task';
 
 const mainVariants = {
@@ -28,6 +30,21 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
   useEffect(() => {
     dispatch(getBoards());
   }, [dispatch]);
+
+  function handleOnDragEnd({ destination, source }) {
+    // if (!destination) return;
+    // setItems((prevItems) => {
+    //   const [reorderedItem] = items[source.droppableId].splice(source.index, 1);
+    //   items[destination.droppableId].splice(
+    //     destination.index,
+    //     0,
+    //     reorderedItem
+    //   );
+    //   return prevItems;
+    // });
+    if (!destination) return;
+  }
+
   return (
     <motion.div
       variants={mainVariants}
@@ -37,28 +54,32 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
     >
       <StyledBoards showSideDrawer={showSideDrawer}>
         <div id='scroll'>
-          {selectedIndex !== null &&
-            boards[selectedIndex].columns.map((column, index) => (
-              <div className='column' key={`column_${index}`}>
-                <div className='container-column-name'>
-                  <div className='status'></div>
-                  <h3>
-                    {column.name.toUpperCase()} ({column.tasks.length})
-                  </h3>
-                </div>
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            {selectedIndex !== null &&
+              boards[selectedIndex].columns.map((column, index) => (
+                <div className='column' key={`column_${index}`}>
+                  {/* column header */}
+                  <div className='container-column-name'>
+                    <div className='status'></div>
+                    <h3>
+                      {column.name.toUpperCase()} ({column.tasks.length})
+                    </h3>
+                  </div>
+                  {/* end column header */}
 
-                {column.tasks.map((task, index) => (
-                  <Task task={task} key={`task_${index}`} />
-                ))}
-                <button
-                  onClick={() => {
-                    setShowSideDrawer('show');
-                  }}
-                >
-                  show drawer
-                </button>
-              </div>
-            ))}
+                  {column.tasks.map((task, index) => (
+                    <Task task={task} key={`task_${index}`} />
+                  ))}
+                  <button
+                    onClick={() => {
+                      setShowSideDrawer('show');
+                    }}
+                  >
+                    show drawer
+                  </button>
+                </div>
+              ))}
+          </DragDropContext>
           <div className='new-column-option'>
             <button>+ New Column</button>
           </div>
