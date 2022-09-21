@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBoards } from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
 import { StyledBoards } from './styles/Boards.styled';
+import Task from './Task';
 
 const mainVariants = {
   hide: {
@@ -37,28 +38,18 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
       <StyledBoards showSideDrawer={showSideDrawer}>
         <div id='scroll'>
           {selectedIndex !== null &&
-            boards[selectedIndex].columns.map((row, index) => (
-              <div className='column' key={`row_${index}`}>
-                <div className='container-row-name'>
+            boards[selectedIndex].columns.map((column, index) => (
+              <div className='column' key={`column_${index}`}>
+                <div className='container-column-name'>
                   <div className='status'></div>
-                  <h3>{row.name.toUpperCase()}</h3>
+                  <h3>
+                    {column.name.toUpperCase()} ({column.tasks.length})
+                  </h3>
                 </div>
 
-                {row.tasks.map((task, index) => {
-                  return (
-                    <li key={`task_${index}`} className='task'>
-                      <h4>{task.title}</h4>
-                      <div className='completion'>
-                        {
-                          task.subtasks.filter(
-                            (subtask) => subtask.isCompleted === true
-                          ).length
-                        }{' '}
-                        of {task.subtasks.length} Subtasks
-                      </div>
-                    </li>
-                  );
-                })}
+                {column.tasks.map((task, index) => (
+                  <Task task={task} key={`task_${index}`} />
+                ))}
                 <button
                   onClick={() => {
                     setShowSideDrawer('show');
@@ -68,6 +59,9 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                 </button>
               </div>
             ))}
+          <div className='new-column-option'>
+            <button>+ New Column</button>
+          </div>
         </div>
       </StyledBoards>
     </motion.div>
