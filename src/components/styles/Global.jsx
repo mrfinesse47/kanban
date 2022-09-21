@@ -63,9 +63,10 @@ const GlobalStyles = createGlobalStyle`
     height: calc(100vh - 97px);
     position:relative;
     top:97px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     position: relative;
     overflow-x: scroll;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
   }
 

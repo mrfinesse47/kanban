@@ -7,13 +7,15 @@ import { StyledBoards } from './styles/Boards.styled';
 const mainVariants = {
   hide: {
     x: '-300px',
+    width: '100vw',
     opacity: 1,
     transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
   },
-  initial: { x: '-300px' },
+  initial: { x: '-300px', width: '100vw' },
   show: {
     x: 0,
     opacity: 1,
+    width: 'calc(100vw - 300px)',
     transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
   },
 };
@@ -32,17 +34,21 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
       animate={showSideDrawer}
       className='main'
     >
-      <StyledBoards>
+      <StyledBoards showSideDrawer={showSideDrawer}>
         <div id='scroll'>
           {selectedIndex !== null &&
             boards[selectedIndex].columns.map((row, index) => (
               <div className='column' key={`row_${index}`}>
-                {row.name}
+                <div className='container-row-name'>
+                  <div className='status'></div>
+                  <h3>{row.name.toUpperCase()}</h3>
+                </div>
+
                 {row.tasks.map((task, index) => {
                   return (
-                    <li key={`task_${index}`}>
+                    <li key={`task_${index}`} className='task'>
                       <h4>{task.title}</h4>
-                      <div>
+                      <div className='completion'>
                         {
                           task.subtasks.filter(
                             (subtask) => subtask.isCompleted === true
