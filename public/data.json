@@ -5,12 +5,13 @@
       "columns": [
         {
           "name": "Todo",
+          "id": "0242ac120102",
           "tasks": [
             {
               "title": "Build UI for onboarding flow",
               "description": "",
               "status": "Todo",
-              "id": "62e25f1d52bf",
+              "id": "62e25f1d52af",
               "subtasks": [
                 {
                   "title": "Sign up page",
@@ -30,7 +31,7 @@
               "title": "Build UI for search",
               "description": "",
               "status": "Todo",
-              "id": "71dbc899bdd4",
+              "id": "71dbc899bed4",
               "subtasks": [
                 {
                   "title": "Search page",
@@ -42,7 +43,7 @@
               "title": "Build settings UI",
               "description": "",
               "status": "Todo",
-              "id": "8d9ceeccf310",
+              "id": "8d9cee1cf310",
               "subtasks": [
                 {
                   "title": "Account page",
@@ -58,7 +59,7 @@
               "title": "QA and test all major user journeys",
               "description": "Once we feel version one is ready, we need to rigorously test it both internally and externally to identify any major gaps.",
               "status": "Todo",
-              "id": "8233c64c37bf",
+              "id": "1233c64c37bf",
               "subtasks": [
                 {
                   "title": "Internal testing",
@@ -74,12 +75,13 @@
         },
         {
           "name": "Doing",
+          "id": "0242ac13e333",
           "tasks": [
             {
               "title": "Design settings and search pages",
               "description": "",
               "status": "Doing",
-              "id": "4f9e2417c18c",
+              "id": "4f9e24e7c18c",
               "subtasks": [
                 {
                   "title": "Settings - Account page",
@@ -99,7 +101,7 @@
               "title": "Add account management endpoints",
               "description": "",
               "status": "Doing",
-              "id": "40295544267b",
+              "id": "40295044267b",
               "subtasks": [
                 {
                   "title": "Upgrade plan",
@@ -119,7 +121,7 @@
               "title": "Design onboarding flow",
               "description": "",
               "status": "Doing",
-              "id": "a81070959289",
+              "id": "a11070959289",
               "subtasks": [
                 {
                   "title": "Sign up page",
@@ -139,7 +141,7 @@
               "title": "Add search enpoints",
               "description": "",
               "status": "Doing",
-              "id": "64cd62ebff77",
+              "id": "64cf62ebff77",
               "subtasks": [
                 {
                   "title": "Add search endpoint",
@@ -155,7 +157,7 @@
               "title": "Add authentication endpoints",
               "description": "",
               "status": "Doing",
-              "id": "8fe76da120b5",
+              "id": "8fe76da12fb5",
               "subtasks": [
                 {
                   "title": "Define user model",
@@ -171,7 +173,7 @@
               "title": "Research pricing points of various competitors and trial different business models",
               "description": "We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.",
               "status": "Doing",
-              "id": "6a6fe97e1e27",
+              "id": "6d6fe97e1e27",
               "subtasks": [
                 {
                   "title": "Research competitor pricing and business models",
@@ -191,6 +193,7 @@
         },
         {
           "name": "Done",
+          "id": "12b2ac7694a",
           "tasks": [
             {
               "title": "Conduct 5 wireframe tests",
@@ -302,9 +305,11 @@
     },
     {
       "name": "Marketing Plan",
+      "id": "e1898b66",
       "columns": [
         {
           "name": "Todo",
+          "id": "52327576",
           "tasks": [
             {
               "title": "Plan Product Hunt launch",
@@ -386,10 +391,12 @@
         },
         {
           "name": "Doing",
+          "id": "3e1bf88c",
           "tasks": []
         },
         {
           "name": "Done",
+          "id": "24411140",
           "tasks": []
         }
       ]
@@ -399,6 +406,7 @@
       "columns": [
         {
           "name": "Now",
+          "id": "f797fc62",
           "tasks": [
             {
               "title": "Launch version one",
@@ -440,10 +448,12 @@
         },
         {
           "name": "Next",
+          "id": "244cbb44",
           "tasks": []
         },
         {
           "name": "Later",
+          "id": "244cbb55",
           "tasks": []
         }
       ]
