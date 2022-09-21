@@ -48,11 +48,11 @@ const GlobalStyles = createGlobalStyle`
   button:active {
   outline: none;
   border: none;
-}
+  }
 
-button:focus {
-  outline: 0;
-}
+  button:focus {
+    outline: 0;
+  }
 
   .test{
   
@@ -68,7 +68,6 @@ button:focus {
     white-space: nowrap;
     position: relative;
     overflow-x: scroll;
-    
     -webkit-overflow-scrolling: touch;
   }
 

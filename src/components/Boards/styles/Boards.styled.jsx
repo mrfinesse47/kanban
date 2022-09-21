@@ -7,7 +7,7 @@ export const StyledBoards = styled.main`
   #scroll {
     display: flex;
     max-width: 100vw;
-    height: (100vh-97px);
+    height: (100vh - 97px);
   }
   .column {
     width: 400px;
