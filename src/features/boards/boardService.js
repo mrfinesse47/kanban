@@ -6,6 +6,11 @@ const getBoards = async () => {
 
   return response.data.boards;
 };
-const boardService = { getBoards };
+
+const setBoard = async ({ boardData, callBack }) => {
+  console.log(callBack());
+};
+
+const boardService = { getBoards, board: { setBoard } };
 
 export default boardService;

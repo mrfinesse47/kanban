@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoards } from '../../features/boards/boardSlice';
+import { getBoards, setBoard } from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
 import { StyledBoards } from './styles/Boards.styled';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -27,18 +27,22 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
     dispatch(getBoards());
   }, [dispatch]);
 
-  function handleOnDragEnd({ destination, source }) {
+  function handleOnDragEnd(move) {
+    if (!move.destination) return;
     // if (!destination) return;
-    // setItems((prevItems) => {
-    //   const [reorderedItem] = items[source.droppableId].splice(source.index, 1);
-    //   items[destination.droppableId].splice(
-    //     destination.index,
-    //     0,
-    //     reorderedItem
-    //   );
-    //   return prevItems;
-    // });
-    if (!destination) return;
+
+    console.log(boards);
+
+    // const prevItems = [...boards];
+    // const originArr = items[move.source.droppableId];
+    // const [reorderedItem] = originArr.splice(move.source.index, 1);
+    // const destinationArr = items[move.destination.droppableId];
+    // destinationArr.splice(move.destination.index, 0, reorderedItem);
+    // prevItems[move.source.droppableId] = originArr;
+    // prevItems[move.destination.droppableId] = destinationArr;
+    // return prevItems;
+
+    dispatch(setBoard({}));
   }
 
   return (

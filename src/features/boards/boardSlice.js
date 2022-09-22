@@ -8,15 +8,27 @@ const initialState = {
   isSuccess: false,
 };
 
+//set boards
+export const setBoard = createAsyncThunk(
+  'boards/board/setAll',
+  async (boardData, thunkAPI) => {
+    try {
+      return await boardService.board.setBoard(boardData);
+    } catch (error) {
+      const message = 'error';
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 //get all boards
 export const getBoards = createAsyncThunk(
-  'board/getAll',
+  'boards/getAll',
   async (_, thunkAPI) => {
     try {
       return await boardService.getBoards();
     } catch (error) {
       const message = 'error';
-
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -44,6 +56,22 @@ export const boardSlice = createSlice({
         }
       })
       .addCase(getBoards.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(setBoard.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(setBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.boards = action.payload;
+        if (state?.boards && state.boards.length > 0) {
+          state.selectedIndex = 0;
+        }
+      })
+      .addCase(setBoard.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
