@@ -5,12 +5,12 @@ export const StyledBoards = styled.main`
   position: relative;
   left: 300px;
   height: calc(100vh - 97px);
-
-  overflow-x: scroll;
+  /* 
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-scrollbar : {
     display: none;
-  }
+  } */
 
   .container-column-name {
     margin-bottom: 24px;

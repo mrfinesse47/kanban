@@ -65,9 +65,9 @@ const GlobalStyles = createGlobalStyle`
     top:97px;
     /* white-space: nowrap; */
     position: relative;
-    overflow-x: scroll;
+    /* overflow-x: scroll;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; */
   }
 
 `;
