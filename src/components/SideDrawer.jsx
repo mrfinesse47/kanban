@@ -11,6 +11,7 @@ const drawerVariants = {
     position: 'fixed',
     x: '-300px',
     opacity: 0,
+    zIndex: 10,
     transition: {
       duration: 0.7,
       ease: 'easeInOut',
@@ -18,10 +19,11 @@ const drawerVariants = {
       position: 'fixed',
     },
   },
-  initial: { x: '-300px', position: 'fixed' },
+  initial: { x: '-300px', position: 'fixed', zIndex: 10 },
   show: {
     x: 0,
     opacity: 1,
+    zIndex: 10,
     transition: {
       duration: 0.7,
       ease: 'easeInOut',

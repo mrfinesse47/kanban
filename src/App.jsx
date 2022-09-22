@@ -5,7 +5,6 @@ import { useMediaQuery } from '@react-hook/media-query';
 import getTheme from './theme/getTheme';
 import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
-import { LayoutGroup } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 
@@ -26,17 +25,15 @@ function App() {
       <GlobalStyles />
       <Navbar isLight={isLight} />
       <div className='App'>
-        <LayoutGroup>
-          <SideDrawer
-            showSideDrawer={showSideDrawer}
-            setShowSideDrawer={setShowSideDrawer}
-          ></SideDrawer>
+        <SideDrawer
+          showSideDrawer={showSideDrawer}
+          setShowSideDrawer={setShowSideDrawer}
+        ></SideDrawer>
 
-          <Boards
-            showSideDrawer={showSideDrawer}
-            setShowSideDrawer={setShowSideDrawer}
-          />
-        </LayoutGroup>
+        <Boards
+          showSideDrawer={showSideDrawer}
+          setShowSideDrawer={setShowSideDrawer}
+        />
       </div>
     </ThemeProvider>
   );

@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const StyledBoards = styled.main`
   padding: 24px;
-  position: relative;
-  left: 300px;
+  /* position: relative;
+  left: 300px; */
   height: calc(100vh - 97px);
-  z-index: -10;
+  z-index: 1;
   /* 
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

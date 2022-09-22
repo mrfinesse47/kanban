@@ -127,16 +127,12 @@ import Task from './Task';
 
 const mainVariants = {
   hide: {
-    x: '-300px',
-    width: '100vw',
-    opacity: 1,
+    marginLeft: 0,
     transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
   },
-  initial: { x: '-300px', width: '100vw' },
+  initial: { marginLeft: 0 },
   show: {
-    x: 0,
-    opacity: 1,
-    width: 'calc(100vw - 300px)',
+    marginLeft: 300,
     transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
   },
 };
@@ -163,6 +159,8 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
     if (!destination) return;
   }
 
+  console.log('renders ');
+
   return (
     <motion.div
       variants={mainVariants}
@@ -170,9 +168,10 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
       animate={showSideDrawer}
       className='main'
     >
-      <StyledBoards showSideDrawer={showSideDrawer}>
-        <div id='scroll'>
-          <DragDropContext onDragEnd={handleOnDragEnd}>
+      a
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <StyledBoards>
+          <div id='scroll'>
             {selectedIndex !== null &&
               boards[selectedIndex].columns.map((column, index) => (
                 <div className='column' key={`column_${index}`}>
@@ -184,7 +183,7 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                     </h3>
                   </div>
                   {/* end column header */}
-                  <Droppable droppableId={`column_${index}`}>
+                  <Droppable droppableId={column.id}>
                     {/* the ul is droppable */}
                     {(provided) => (
                       <ul
@@ -213,12 +212,13 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                   </button>
                 </div>
               ))}
-          </DragDropContext>
-          <div className='new-column-option'>
-            <button>+ New Column</button>
+
+            <div className='new-column-option'>
+              <button>+ New Column</button>
+            </div>
           </div>
-        </div>
-      </StyledBoards>
+        </StyledBoards>
+      </DragDropContext>
     </motion.div>
   );
 };
