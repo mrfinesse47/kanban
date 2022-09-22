@@ -7,6 +7,7 @@ import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
 import { LayoutGroup } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import Navbar from './components/Navbar';
 
@@ -32,6 +33,7 @@ function App() {
             showSideDrawer={showSideDrawer}
             setShowSideDrawer={setShowSideDrawer}
           ></SideDrawer>
+
           <Boards
             showSideDrawer={showSideDrawer}
             setShowSideDrawer={setShowSideDrawer}
