@@ -30,10 +30,13 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
   function handleOnDragEnd(move) {
     if (!move.destination) return;
     // if (!destination) return;
-
+    console.log('move', move);
     console.log(boards);
 
     // const prevItems = [...boards];
+    // should deep copy state or at least the source and destination arrays and then
+    // rebuild the obj. so we need the column id for each source and dest array i guess
+    // and send that to the slice to handle
     // const originArr = items[move.source.droppableId];
     // const [reorderedItem] = originArr.splice(move.source.index, 1);
     // const destinationArr = items[move.destination.droppableId];
