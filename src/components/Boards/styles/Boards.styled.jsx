@@ -2,16 +2,10 @@ import styled from 'styled-components';
 
 export const StyledBoards = styled.main`
   padding: 24px;
-  /* position: relative;
-  left: 300px; */
   height: calc(100vh - 97px);
-  z-index: 1;
-  /* 
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-scrollbar : {
-    display: none;
-  } */
+  display: flex;
+  max-width: 100vw;
+  height: 100%;
 
   .container-column-name {
     margin-bottom: 24px;
@@ -33,11 +27,6 @@ export const StyledBoards = styled.main`
     }
   }
 
-  #scroll {
-    display: flex;
-    max-width: 100vw;
-    height: 100%;
-  }
   .column {
     width: 400px;
     min-width: 400px;

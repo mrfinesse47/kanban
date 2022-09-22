@@ -16,7 +16,6 @@ const drawerVariants = {
       duration: 0.7,
       ease: 'easeInOut',
       type: 'linear',
-      position: 'fixed',
     },
   },
   initial: { x: '-300px', position: 'fixed', zIndex: 10 },

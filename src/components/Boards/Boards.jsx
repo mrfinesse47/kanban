@@ -41,62 +41,46 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
     if (!destination) return;
   }
 
-  console.log('renders ');
-
   return (
     <motion.div
       variants={mainVariants}
-      initial='initial'
+      // initial='initial'
       animate={showSideDrawer}
       className='main'
     >
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <StyledBoards>
-          <div id='scroll'>
-            {selectedIndex !== null &&
-              boards[selectedIndex].columns.map((column, index) => (
-                <div className='column' key={`column_${index}`}>
-                  {/* column header */}
-                  <div className='container-column-name'>
-                    <div className='status'></div>
-                    <h3>
-                      {column.name.toUpperCase()} ({column.tasks.length})
-                    </h3>
-                  </div>
-                  {/* end column header */}
-                  <Droppable droppableId={column.id}>
-                    {/* the ul is droppable */}
-                    {(provided) => (
-                      <ul
-                        style={{ overflow: 'auto' }}
-                        className='characters'
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                      >
-                        {column.tasks.map((task, index) => (
-                          <Task
-                            task={task}
-                            key={`task_${index}`}
-                            index={index}
-                          />
-                        ))}
-                        {provided.placeholder}
-                      </ul>
-                    )}
-                  </Droppable>
-                  <button
-                    onClick={() => {
-                      setShowSideDrawer('show');
-                    }}
-                  >
-                    show drawer
-                  </button>
+          {selectedIndex !== null &&
+            boards[selectedIndex].columns.map((column, index) => (
+              <div className='column' key={`column_${index}`}>
+                <div className='container-column-name'>
+                  <div className='status'></div>
+                  <h3>
+                    {column.name.toUpperCase()} ({column.tasks.length})
+                  </h3>
                 </div>
-              ))}
+                <Droppable droppableId={column.id}>
+                  {(provided) => (
+                    <ul {...provided.droppableProps} ref={provided.innerRef}>
+                      {column.tasks.map((task, index) => (
+                        <Task task={task} key={`task_${index}`} index={index} />
+                      ))}
+                      {provided.placeholder}
+                    </ul>
+                  )}
+                </Droppable>
+                <button
+                  onClick={() => {
+                    setShowSideDrawer('show');
+                  }}
+                >
+                  show drawer
+                </button>
+              </div>
+            ))}
 
-            <div className='new-column-option'>
-              <button>+ New Column</button>
-            </div>
+          <div className='new-column-option'>
+            <button>+ New Column</button>
           </div>
         </StyledBoards>
       </DragDropContext>

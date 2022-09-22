@@ -3,19 +3,14 @@ import styled from 'styled-components';
 export const StyledSideDrawer = styled.aside`
   .container {
     display: flex;
-
-    /* left: 300px; */
     justify-content: space-between;
     flex-direction: column;
-    /* transform: translateX('-300px'); */
     height: calc(100vh - 97px);
     background: ${({ theme }) => theme.colors.backgroundSecondary};
   }
   .menu {
     width: 300px;
     border-right: 1px solid ${({ theme }) => theme.colors.lines};
-
-    /* border-radius: 10px; */
 
     display: flex;
     flex-direction: column;

@@ -15,6 +15,5 @@ export const boardSlice = createSlice({
 });
 
 export const { toggleIsLight } = boardSlice.actions;
-// export of a normal reducer
 
 export default boardSlice.reducer;
