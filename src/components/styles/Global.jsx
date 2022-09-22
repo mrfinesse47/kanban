@@ -64,8 +64,8 @@ const GlobalStyles = createGlobalStyle`
     position:relative;
     top:97px;
     /* white-space: nowrap; */
-    position: relative;
-    /* overflow-x: scroll;
+    /* position: relative;
+    overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch; */
   }

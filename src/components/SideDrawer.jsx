@@ -8,15 +8,26 @@ import LightDarkSwitch from './LightDarkSwitch';
 
 const drawerVariants = {
   hide: {
+    position: 'fixed',
     x: '-300px',
     opacity: 0,
-    transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
+    transition: {
+      duration: 0.7,
+      ease: 'easeInOut',
+      type: 'linear',
+      position: 'fixed',
+    },
   },
-  initial: { x: '-300px' },
+  initial: { x: '-300px', position: 'fixed' },
   show: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.7, ease: 'easeInOut', type: 'linear' },
+    transition: {
+      duration: 0.7,
+      ease: 'easeInOut',
+      type: 'linear',
+      position: 'fixed',
+    },
   },
 };
 

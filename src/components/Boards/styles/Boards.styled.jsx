@@ -5,6 +5,7 @@ export const StyledBoards = styled.main`
   position: relative;
   left: 300px;
   height: calc(100vh - 97px);
+  z-index: -10;
   /* 
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;

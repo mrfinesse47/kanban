@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledSideDrawer = styled.aside`
-  position: fixed;
-  z-index: 8;
-
   .container {
     display: flex;
+
     /* left: 300px; */
     justify-content: space-between;
     flex-direction: column;
@@ -18,7 +16,7 @@ export const StyledSideDrawer = styled.aside`
     border-right: 1px solid ${({ theme }) => theme.colors.lines};
 
     /* border-radius: 10px; */
-    z-index: 7;
+
     display: flex;
     flex-direction: column;
     h4 {
