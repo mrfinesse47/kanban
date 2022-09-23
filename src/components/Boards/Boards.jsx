@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getBoards,
-  setBoard,
   reorderTasksOnDragDrop,
 } from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
@@ -33,18 +32,12 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
 
   function handleOnDragEnd(move) {
     if (!move.destination) return;
-    // if (!destination) return;
-    // the move.destination.droppableId is the destination column id
-    // the move.source.droppableId is the original column
-    // the move.draggableId is the id of the element being moved
-
     dispatch(reorderTasksOnDragDrop(move));
   }
 
   return (
     <motion.div
       variants={mainVariants}
-      // initial='initial'
       animate={showSideDrawer}
       className='main'
     >
