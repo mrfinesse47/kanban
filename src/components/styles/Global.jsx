@@ -65,6 +65,10 @@ const GlobalStyles = createGlobalStyle`
     top:97px;
   }
 
+  .wrapper{
+    position:relative;
+  }
+
 `;
 
 export default GlobalStyles;

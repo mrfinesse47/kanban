@@ -7,6 +7,7 @@ import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
+import OpenDrawer from './components/OpenDrawer';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
@@ -21,21 +22,25 @@ function App() {
   }, [isMobile]);
 
   return (
-    <ThemeProvider theme={getTheme(isLight)}>
-      <GlobalStyles />
-      <Navbar isLight={isLight} />
-      <div className='App'>
-        <SideDrawer
-          showSideDrawer={showSideDrawer}
-          setShowSideDrawer={setShowSideDrawer}
-        ></SideDrawer>
+    <>
+      <ThemeProvider theme={getTheme(isLight)}>
+        <GlobalStyles />
+        <OpenDrawer />
 
-        <Boards
-          showSideDrawer={showSideDrawer}
-          setShowSideDrawer={setShowSideDrawer}
-        />
-      </div>
-    </ThemeProvider>
+        <Navbar isLight={isLight} />
+        <div className='App'>
+          <SideDrawer
+            showSideDrawer={showSideDrawer}
+            setShowSideDrawer={setShowSideDrawer}
+          ></SideDrawer>
+
+          <Boards
+            showSideDrawer={showSideDrawer}
+            setShowSideDrawer={setShowSideDrawer}
+          />
+        </div>
+      </ThemeProvider>
+    </>
   );
 }
 
