@@ -37,33 +37,8 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
     // the move.destination.droppableId is the destination column id
     // the move.source.droppableId is the original column
     // the move.draggableId is the id of the element being moved
-    console.log('move', move);
-    console.log(boards[selectedIndex].columns);
-    const destIndexOfCol = boards[selectedIndex].columns.findIndex(
-      (col) => col.id === move.destination.droppableId
-    );
-    console.log('dest index:', destIndexOfCol);
 
-    const sourceIndexOfCol = boards[selectedIndex].columns.findIndex(
-      (col) => col.id === move.source.droppableId
-    );
-
-    console.log('source index:', sourceIndexOfCol);
-    dispatch(reorderTasksOnDragDrop());
-
-    // const prevItems = [...boards];
-    // should deep copy state or at least the source and destination arrays and then
-    // rebuild the obj. so we need the column id for each source and dest array i guess
-    // and send that to the slice to handle
-    // const originArr = items[move.source.droppableId];
-    // const [reorderedItem] = originArr.splice(move.source.index, 1);
-    // const destinationArr = items[move.destination.droppableId];
-    // destinationArr.splice(move.destination.index, 0, reorderedItem);
-    // prevItems[move.source.droppableId] = originArr;
-    // prevItems[move.destination.droppableId] = destinationArr;
-    // return prevItems;
-
-    dispatch(setBoard({}));
+    dispatch(reorderTasksOnDragDrop(move));
   }
 
   return (
@@ -84,7 +59,7 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                     {column.name.toUpperCase()} ({column.tasks.length})
                   </h3>
                 </div>
-                <Droppable droppableId={column.id}>
+                <Droppable droppableId={index.toString()}>
                   {(provided) => (
                     <ul {...provided.droppableProps} ref={provided.innerRef}>
                       {column.tasks.map((task, index) => (

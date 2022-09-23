@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import boardService from './boardService';
 
 const initialState = {
@@ -42,7 +42,15 @@ export const boardSlice = createSlice({
       state.selectedIndex = action.payload;
     },
     reorderTasksOnDragDrop: (state, action) => {
-      console.log('reorder reducer');
+      const { source, destination } = action.payload;
+
+      const [taskToMove] = state.boards[state.selectedIndex].columns[
+        source.droppableId
+      ].tasks.splice(source.index, 1);
+
+      state.boards[state.selectedIndex].columns[
+        destination.droppableId
+      ].tasks.splice(destination.index, 0, taskToMove);
     },
   },
   extraReducers: (builder) => {
