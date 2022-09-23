@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoards, setBoard } from '../../features/boards/boardSlice';
+import {
+  getBoards,
+  setBoard,
+  reorderTasksOnDragDrop,
+} from '../../features/boards/boardSlice';
 import { motion } from 'framer-motion';
 import { StyledBoards } from './styles/Boards.styled';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -30,8 +34,22 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
   function handleOnDragEnd(move) {
     if (!move.destination) return;
     // if (!destination) return;
+    // the move.destination.droppableId is the destination column id
+    // the move.source.droppableId is the original column
+    // the move.draggableId is the id of the element being moved
     console.log('move', move);
-    console.log(boards);
+    console.log(boards[selectedIndex].columns);
+    const destIndexOfCol = boards[selectedIndex].columns.findIndex(
+      (col) => col.id === move.destination.droppableId
+    );
+    console.log('dest index:', destIndexOfCol);
+
+    const sourceIndexOfCol = boards[selectedIndex].columns.findIndex(
+      (col) => col.id === move.source.droppableId
+    );
+
+    console.log('source index:', sourceIndexOfCol);
+    dispatch(reorderTasksOnDragDrop());
 
     // const prevItems = [...boards];
     // should deep copy state or at least the source and destination arrays and then

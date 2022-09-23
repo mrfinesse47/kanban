@@ -41,6 +41,9 @@ export const boardSlice = createSlice({
     selectBoardIndex: (state, action) => {
       state.selectedIndex = action.payload;
     },
+    reorderTasksOnDragDrop: (state, action) => {
+      console.log('reorder reducer');
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -79,7 +82,7 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { selectBoardIndex } = boardSlice.actions;
+export const { selectBoardIndex, reorderTasksOnDragDrop } = boardSlice.actions;
 // export of a normal reducer
 
 export default boardSlice.reducer;
