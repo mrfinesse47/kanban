@@ -25,7 +25,10 @@ function App() {
     <>
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
-        <OpenDrawer />
+        <OpenDrawer
+          showSideDrawer={showSideDrawer}
+          setShowSideDrawer={setShowSideDrawer}
+        />
 
         <Navbar isLight={isLight} />
         <div className='App'>
