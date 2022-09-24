@@ -66,13 +66,6 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                     </ul>
                   )}
                 </Droppable>
-                <button
-                  onClick={() => {
-                    setShowSideDrawer('show');
-                  }}
-                >
-                  show drawer
-                </button>
               </div>
             ))}
 

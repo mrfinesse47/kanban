@@ -6,7 +6,7 @@ import { selectBoardIndex } from '../features/boards/boardSlice';
 import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
 import Modal from './Modal/Modal';
-import AddNewTask from './forms/AddNewTask';
+import AddNewTaskForm from './forms/AddNewTaskForm';
 
 const drawerVariants = {
   hide: {
@@ -77,11 +77,12 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                       setShowNewBoardMenu(true);
                     }}
                   >
+                    {/* the modal uses a portal, see index.html i just left it here in the html for ease of readablity*/}
                     <Modal
                       setShowModal={setShowNewBoardMenu}
                       showModal={showNewBoardMenu}
                     >
-                      <AddNewTask />
+                      <AddNewTaskForm setShowModal={setShowNewBoardMenu} />
                     </Modal>
                     <div className='left' id='new-board'>
                       <IconBoard />

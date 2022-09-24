@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.div`
-  height: 100px;
-  width: 100px;
-  background-color: red;
+  h3 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: ${({ theme }) => theme.colors.textMain};
+  }
+  textarea {
+    resize: none;
+  }
 `;
