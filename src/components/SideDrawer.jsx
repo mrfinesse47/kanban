@@ -40,73 +40,75 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   const dispatch = useDispatch();
 
   return (
-    <AnimatePresence>
-      <motion.div
-        variants={drawerVariants}
-        initial='initial'
-        animate={showSideDrawer}
-        className='drawer'
-      >
-        <StyledSideDrawer showSideDrawer={showSideDrawer}>
-          <div className='container'>
-            <div className='menu'>
-              <h4>ALL BOARDS ({boards.length})</h4>
-              <ul className='list-boards'>
-                {boards.map((board, index) => (
-                  <li
-                    key={index}
-                    className={`list-boards-item ${
-                      index === selectedIndex && 'selected'
-                    }`}
-                  >
+    <>
+      <Modal setShowModal={setShowNewBoardMenu} showModal={showNewBoardMenu}>
+        <AddNewTaskForm setShowModal={setShowNewBoardMenu} />
+      </Modal>
+
+      <AnimatePresence>
+        <motion.div
+          variants={drawerVariants}
+          initial='initial'
+          animate={showSideDrawer}
+          className='drawer'
+        >
+          <StyledSideDrawer showSideDrawer={showSideDrawer}>
+            <div className='container'>
+              <div className='menu'>
+                <h4>ALL BOARDS ({boards.length})</h4>
+                <ul className='list-boards'>
+                  {boards.map((board, index) => (
+                    <li
+                      key={index}
+                      className={`list-boards-item ${
+                        index === selectedIndex && 'selected'
+                      }`}
+                    >
+                      <button
+                        onClick={() => {
+                          dispatch(selectBoardIndex(index));
+                        }}
+                      >
+                        <div className='left'>
+                          <IconBoard />
+                        </div>
+                        <div className='right'>{board.name}</div>
+                      </button>
+                    </li>
+                  ))}
+                  <li className='list-boards-item new-board'>
                     <button
                       onClick={() => {
-                        dispatch(selectBoardIndex(index));
+                        setShowNewBoardMenu(true);
                       }}
                     >
-                      <div className='left'>
+                      <div className='left' id='new-board'>
                         <IconBoard />
                       </div>
-                      <div className='right'>{board.name}</div>
+                      <div className='right'>+ Create New Board</div>
                     </button>
                   </li>
-                ))}
-                <li className='list-boards-item new-board'>
-                  <button
-                    onClick={() => {
-                      setShowNewBoardMenu(true);
-                    }}
-                  >
-                    {/* the modal uses a portal, see index.html i just left it here in the html for ease of readablity*/}
-                    <Modal
-                      setShowModal={setShowNewBoardMenu}
-                      showModal={showNewBoardMenu}
-                    >
-                      <AddNewTaskForm setShowModal={setShowNewBoardMenu} />
-                    </Modal>
-                    <div className='left' id='new-board'>
-                      <IconBoard />
-                    </div>
-                    <div className='right'>+ Create New Board</div>
+                </ul>
+              </div>
+              <footer>
+                <div className='toggle-container'>
+                  <LightDarkSwitch />
+                </div>
+                <div className='close-container'>
+                  <button onClick={() => setShowSideDrawer('hide')}>
+                    <img
+                      src='./assets/icon-hide-sidebar.svg'
+                      alt='close menu'
+                    />
+                    <span>Hide Sidebar</span>
                   </button>
-                </li>
-              </ul>
+                </div>
+              </footer>
             </div>
-            <footer>
-              <div className='toggle-container'>
-                <LightDarkSwitch />
-              </div>
-              <div className='close-container'>
-                <button onClick={() => setShowSideDrawer('hide')}>
-                  <img src='./assets/icon-hide-sidebar.svg' alt='close menu' />
-                  <span>Hide Sidebar</span>
-                </button>
-              </div>
-            </footer>
-          </div>
-        </StyledSideDrawer>
-      </motion.div>
-    </AnimatePresence>
+          </StyledSideDrawer>
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 };
 
