@@ -66,11 +66,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                       }}
                     >
                       <div className='left'>
-                        <IconBoard
-                          color={`${determineIconColor(
-                            index === selectedIndex
-                          )}`}
-                        />
+                        <IconBoard />
                       </div>
                       <div className='right'>{board.name}</div>
                     </button>
@@ -78,8 +74,8 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                 ))}
                 <li className='list-boards-item new-board'>
                   <button>
-                    <div className='left'>
-                      <IconBoard color='#635FC7' />
+                    <div className='left' id='new-board'>
+                      <IconBoard />
                     </div>
                     <div className='right'>+ Create New Board</div>
                   </button>

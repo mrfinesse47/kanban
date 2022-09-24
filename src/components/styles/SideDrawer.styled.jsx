@@ -38,25 +38,47 @@ export const StyledSideDrawer = styled.aside`
     line-height: 19px;
     padding: 14px 69px 15px 32px;
     border-radius: 0px 100px 100px 0px;
-    width: 92%;
+    width: 276px;
+    height: 50.5px;
     color: ${({ theme }) => theme.colors.textAccent};
     button {
+      width: 276px;
+      height: 48px;
       display: flex;
+      svg {
+        fill: #828fa3;
+      }
       .left {
         padding-right: 16px;
         padding-top: 2px;
       }
     }
   }
+  .list-boards-item:not(.selected):hover {
+    background-color: ${({ theme }) => theme.colors.buttonBackgroundHover};
+    color: #635fc7;
+    svg {
+      fill: #635fc7;
+    }
+  }
   .selected {
     background-color: ${({ theme }) => theme.colors.buttonMain};
     color: #fff;
+
     button {
+      svg {
+        fill: #fff;
+      }
       cursor: unset;
     }
   }
   .new-board {
     color: #635fc7;
+    button {
+      svg {
+        fill: #635fc7;
+      }
+    }
   }
   .close-container {
     margin-left: 31px;
