@@ -8,6 +8,7 @@ import SideDrawer from './components/SideDrawer';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import OpenDrawer from './components/OpenDrawer';
+import Modal from './components/Modal/Modal';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledSideDrawer } from './styles/SideDrawer.styled';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectBoardIndex } from '../features/boards/boardSlice';
 import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
+import Modal from './Modal/Modal';
+import AddNewTask from './forms/AddNewTask';
 
 const drawerVariants = {
   hide: {
@@ -34,11 +36,8 @@ const drawerVariants = {
 
 const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   const { boards, selectedIndex } = useSelector((state) => state.board);
+  const [showNewBoardMenu, setShowNewBoardMenu] = useState(false);
   const dispatch = useDispatch();
-
-  const determineIconColor = (isSelected) => {
-    return isSelected ? '#fff' : '#828FA3';
-  };
 
   return (
     <AnimatePresence>
@@ -73,7 +72,17 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                   </li>
                 ))}
                 <li className='list-boards-item new-board'>
-                  <button>
+                  <button
+                    onClick={() => {
+                      setShowNewBoardMenu(true);
+                    }}
+                  >
+                    <Modal
+                      setShowModal={setShowNewBoardMenu}
+                      showModal={showNewBoardMenu}
+                    >
+                      <AddNewTask />
+                    </Modal>
                     <div className='left' id='new-board'>
                       <IconBoard />
                     </div>

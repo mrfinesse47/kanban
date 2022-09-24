@@ -54,7 +54,11 @@ const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
                 </div>
                 <Droppable droppableId={index.toString()}>
                   {(provided) => (
-                    <ul {...provided.droppableProps} ref={provided.innerRef}>
+                    <ul
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className='drop-zone'
+                    >
                       {column.tasks.map((task, index) => (
                         <Task task={task} key={`task_${index}`} index={index} />
                       ))}

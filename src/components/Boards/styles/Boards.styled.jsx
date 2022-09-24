@@ -35,6 +35,10 @@ export const StyledBoards = styled.main`
     /* background-image: ${({ theme }) => theme.colors.backgroundGradient}; */
   }
 
+  .drop-zone {
+    height: 100%;
+  }
+
   .new-column-option {
     margin-top: 39px;
     margin-bottom: 39px;
