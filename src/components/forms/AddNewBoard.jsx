@@ -3,10 +3,11 @@ import { StyledForm } from './styles/Form.styled';
 import { v4 as uuid } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addBoard } from '../../features/boards/boardSlice';
+import { motion, AnimatePresence, Reorder } from 'framer-motion';
 
 const AddNewBoard = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const [columnName, setColumnName] = useState('');
+  const [columnName, setBoardName] = useState('');
   const [columns, setColumns] = useState([]);
 
   const handleAddColumn = (e) => {
@@ -52,32 +53,45 @@ const AddNewBoard = ({ setShowModal }) => {
           id='text'
           value={columnName}
           onChange={(e) => {
-            setColumnName(e.target.value);
+            setBoardName(e.target.value);
           }}
           placeholder='e.g. Web Design'
         />
       </div>
       <div className='form-group'>
         <label>Board Columns</label>
+
         <ul className='column-list'>
-          {columns.length > 0 &&
-            columns.map((column, index) => (
-              <li className='column-container' key={`col-${index}`}>
-                <input
-                  type='text'
-                  className='column'
-                  value={column.value}
-                  onChange={(e) => handleColumnChange(e, index)}
-                />
-                <button
-                  className='delete'
-                  onClick={() => handleColumnDelete(index)}
-                  type='button'
-                >
-                  <img src='./assets/icon-cross.svg' alt='delete' />
-                </button>
-              </li>
-            ))}
+          <AnimatePresence delay>
+            {columns.length > 0 &&
+              columns.map((column, index) => {
+                return (
+                  <motion.li
+                    transition={{ duration: 0.45 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='column-container'
+                    key={column.id}
+                  >
+                    <input
+                      type='text'
+                      className='column'
+                      value={column.name}
+                      onChange={(e) => handleColumnChange(e, index)}
+                    />
+                    <button
+                      className='delete'
+                      onClick={() => handleColumnDelete(index)}
+                      type='button'
+                    >
+                      <img src='./assets/icon-cross.svg' alt='delete' />
+                    </button>
+                  </motion.li>
+                );
+              })}
+          </AnimatePresence>
+
           <button
             className='btn btn-light'
             type='button'
