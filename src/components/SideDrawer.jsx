@@ -6,7 +6,7 @@ import { selectBoardIndex } from '../features/boards/boardSlice';
 import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
 import Modal from './Modal/Modal';
-import AddNewTaskForm from './forms/AddNewTaskForm';
+import AddNewBoard from './forms/AddNewBoard';
 
 const drawerVariants = {
   hide: {
@@ -42,7 +42,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   return (
     <>
       <Modal setShowModal={setShowNewBoardMenu} showModal={showNewBoardMenu}>
-        <AddNewTaskForm setShowModal={setShowNewBoardMenu} />
+        <AddNewBoard setShowModal={setShowNewBoardMenu} />
       </Modal>
 
       <AnimatePresence>

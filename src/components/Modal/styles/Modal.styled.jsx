@@ -12,6 +12,9 @@ export const StyledModal = styled.div`
     align-items: center;
   }
   .modal {
+    padding: 32px;
+    border-radius: 6px;
     z-index: 101;
+    background-color: ${({ theme }) => theme.colors.backgroundMain};
   }
 `;
