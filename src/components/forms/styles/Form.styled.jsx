@@ -23,17 +23,22 @@ export const StyledForm = styled.form`
       font-size: 12px;
       line-height: 15px;
     }
+    .input-wrapper {
+    }
     input {
       border: 1px solid rgba(130, 143, 163, 0.25);
       background-color: ${({ theme }) => theme.colors.backgroundMain};
       color: ${({ theme }) => theme.colors.textMain};
       border-radius: 4px;
       padding: 11.25px 16px;
-
+      width: 100%;
       outline: none;
     }
     input::placeholder {
       color: ${({ theme }) => theme.colors.textAccent};
+    }
+    .error {
+      border: 1px solid red;
     }
   }
 

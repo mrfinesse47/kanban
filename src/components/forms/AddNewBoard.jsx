@@ -16,7 +16,12 @@ const AddNewBoard = ({ setShowModal }) => {
     //and the client could still generate the id
     setColumns((prev) => {
       const arr = [...prev];
-      arr.push({ id: uuid(), name: '', tasks: [] });
+      arr.push({
+        id: uuid(),
+        name: '',
+        tasks: [],
+        error: { status: true, message: 'something' },
+      });
       return arr;
     });
   };
@@ -76,10 +81,13 @@ const AddNewBoard = ({ setShowModal }) => {
                   >
                     <input
                       type='text'
-                      className='column'
+                      className={`column ${
+                        column.error.status === true && 'error'
+                      }`}
                       value={column.name}
                       onChange={(e) => handleColumnChange(e, index)}
                     />
+
                     <button
                       className='delete'
                       onClick={() => handleColumnDelete(index)}

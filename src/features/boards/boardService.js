@@ -13,7 +13,11 @@ const setBoard = async ({ boardData, callBack }) => {
 
 const addBoard = async (newBoard) => {
   //here you should push to local storage or database
-
+  newBoard.columns = newBoard.columns.map((column) => {
+    const { error, ...filtered } = column; //filters out error
+    return filtered;
+  });
+  console.log(newBoard);
   return newBoard;
 };
 
