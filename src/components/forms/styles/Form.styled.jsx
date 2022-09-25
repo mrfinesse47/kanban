@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.div`
+export const StyledForm = styled.form`
   width: 416px;
   h3 {
     font-weight: 700;
@@ -28,7 +28,8 @@ export const StyledForm = styled.div`
       background-color: ${({ theme }) => theme.colors.backgroundMain};
       color: ${({ theme }) => theme.colors.textMain};
       border-radius: 4px;
-      padding: 8px 16px;
+      padding: 11.25px 16px;
+
       outline: none;
     }
     input::placeholder {
@@ -41,15 +42,17 @@ export const StyledForm = styled.div`
   }
 
   .column-list {
-    .column {
-      background-color: ${({ theme }) => theme.colors.backgroundMain};
-      border: 1px solid rgba(130, 143, 163, 0.25);
-      border-radius: 4px;
-      padding: 8px 16px;
+    .column-container {
+      display: flex;
+      align-items: center;
       margin-bottom: 12px;
     }
+    .column {
+      margin-right: 16px;
+      flex-grow: 1;
+    }
   }
-  button {
+  .btn {
     background-color: ${({ theme }) => theme.colors.formTextAccent};
     color: #635fc7;
     border-radius: 20px;
@@ -63,7 +66,7 @@ export const StyledForm = styled.div`
     margin-bottom: 24px;
   }
 
-  .button-dark {
+  .btn-dark {
     background-color: #635fc7;
     color: ${({ theme }) => theme.colors.formTextAccent};
     margin-bottom: 0;

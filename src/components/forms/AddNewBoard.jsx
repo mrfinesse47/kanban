@@ -1,28 +1,90 @@
 import React, { useState } from 'react';
 import { StyledForm } from './styles/Form.styled';
+import { v4 as uuid } from 'uuid';
 
 const AddNewBoard = ({ setShowModal }) => {
+  const [columnName, setColumnName] = useState('');
+  const [columns, setColumns] = useState([
+    { id: '4567885aaaaa', name: 'Todo' },
+    { id: '4567885bbbbb', name: 'Todo2' },
+  ]);
+
+  const handleAddColumn = (e) => {
+    const newCol = { id: uuid(), name: '' };
+    console.log('here');
+    setColumns((prev) => {
+      prev.push(newCol);
+      return [...prev];
+    });
+  };
+
+  const handleColumnChange = (e, index) => {
+    {
+      setColumns((prev) => {
+        prev[index] = e.target.value;
+        return prev;
+      });
+    }
+  };
+
+  const handleColumnDelete = (index) => {
+    setColumns((prev) => {
+      prev.splice(index, 1);
+      return [...prev];
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    setShowModal(false);
+  };
+
   return (
-    <StyledForm
-      onSubmit={(e) => {
-        e.preventDefault();
-        setShowModal(false);
-        // add to boards object, update in local storage by redux possibly
-      }}
-    >
+    <StyledForm onSubmit={onSubmit}>
       <h3>Add New Board</h3>
       <div className='form-group'>
         <label htmlFor='name'>Name</label>
-        <input type='text' id='text' placeholder='e.g. Web Design' />
+        <input
+          type='text'
+          id='text'
+          value={columnName}
+          onChange={(e) => {
+            setColumnName(e.target.value);
+          }}
+          placeholder='e.g. Web Design'
+        />
       </div>
       <div className='form-group'>
-        <label>Columns</label>
-        <div className='column-list'>
-          <div className='column'>Todo</div> <div className='delete'></div>
-          <div className='column'>Todo</div> <div className='delete'></div>
-          <button className='button-light'>+ Add New Column</button>
-          <button className='button-dark'>Create New Board</button>
-        </div>
+        <label>Board Columns</label>
+        <ul className='column-list'>
+          {columns.length > 0 &&
+            columns.map((column, index) => (
+              <li className='column-container' key={`col-${index}`}>
+                <input
+                  type='text'
+                  className='column'
+                  value={column.value}
+                  onChange={(e, index) => handleColumnChange(e, index)}
+                />
+                <button
+                  className='delete'
+                  onClick={(e, index) => handleColumnDelete(index)}
+                  type='button'
+                >
+                  <img src='./assets/icon-cross.svg' alt='delete' />
+                </button>
+              </li>
+            ))}
+          <button
+            className='btn btn-light'
+            type='button'
+            onClick={handleAddColumn}
+          >
+            + Add New Column
+          </button>
+          <button className='btn btn-dark'>Create New Board</button>
+        </ul>
       </div>
     </StyledForm>
   );
