@@ -38,7 +38,14 @@ export const StyledForm = styled.form`
       color: ${({ theme }) => theme.colors.textAccent};
     }
     .error {
-      border: 1px solid red;
+      border: 1px solid #ea5555;
+      text-align: right;
+      padding: 7.5px 16px;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 23px;
+      text-align: right;
+      color: #ea5555;
     }
   }
 

@@ -7,7 +7,10 @@ import { motion, AnimatePresence, Reorder } from 'framer-motion';
 
 const AddNewBoard = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const [columnName, setBoardName] = useState('');
+  const [boardName, setBoardName] = useState({
+    value: '',
+    error: { status: false, message: '' },
+  });
   const [columns, setColumns] = useState([]);
 
   const handleAddColumn = (e) => {
@@ -20,7 +23,7 @@ const AddNewBoard = ({ setShowModal }) => {
         id: uuid(),
         name: '',
         tasks: [],
-        error: { status: true, message: 'something' },
+        error: { status: false, message: '' },
       });
       return arr;
     });
@@ -42,9 +45,52 @@ const AddNewBoard = ({ setShowModal }) => {
     });
   };
 
+  const setErrorMessageOnColFalse = (index) => {
+    setColumns((prev) => {
+      const arr = [...prev];
+      arr[index].error = { status: false, message: '' };
+      return arr;
+    });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(addBoard({ name: columnName, columns }));
+    let isAllColumnsComplete = true;
+    let isboardNameValueComplete = true;
+
+    //check for completeness
+
+    if (boardName.value === '') {
+      setBoardName((prev) => ({
+        ...prev,
+        error: { status: true, message: "Can't be empty" },
+      }));
+      isboardNameValueComplete = false;
+    }
+
+    columns.forEach((column) => {
+      if (column.name === '') {
+        isAllColumnsComplete = false;
+      }
+    });
+
+    if (!isAllColumnsComplete) {
+      return setColumns((prev) => {
+        return [...prev].map((column) => {
+          if (column.name === '') {
+            return {
+              ...column,
+              error: { status: true, message: "Can't be empty" },
+            };
+          }
+          return column;
+        });
+      });
+    }
+
+    if (!isboardNameValueComplete) return;
+
+    dispatch(addBoard({ name: boardName.value, columns }));
     setShowModal(false);
   };
 
@@ -55,11 +101,23 @@ const AddNewBoard = ({ setShowModal }) => {
         <label htmlFor='name'>Name</label>
         <input
           type='text'
-          id='text'
-          value={columnName}
-          onChange={(e) => {
-            setBoardName(e.target.value);
+          value={
+            boardName.error.status === true
+              ? boardName.error.message
+              : boardName.value
+          }
+          onClick={() => {
+            if (boardName.error.status === true) {
+              setBoardName({
+                value: '',
+                error: { status: false, message: '' },
+              });
+            }
           }}
+          onChange={(e) => {
+            setBoardName((prev) => ({ ...prev, value: e.target.value }));
+          }}
+          className={`${boardName.error.status === true && 'error'}`}
           placeholder='e.g. Web Design'
         />
       </div>
@@ -81,10 +139,17 @@ const AddNewBoard = ({ setShowModal }) => {
                   >
                     <input
                       type='text'
+                      onClick={() => {
+                        setErrorMessageOnColFalse(index);
+                      }}
                       className={`column ${
                         column.error.status === true && 'error'
                       }`}
-                      value={column.name}
+                      value={
+                        column.error.status === true
+                          ? column.error.message
+                          : column.name
+                      }
                       onChange={(e) => handleColumnChange(e, index)}
                     />
 
