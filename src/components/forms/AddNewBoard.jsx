@@ -1,42 +1,44 @@
 import React, { useState } from 'react';
 import { StyledForm } from './styles/Form.styled';
 import { v4 as uuid } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { addBoard } from '../../features/boards/boardSlice';
 
 const AddNewBoard = ({ setShowModal }) => {
+  const dispatch = useDispatch();
   const [columnName, setColumnName] = useState('');
-  const [columns, setColumns] = useState([
-    { id: '4567885aaaaa', name: 'Todo' },
-    { id: '4567885bbbbb', name: 'Todo2' },
-  ]);
+  const [columns, setColumns] = useState([]);
 
   const handleAddColumn = (e) => {
-    const newCol = { id: uuid(), name: '' };
-    console.log('here');
+    // const newCol = { id: uuid(), name: '', tasks: [] };
+    //if we did full stack we would just make the id unique
+    //and the client could still generate the id
     setColumns((prev) => {
-      prev.push(newCol);
-      return [...prev];
+      const arr = [...prev];
+      arr.push({ id: uuid(), name: '', tasks: [] });
+      return arr;
     });
   };
 
   const handleColumnChange = (e, index) => {
-    {
-      setColumns((prev) => {
-        prev[index] = e.target.value;
-        return prev;
-      });
-    }
+    setColumns((prev) => {
+      const arr = [...prev];
+      arr[index].name = e.target.value;
+      return arr;
+    });
   };
 
   const handleColumnDelete = (index) => {
     setColumns((prev) => {
-      prev.splice(index, 1);
-      return [...prev];
+      const arr = [...prev];
+      arr.splice(index, 1);
+      return arr;
     });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    dispatch(addBoard({ name: columnName, columns }));
     setShowModal(false);
   };
 
@@ -65,11 +67,11 @@ const AddNewBoard = ({ setShowModal }) => {
                   type='text'
                   className='column'
                   value={column.value}
-                  onChange={(e, index) => handleColumnChange(e, index)}
+                  onChange={(e) => handleColumnChange(e, index)}
                 />
                 <button
                   className='delete'
-                  onClick={(e, index) => handleColumnDelete(index)}
+                  onClick={() => handleColumnDelete(index)}
                   type='button'
                 >
                   <img src='./assets/icon-cross.svg' alt='delete' />

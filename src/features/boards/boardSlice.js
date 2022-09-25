@@ -34,6 +34,19 @@ export const getBoards = createAsyncThunk(
   }
 );
 
+//add new Board
+export const addBoard = createAsyncThunk(
+  'boards/board/addBoard',
+  async (newBoard, thunkAPI) => {
+    try {
+      return await boardService.board.addBoard(newBoard);
+    } catch (error) {
+      const message = 'error';
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
@@ -86,7 +99,12 @@ export const boardSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      .addCase(addBoard.pending, (state) => {})
+      .addCase(addBoard.fulfilled, (state, action) => {
+        state.boards.push(action.payload);
+      })
+      .addCase(addBoard.rejected, (state, action) => {});
   },
 });
 

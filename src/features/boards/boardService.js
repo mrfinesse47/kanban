@@ -8,9 +8,15 @@ const getBoards = async () => {
 };
 
 const setBoard = async ({ boardData, callBack }) => {
-  console.log(callBack());
+  // console.log(callBack());
 };
 
-const boardService = { getBoards, board: { setBoard } };
+const addBoard = async (newBoard) => {
+  //here you should push to local storage or database
+
+  return newBoard;
+};
+
+const boardService = { getBoards, board: { setBoard, addBoard } };
 
 export default boardService;
