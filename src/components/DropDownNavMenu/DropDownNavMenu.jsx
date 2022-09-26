@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const DropDownNavMenu = ({ isDropNavOpen, setIsDropNavOpen }) => {
   return (
-    <StyledDropDownNavMenu>
+    <StyledDropDownNavMenu onClick={(e) => e.stopPropagation()}>
       <button
+        id='drop-down-menu-button'
         className='button-options'
         onClick={() => {
           setIsDropNavOpen(!isDropNavOpen);

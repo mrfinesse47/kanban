@@ -12,7 +12,7 @@ import OpenDrawer from './components/OpenDrawer';
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
-  const [isDropNavOpen, setIsDropNavOpen] = useState(true);
+  const [isDropNavOpen, setIsDropNavOpen] = useState(false);
 
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
@@ -23,7 +23,11 @@ function App() {
   }, [isMobile]);
 
   return (
-    <>
+    <div
+      onClick={(e) => {
+        setIsDropNavOpen(false);
+      }}
+    >
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
         <OpenDrawer
@@ -48,7 +52,7 @@ function App() {
           />
         </div>
       </ThemeProvider>
-    </>
+    </div>
   );
 }
 
