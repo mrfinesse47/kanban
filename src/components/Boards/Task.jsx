@@ -10,7 +10,7 @@ const Task = ({ task, index }) => {
   return (
     <>
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <TaskExpanded />
+        <TaskExpanded task={task} />
       </Modal>
 
       <StyledTask>

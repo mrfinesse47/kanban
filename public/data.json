@@ -9,7 +9,7 @@
           "tasks": [
             {
               "title": "Build UI for onboarding flow",
-              "description": "",
+              "description": " Etsy glossier activated charcoal, disrupt deep v thundercats asymmetrical craft beer twee ugh bicycle rights cray PBR&B. 90's lyft art party jianbing polaroid, twee man bun Brooklyn chambray keytar. Glossier freegan viral plaid pug selfies 90's yr vexillologist austin four dollar toast XOXO yuccie hexagon man bun. Mumblecore scenester kickstarter lumbersexual yes plz selfies mlkshk big mood hoodie.",
               "status": "Todo",
               "id": "62e25f1d52af",
               "subtasks": [
@@ -29,7 +29,7 @@
             },
             {
               "title": "Build UI for search",
-              "description": "",
+              "description": "Four dollar toast cray Brooklyn vape, bespoke succulents chartreuse readymade lomo typewriter pitchfork chambray. Shaman fit direct trade jianbing. Bitters microdosing gentrify brunch raw denim. Woke mixtape bicycle rights pour-over literally small batch wolf, quinoa marfa ramps keffiyeh.",
               "status": "Todo",
               "id": "71dbc899bed4",
               "subtasks": [
@@ -99,7 +99,7 @@
             },
             {
               "title": "Add account management endpoints",
-              "description": "",
+              "description": "Salvia kogi tonx gatekeep iPhone synth deep v, shabby chic hell of gentrify you probably haven't heard of them celiac. Etsy copper mug deep v williamsburg meh.",
               "status": "Doing",
               "id": "40295044267b",
               "subtasks": [
