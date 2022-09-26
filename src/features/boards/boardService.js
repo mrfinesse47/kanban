@@ -17,7 +17,6 @@ const addBoard = async (newBoard) => {
     const { error, ...filtered } = column; //filters out error
     return filtered;
   });
-  console.log(newBoard);
   return newBoard;
 };
 

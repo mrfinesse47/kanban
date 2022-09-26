@@ -10,13 +10,10 @@ const AddNewBoard = ({ setShowModal }) => {
   const [boardName, setBoardName] = useState({
     value: '',
     error: { status: false, message: '' },
-  });
-  const [columns, setColumns] = useState([]);
+  }); //form data
+  const [columns, setColumns] = useState([]); //form data
 
   const handleAddColumn = (e) => {
-    // const newCol = { id: uuid(), name: '', tasks: [] };
-    //if we did full stack we would just make the id unique
-    //and the client could still generate the id
     setColumns((prev) => {
       const arr = [...prev];
       arr.push({
@@ -55,7 +52,6 @@ const AddNewBoard = ({ setShowModal }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let isAllColumnsComplete = true;
     let isboardNameValueComplete = true;
 
     //check for completeness
@@ -68,13 +64,7 @@ const AddNewBoard = ({ setShowModal }) => {
       isboardNameValueComplete = false;
     }
 
-    columns.forEach((column) => {
-      if (column.name === '') {
-        isAllColumnsComplete = false;
-      }
-    });
-
-    if (!isAllColumnsComplete) {
+    if (columns.some((column) => column.name === '')) {
       return setColumns((prev) => {
         return [...prev].map((column) => {
           if (column.name === '') {
@@ -87,7 +77,7 @@ const AddNewBoard = ({ setShowModal }) => {
         });
       });
     }
-
+    //if column names are ok but not name of board return and dont dispatch
     if (!isboardNameValueComplete) return;
 
     dispatch(addBoard({ name: boardName.value, columns }));
