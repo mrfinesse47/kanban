@@ -10,8 +10,10 @@ const getTheme = (isLight) => {
     textAccent: '#828FA3',
     formTextAccent: '#828FA3',
     buttonText: '#FFF',
+    buttonSecondaryBackground: 'rgba(99, 95, 199, 0.1)',
     lines: '#E4EBFA;',
     mediumGray: '#828FA3',
+    dropdownBoxShadow: '0px 10px 20px rgba(54, 78, 126, 0.25)',
   };
 
   const dark = {
@@ -24,9 +26,11 @@ const getTheme = (isLight) => {
     textMain: '#FFFFFF',
     textAccent: '#828FA3',
     formTextAccent: '#fff',
-    ButtonText: '#FFF',
+    buttonText: '#FFF',
+    buttonSecondaryBackground: '#FFF',
     lines: '#3E3F4E',
     mediumGray: '#828FA3',
+    dropdownBoxShadow: '0px 10px 20px rgba(54, 78, 126, 0.25)',
   };
 
   const media = {

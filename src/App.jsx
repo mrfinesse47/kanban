@@ -8,11 +8,11 @@ import SideDrawer from './components/SideDrawer';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import OpenDrawer from './components/OpenDrawer';
-import Modal from './components/Modal/Modal';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
+  const [isDropNavOpen, setIsDropNavOpen] = useState(true);
 
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
@@ -31,7 +31,11 @@ function App() {
           setShowSideDrawer={setShowSideDrawer}
         />
 
-        <Navbar isLight={isLight} />
+        <Navbar
+          isLight={isLight}
+          isDropNavOpen={isDropNavOpen}
+          setIsDropNavOpen={setIsDropNavOpen}
+        />
         <div className='App'>
           <SideDrawer
             showSideDrawer={showSideDrawer}

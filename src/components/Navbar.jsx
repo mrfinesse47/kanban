@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyledNav } from './styles/Navbar.styled';
 import { useSelector } from 'react-redux';
+import DropDownNavMenu from './DropDownNavMenu/DropDownNavMenu';
 
-const Navbar = () => {
+const Navbar = ({ isDropNavOpen, setIsDropNavOpen }) => {
   const { isLight } = useSelector((state) => state.lightDark);
   return (
     <StyledNav>
@@ -18,9 +19,13 @@ const Navbar = () => {
           <button className='button-add-new-task'>
             <span className='plus'>+</span> Add New Task
           </button>
-          <button className='button-options'>
+          <DropDownNavMenu
+            isDropNavOpen={isDropNavOpen}
+            setIsDropNavOpen={setIsDropNavOpen}
+          />
+          {/* <button className='button-options'>
             <img src='./assets/icon-vertical-ellipsis.svg' alt='options' />
-          </button>
+          </button> */}
         </div>
       </div>
     </StyledNav>

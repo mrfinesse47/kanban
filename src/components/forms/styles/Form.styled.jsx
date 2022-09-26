@@ -65,7 +65,7 @@ export const StyledForm = styled.form`
     }
   }
   .btn {
-    background-color: ${({ theme }) => theme.colors.formTextAccent};
+    background-color: ${({ theme }) => theme.colors.buttonSecondaryBackground};
     color: #635fc7;
     border-radius: 20px;
     width: 100%;
@@ -80,7 +80,7 @@ export const StyledForm = styled.form`
 
   .btn-dark {
     background-color: #635fc7;
-    color: ${({ theme }) => theme.colors.formTextAccent};
+    color: #fff;
     margin-bottom: 0;
   }
 `;
