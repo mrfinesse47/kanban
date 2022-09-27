@@ -1,6 +1,7 @@
 const getTheme = (isLight) => {
   const light = {
     backgroundMain: '#F4F7FD',
+    inputBackgroundMain: 'fff',
     backgroundSecondary: '#FFF',
     backgroundTertiary: '#FFF',
     backgroundGradient:
@@ -20,6 +21,7 @@ const getTheme = (isLight) => {
 
   const dark = {
     backgroundMain: '#20212C',
+    inputBackgroundMain: '#20212C',
     backgroundSecondary: '#2B2C37',
     backgroundTertiary: '#20212C',
     backgroundGradient:
