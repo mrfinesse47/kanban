@@ -12,14 +12,16 @@ export const StyledTaskExpanded = styled.div`
       margin-right: 24px;
     }
   }
+  h4 {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+  }
   main {
     margin-top: 24px;
-    h4 {
-      margin-bottom: 16px;
-      font-weight: 700;
-      font-size: 12px;
-      line-height: 15px;
-    }
+    margin-bottom: 24px;
+
     p {
       font-weight: 500;
       font-size: 13px;

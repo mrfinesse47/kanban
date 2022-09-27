@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
 import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
+import DropDown from '../ui/DropDown';
 
 const TaskExpanded = ({ task }) => {
   const [isDropOpen, setIsDropOpen] = useState(false);
@@ -47,7 +48,10 @@ const TaskExpanded = ({ task }) => {
           </ul>
         </div>
       </main>
-      <footer></footer>
+      <footer>
+        <h4>Current Status</h4>
+        <DropDown />
+      </footer>
     </StyledTaskExpanded>
   );
 };
