@@ -11,6 +11,7 @@ const GlobalStyles = createGlobalStyle`
       margin:0;
       padding:0;
     }
+
     
   body {
     background: ${({ theme }) => theme.colors.backgroundMain};
@@ -69,6 +70,27 @@ const GlobalStyles = createGlobalStyle`
     position:relative;
   }
 
+  .checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
 `;
 
 export default GlobalStyles;

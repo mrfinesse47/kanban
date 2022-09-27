@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
+import CheckBox from '../ui/CheckBox';
 
 const TaskExpanded = ({ task }) => {
   console.log(task);
@@ -21,9 +22,9 @@ const TaskExpanded = ({ task }) => {
             of {task.subtasks.length})
           </h4>
           <ul>
-            {task.subtasks.map((subtask) => (
-              <li>
-                <input type='checkbox' />
+            {task.subtasks.map((subtask, index) => (
+              <li key={`subtask-${index}`}>
+                <CheckBox isChecked={subtask.isCompleted}></CheckBox>
                 {subtask.title}
               </li>
             ))}
