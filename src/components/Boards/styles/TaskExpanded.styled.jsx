@@ -3,19 +3,39 @@ import styled from 'styled-components';
 export const StyledTaskExpanded = styled.div`
   width: 416px;
   header {
+    display: flex;
+    justify-content: space-between;
     h2 {
       font-weight: 700;
       font-size: 18px;
       line-height: 23px;
+      margin-right: 24px;
     }
   }
   main {
     margin-top: 24px;
+    h4 {
+      margin-bottom: 16px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 15px;
+    }
     p {
       font-weight: 500;
       font-size: 13px;
       line-height: 23px;
       color: #828fa3;
+      margin-bottom: 24px;
+    }
+    .subtask {
+      display: flex;
+      align-items: center;
+      background-color: ${({ theme }) => theme.colors.backgroundMain};
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+    .subtask-title {
+      margin-left: 16px;
     }
   }
 `;

@@ -9,11 +9,11 @@ export const StyledDropDownNavMenu = styled.div`
     width: 192px;
     padding: 16px;
     position: absolute;
-    background-color: ${({ theme }) => theme.colors.backgroundMain};
+    background-color: ${({ theme }) => theme.colors.backgroundTertiary};
     color: ${({ theme }) => theme.colors.textMain};
     box-shadow: ${({ theme }) => theme.colors.dropdownBoxShadow};
     right: 0px;
-    top: 55px;
+    top: 45px;
     button {
       font-weight: 500;
       font-size: 13px;

@@ -2,7 +2,12 @@ import React from 'react';
 import { StyledDropDownNavMenu } from './styles/DropDownNavMenu.styled';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const DropDownNavMenu = ({ isDropNavOpen, setIsDropNavOpen }) => {
+const DropDownNavMenu = ({
+  isDropNavOpen,
+  setIsDropNavOpen,
+  buttonOneText,
+  buttonTwoText,
+}) => {
   return (
     <StyledDropDownNavMenu onClick={(e) => e.stopPropagation()}>
       <button
@@ -26,10 +31,10 @@ const DropDownNavMenu = ({ isDropNavOpen, setIsDropNavOpen }) => {
           >
             <ul>
               <li className='edit'>
-                <button>Edit Board</button>
+                <button>{buttonOneText}</button>
               </li>
               <li className='delete'>
-                <button>Delete Board</button>
+                <button>{buttonTwoText}</button>
               </li>
             </ul>
           </motion.div>

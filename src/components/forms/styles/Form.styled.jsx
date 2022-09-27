@@ -27,7 +27,7 @@ export const StyledForm = styled.form`
     }
     input {
       border: 1px solid rgba(130, 143, 163, 0.25);
-      background-color: ${({ theme }) => theme.colors.backgroundMain};
+      background-color: ${({ theme }) => theme.colors.modalBackgroundMain};
       color: ${({ theme }) => theme.colors.textMain};
       border-radius: 4px;
       padding: 11.25px 16px;

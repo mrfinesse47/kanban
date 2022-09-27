@@ -22,6 +22,8 @@ const Navbar = ({ isDropNavOpen, setIsDropNavOpen }) => {
           <DropDownNavMenu
             isDropNavOpen={isDropNavOpen}
             setIsDropNavOpen={setIsDropNavOpen}
+            buttonOneText='Edit Board'
+            buttonTwoText='Delete Board'
           />
           {/* <button className='button-options'>
             <img src='./assets/icon-vertical-ellipsis.svg' alt='options' />

@@ -15,6 +15,6 @@ export const StyledModal = styled.div`
     padding: 32px;
     border-radius: 6px;
     z-index: 101;
-    background-color: ${({ theme }) => theme.colors.backgroundMain};
+    background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   }
 `;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
+import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 
 const TaskExpanded = ({ task }) => {
+  const [isDropOpen, setIsDropOpen] = useState(false);
   const handleTaskComplete = (index) => {
     console.log('handle task complete index', index);
   };
@@ -11,6 +13,12 @@ const TaskExpanded = ({ task }) => {
     <StyledTaskExpanded>
       <header>
         <h2>{task.title}</h2>
+        <DropDownNavMenu
+          isDropNavOpen={isDropOpen}
+          setIsDropNavOpen={setIsDropOpen}
+          buttonOneText='Edit Task'
+          buttonTwoText='Delete Task'
+        />
       </header>
       <main>
         <p>{task.description}</p>
@@ -26,14 +34,14 @@ const TaskExpanded = ({ task }) => {
           </h4>
           <ul>
             {task.subtasks.map((subtask, index) => (
-              <li key={`subtask-${index}`}>
+              <li key={`subtask-${index}`} className={'subtask'}>
                 <CheckBox
                   isChecked={subtask.isCompleted}
                   clickHandler={() => {
                     handleTaskComplete(index);
                   }}
                 ></CheckBox>
-                {subtask.title}
+                <span className='subtask-title'>{subtask.title}</span>
               </li>
             ))}
           </ul>
