@@ -112,8 +112,18 @@ const AddNewBoard = ({ setShowModal }) => {
         />
       </div>
       <div className='form-group'>
-        <label>Board Columns</label>
-
+        <AnimatePresence>
+          {columns.length > 0 && (
+            <motion.label
+              transition={{ duration: 0.45 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              Board Columns
+            </motion.label>
+          )}
+        </AnimatePresence>
         <ul className='column-list'>
           <AnimatePresence delay>
             {columns.length > 0 &&
@@ -128,6 +138,7 @@ const AddNewBoard = ({ setShowModal }) => {
                     key={column.id}
                   >
                     <input
+                      autoFocus
                       type='text'
                       onClick={() => {
                         setErrorMessageOnColFalse(index);

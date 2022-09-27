@@ -18,7 +18,7 @@ export const StyledForm = styled.form`
     margin-bottom: 24px;
     color: ${({ theme }) => theme.colors.formTextAccent};
     label {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       font-weight: 700;
       font-size: 12px;
       line-height: 15px;

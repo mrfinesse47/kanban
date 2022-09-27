@@ -3,6 +3,9 @@ import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
 
 const TaskExpanded = ({ task }) => {
+  const handleTaskComplete = (index) => {
+    console.log('handle task complete index', index);
+  };
   console.log(task);
   return (
     <StyledTaskExpanded>
@@ -24,7 +27,12 @@ const TaskExpanded = ({ task }) => {
           <ul>
             {task.subtasks.map((subtask, index) => (
               <li key={`subtask-${index}`}>
-                <CheckBox isChecked={subtask.isCompleted}></CheckBox>
+                <CheckBox
+                  isChecked={subtask.isCompleted}
+                  clickHandler={() => {
+                    handleTaskComplete(index);
+                  }}
+                ></CheckBox>
                 {subtask.title}
               </li>
             ))}
