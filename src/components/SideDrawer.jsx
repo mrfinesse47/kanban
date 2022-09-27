@@ -59,34 +59,32 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                 <ul className='list-boards'>
                   {boards.map((board, index) => (
                     <li
+                      onClick={() => {
+                        dispatch(selectBoardIndex(index));
+                      }}
+                      role='button'
                       key={index}
                       className={`list-boards-item ${
                         index === selectedIndex && 'selected'
                       }`}
                     >
-                      <button
-                        onClick={() => {
-                          dispatch(selectBoardIndex(index));
-                        }}
-                      >
-                        <div className='left'>
-                          <IconBoard />
-                        </div>
-                        <div className='right'>{board.name}</div>
-                      </button>
-                    </li>
-                  ))}
-                  <li className='list-boards-item new-board'>
-                    <button
-                      onClick={() => {
-                        setShowNewBoardMenu(true);
-                      }}
-                    >
-                      <div className='left' id='new-board'>
+                      <div className='left'>
                         <IconBoard />
                       </div>
-                      <div className='right'>+ Create New Board</div>
-                    </button>
+                      <div className='right'>{board.name}</div>
+                    </li>
+                  ))}
+                  <li
+                    className='list-boards-item new-board'
+                    role='button'
+                    onClick={() => {
+                      setShowNewBoardMenu(true);
+                    }}
+                  >
+                    <div className='left' id='new-board'>
+                      <IconBoard />
+                    </div>
+                    <div className='right'>+ Create New Board</div>
                   </li>
                 </ul>
               </div>

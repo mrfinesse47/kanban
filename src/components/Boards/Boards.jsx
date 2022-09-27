@@ -22,7 +22,7 @@ const mainVariants = {
   },
 };
 
-const Boards = ({ showSideDrawer, setShowSideDrawer }) => {
+const Boards = ({ showSideDrawer }) => {
   const { boards, selectedIndex } = useSelector((state) => state.board);
 
   const dispatch = useDispatch();

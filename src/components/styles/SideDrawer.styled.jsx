@@ -41,22 +41,20 @@ export const StyledSideDrawer = styled.aside`
     width: 276px;
     height: 50.5px;
     color: ${({ theme }) => theme.colors.textAccent};
-    button {
-      width: 276px;
-      height: 48px;
-      display: flex;
-      svg {
-        fill: #828fa3;
-      }
-      .left {
-        padding-right: 16px;
-        padding-top: 2px;
-      }
+    display: flex;
+
+    svg {
+      fill: #828fa3;
+    }
+    .left {
+      padding-right: 16px;
+      padding-top: 2px;
     }
   }
   .list-boards-item:not(.selected):hover {
     background-color: ${({ theme }) => theme.colors.buttonBackgroundHover};
     color: #635fc7;
+    cursor: pointer;
     svg {
       fill: #635fc7;
     }
@@ -65,19 +63,17 @@ export const StyledSideDrawer = styled.aside`
     background-color: ${({ theme }) => theme.colors.buttonMain};
     color: #fff;
 
-    button {
-      svg {
-        fill: #fff;
-      }
-      cursor: unset;
+    svg {
+      fill: #fff;
     }
+    cursor: unset;
   }
+
   .new-board {
     color: #635fc7;
-    button {
-      svg {
-        fill: #635fc7;
-      }
+
+    svg {
+      fill: #635fc7;
     }
   }
   .close-container {
