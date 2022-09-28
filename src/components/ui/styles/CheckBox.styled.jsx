@@ -7,7 +7,7 @@ export const StyledCheckBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
+  width: 16px !important;
   height: 16px;
   background-color: #fff;
   background-color: ${(props) =>

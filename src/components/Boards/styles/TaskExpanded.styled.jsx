@@ -32,12 +32,13 @@ export const StyledTaskExpanded = styled.div`
     .subtask {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       background-color: ${({ theme }) => theme.colors.backgroundMain};
       padding: 12px;
       margin-bottom: 8px;
     }
     .subtask-title {
-      margin-left: 16px;
+      width: 362px;
     }
   }
 `;
