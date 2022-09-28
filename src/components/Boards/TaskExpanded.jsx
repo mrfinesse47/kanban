@@ -38,7 +38,6 @@ const TaskExpanded = ({ task, status, setShowModal }) => {
       onClick={() => {
         setIsDropOpen(false);
         setIsSelectOpen(false);
-        console.log('closing drop down');
       }}
     >
       <header>

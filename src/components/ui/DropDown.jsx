@@ -8,7 +8,7 @@ const DropDown = ({
   isOpen,
   setIsOpen,
 }) => {
-  console.log(dropdownItems, currentSelection);
+  // console.log(dropdownItems, currentSelection);
 
   return (
     <StyledDropDown

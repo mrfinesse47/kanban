@@ -75,7 +75,6 @@ export const boardSlice = createSlice({
       const NewStatusIndex = columns.findIndex(
         (column) => column.name === newStatus
       );
-      console.log(current(columns[oldStatusIndex].tasks));
       columns[oldStatusIndex].tasks = columns[oldStatusIndex].tasks.filter(
         (colTask) => colTask.id !== task.id
       );
