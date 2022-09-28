@@ -6,11 +6,12 @@ import Modal from '../Modal/Modal';
 import { useState } from 'react';
 
 const Task = ({ task, index, status }) => {
+  console.log('task renders');
   const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <TaskExpanded task={task} status={status} />
+        <TaskExpanded task={task} setShowModal={setShowModal} status={status} />
       </Modal>
 
       <StyledTask>

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import boardService from './boardService';
 
 const initialState = {
@@ -66,7 +66,20 @@ export const boardSlice = createSlice({
       ].tasks.splice(destination.index, 0, taskToMove);
     },
     reorderTask: (state, action) => {
-      state.boards[0].columns[0].name = 'test';
+      const { oldStatus, newStatus, task } = action.payload;
+      if (oldStatus === newStatus) return;
+      const columns = state.boards[state.selectedIndex].columns;
+      const oldStatusIndex = columns.findIndex(
+        (column) => column.name === oldStatus
+      );
+      const NewStatusIndex = columns.findIndex(
+        (column) => column.name === newStatus
+      );
+      console.log(current(columns[oldStatusIndex].tasks));
+      columns[oldStatusIndex].tasks = columns[oldStatusIndex].tasks.filter(
+        (colTask) => colTask.id !== task.id
+      );
+      columns[NewStatusIndex].tasks.push(task);
     },
   },
 
@@ -96,6 +109,7 @@ export const boardSlice = createSlice({
         state.isSuccess = true;
         state.boards = action.payload;
         if (state?.boards && state.boards.length > 0) {
+          //should move to regular reducers
           state.selectedIndex = 0;
         }
       })

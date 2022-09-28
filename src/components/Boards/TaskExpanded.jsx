@@ -5,29 +5,40 @@ import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
 import { useSelector, useDispatch } from 'react-redux';
 import { reorderTask } from '../../features/boards/boardSlice';
+import { useEffect } from 'react';
 
-const TaskExpanded = ({ task, status }) => {
+const TaskExpanded = ({ task, status, setShowModal }) => {
   const dispatch = useDispatch();
-  //the setShowTask will shut this modal when edit or delete is selected
+
   const { boards, selectedIndex } = useSelector((state) => state.board);
+  const [newStatus, setNewStatus] = useState(status);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isSelectlOpen, setIsSelectOpen] = useState(false);
   const handleTaskComplete = (index) => {
     console.log('handle task complete index', index);
   };
-  const handleStatusChange = (newStatus) => {
-    console.log(newStatus);
-    dispatch(reorderTask());
+  const handleStatusChange = (dropDownStatus) => {
+    // dispatch(reorderTask({ oldStatus: status, newStatus, task }));
+    setNewStatus(dropDownStatus);
   };
   const allPossibleStatus = boards[selectedIndex].columns.map(
     (column) => column.name
   );
+
+  useEffect(() => {
+    return () => {
+      if (newStatus) {
+        dispatch(reorderTask({ oldStatus: status, newStatus, task }));
+      }
+    };
+  }, [dispatch, newStatus, task, status]);
 
   return (
     <StyledTaskExpanded
       onClick={() => {
         setIsDropOpen(false);
         setIsSelectOpen(false);
+        console.log('closing drop down');
       }}
     >
       <header>
@@ -70,7 +81,7 @@ const TaskExpanded = ({ task, status }) => {
         <h4>Current Status</h4>
         <DropDown
           dropdownItems={allPossibleStatus}
-          currentSelection={status}
+          currentSelection={newStatus}
           handleSelectionChange={handleStatusChange}
           isOpen={isSelectlOpen}
           setIsOpen={setIsSelectOpen}
