@@ -60,7 +60,12 @@ const Boards = ({ showSideDrawer }) => {
                       className='drop-zone'
                     >
                       {column.tasks.map((task, index) => (
-                        <Task task={task} key={`task_${index}`} index={index} />
+                        <Task
+                          task={task}
+                          key={`task_${index}`}
+                          index={index}
+                          status={column.name}
+                        />
                       ))}
                       {provided.placeholder}
                     </ul>

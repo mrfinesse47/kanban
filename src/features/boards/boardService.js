@@ -20,6 +20,13 @@ const addBoard = async (newBoard) => {
   return newBoard;
 };
 
-const boardService = { getBoards, board: { setBoard, addBoard } };
+const reorderTask = async (moveData) => {
+  console.log('here');
+};
+
+const boardService = {
+  getBoards,
+  board: { setBoard, addBoard, tasks: { reorderTask } },
+};
 
 export default boardService;

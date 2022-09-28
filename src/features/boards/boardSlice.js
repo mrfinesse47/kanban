@@ -8,6 +8,18 @@ const initialState = {
   isSuccess: false,
 };
 
+export const reorderTask = createAsyncThunk(
+  'boards/board/tasks/reorder',
+  async (moveData, thunkAPI) => {
+    try {
+      return await boardService.board.tasks.reorderTask(moveData);
+    } catch (error) {
+      const message = 'error';
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 //set boards
 export const setBoard = createAsyncThunk(
   'boards/board/setAll',

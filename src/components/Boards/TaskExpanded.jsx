@@ -5,21 +5,28 @@ import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
 import { useSelector } from 'react-redux';
 
-const TaskExpanded = ({ task }) => {
+const TaskExpanded = ({ task, status }) => {
+  //the setShowTask will shut this modal when edit or delete is selected
   const { boards, selectedIndex } = useSelector((state) => state.board);
   const [isDropOpen, setIsDropOpen] = useState(false);
+  const [isSelectlOpen, setIsSelectOpen] = useState(false);
   const handleTaskComplete = (index) => {
     console.log('handle task complete index', index);
   };
-  const handleStatusChange = () => {
-    console.log('status change');
+  const handleStatusChange = (newStatus) => {
+    console.log(newStatus);
   };
   const allPossibleStatus = boards[selectedIndex].columns.map(
     (column) => column.name
   );
 
   return (
-    <StyledTaskExpanded>
+    <StyledTaskExpanded
+      onClick={() => {
+        setIsDropOpen(false);
+        setIsSelectOpen(false);
+      }}
+    >
       <header>
         <h2>{task.title}</h2>
         <DropDownNavMenu
@@ -60,10 +67,11 @@ const TaskExpanded = ({ task }) => {
         <h4>Current Status</h4>
         <DropDown
           dropdownItems={allPossibleStatus}
-          currentSelection={task.status}
+          currentSelection={status}
           handleSelectionChange={handleStatusChange}
+          isOpen={isSelectlOpen}
+          setIsOpen={setIsSelectOpen}
         />
-        {/* dropdownItems, currentSelection  */}
       </footer>
     </StyledTaskExpanded>
   );

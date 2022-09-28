@@ -5,16 +5,49 @@ const DropDown = ({
   dropdownItems,
   currentSelection,
   handleSelectionChange,
+  isOpen,
+  setIsOpen,
 }) => {
   console.log(dropdownItems, currentSelection);
   handleSelectionChange();
+
   return (
-    <StyledDropDown>
+    <StyledDropDown
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
       <>
-        <div className='selector'>
-          <img src='./assets/icon-chevron-down.svg' alt='open drop down' />
+        <div className={`selector ${isOpen && 'active'}`}>
+          <button
+            onClick={() => {
+              setIsOpen(true);
+            }}
+          >
+            <div>{currentSelection}</div>
+            <svg width='10' height='7' xmlns='http://www.w3.org/2000/svg'>
+              <path
+                stroke='#635FC7'
+                strokeWidth='2'
+                fill='none'
+                d='m1 1 4 4 4-4'
+              />
+            </svg>
+          </button>
         </div>
-        <div className='drop-menu'></div>
+        {isOpen && (
+          <div className='drop-menu'>
+            <ul>
+              {dropdownItems.map((item, index) => (
+                <li key={`drop-down-${item}-${index}`}>
+                  <button onClick={() => handleSelectionChange(item)}>
+                    {item}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </>
     </StyledDropDown>
   );

@@ -5,12 +5,12 @@ import TaskExpanded from './TaskExpanded';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 
-const Task = ({ task, index }) => {
+const Task = ({ task, index, status }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
       <Modal showModal={showModal} setShowModal={setShowModal}>
-        <TaskExpanded task={task} />
+        <TaskExpanded task={task} status={status} />
       </Modal>
 
       <StyledTask>
