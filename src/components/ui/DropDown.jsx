@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyledDropDown } from './styles/DropDown.styled';
 
-const DropDown = () => {
+const DropDown = ({
+  dropdownItems,
+  currentSelection,
+  handleSelectionChange,
+}) => {
+  console.log(dropdownItems, currentSelection);
+  handleSelectionChange();
   return (
     <StyledDropDown>
       <>

@@ -3,13 +3,21 @@ import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
 import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
+import { useSelector } from 'react-redux';
 
 const TaskExpanded = ({ task }) => {
+  const { boards, selectedIndex } = useSelector((state) => state.board);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const handleTaskComplete = (index) => {
     console.log('handle task complete index', index);
   };
-  console.log(task);
+  const handleStatusChange = () => {
+    console.log('status change');
+  };
+  const allPossibleStatus = boards[selectedIndex].columns.map(
+    (column) => column.name
+  );
+
   return (
     <StyledTaskExpanded>
       <header>
@@ -50,7 +58,12 @@ const TaskExpanded = ({ task }) => {
       </main>
       <footer>
         <h4>Current Status</h4>
-        <DropDown />
+        <DropDown
+          dropdownItems={allPossibleStatus}
+          currentSelection={task.status}
+          handleSelectionChange={handleStatusChange}
+        />
+        {/* dropdownItems, currentSelection  */}
       </footer>
     </StyledTaskExpanded>
   );
