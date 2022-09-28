@@ -3,9 +3,11 @@ import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
 import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { reorderTask } from '../../features/boards/boardSlice';
 
 const TaskExpanded = ({ task, status }) => {
+  const dispatch = useDispatch();
   //the setShowTask will shut this modal when edit or delete is selected
   const { boards, selectedIndex } = useSelector((state) => state.board);
   const [isDropOpen, setIsDropOpen] = useState(false);
@@ -15,6 +17,7 @@ const TaskExpanded = ({ task, status }) => {
   };
   const handleStatusChange = (newStatus) => {
     console.log(newStatus);
+    dispatch(reorderTask());
   };
   const allPossibleStatus = boards[selectedIndex].columns.map(
     (column) => column.name

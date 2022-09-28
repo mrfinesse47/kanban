@@ -9,7 +9,6 @@ const DropDown = ({
   setIsOpen,
 }) => {
   console.log(dropdownItems, currentSelection);
-  handleSelectionChange();
 
   return (
     <StyledDropDown

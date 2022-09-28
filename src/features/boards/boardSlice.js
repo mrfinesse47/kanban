@@ -8,18 +8,6 @@ const initialState = {
   isSuccess: false,
 };
 
-export const reorderTask = createAsyncThunk(
-  'boards/board/tasks/reorder',
-  async (moveData, thunkAPI) => {
-    try {
-      return await boardService.board.tasks.reorderTask(moveData);
-    } catch (error) {
-      const message = 'error';
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 //set boards
 export const setBoard = createAsyncThunk(
   'boards/board/setAll',
@@ -77,7 +65,11 @@ export const boardSlice = createSlice({
         destination.droppableId
       ].tasks.splice(destination.index, 0, taskToMove);
     },
+    reorderTask: (state, action) => {
+      state.boards[0].columns[0].name = 'test';
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getBoards.pending, (state) => {
@@ -120,7 +112,8 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { selectBoardIndex, reorderTasksOnDragDrop } = boardSlice.actions;
+export const { selectBoardIndex, reorderTasksOnDragDrop, reorderTask } =
+  boardSlice.actions;
 // export of a normal reducer
 
 export default boardSlice.reducer;
