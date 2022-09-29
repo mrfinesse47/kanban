@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isModalOpen: false,
-  modalMode: null, //will be for whatever form you want in the modal and will be switched in
-  //the main app for now
+  modalMode: null,
 };
 
 export const uiSlice = createSlice({

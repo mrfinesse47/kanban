@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledOpenDrawer } from './styles/OpenDrawer.styled';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const OpenDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
+const OpenDrawerButton = ({ showSideDrawer, setShowSideDrawer }) => {
   return (
     <AnimatePresence>
       {(showSideDrawer === 'hide' || showSideDrawer === 'initial') && (
@@ -24,4 +24,4 @@ const OpenDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
   );
 };
 
-export default OpenDrawer;
+export default OpenDrawerButton;

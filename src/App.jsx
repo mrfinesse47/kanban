@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import Boards from './components/Boards/Boards';
 import { ThemeProvider } from 'styled-components';
 import { useMediaQuery } from '@react-hook/media-query';
+import { useSelector } from 'react-redux';
+
+import Boards from './components/Boards/Boards';
 import getTheme from './theme/getTheme';
 import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
 import Modal from './components/Modal/Modal';
-import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
-import OpenDrawer from './components/OpenDrawer';
+import OpenDrawerButton from './components/OpenDrawerButton';
 import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
 
@@ -17,12 +18,11 @@ function App() {
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
   const [isDropNavOpen, setIsDropNavOpen] = useState(false);
-
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
   useEffect(() => {
     if (isMobile) {
-      setShowSideDrawer(false);
+      setShowSideDrawer('hide'); //to smoothly close drawer on window resize
     }
   }, [isMobile]);
 
@@ -38,9 +38,8 @@ function App() {
           {modalMode === 'task-expanded' && <TaskExpanded />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
-        {/* <AddNewBoard setShowModal={setShowNewBoardMenu} /> */}
 
-        <OpenDrawer
+        <OpenDrawerButton
           showSideDrawer={showSideDrawer}
           setShowSideDrawer={setShowSideDrawer}
         />
