@@ -3,9 +3,10 @@ import { StyledForm } from './styles/Form.styled';
 import { v4 as uuid } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addBoard } from '../../features/boards/boardSlice';
-import { motion, AnimatePresence, Reorder } from 'framer-motion';
+import { closeModal } from '../../features/ui/uiSlice';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const AddNewBoard = ({ setShowModal }) => {
+const AddNewBoard = () => {
   const dispatch = useDispatch();
   const [boardName, setBoardName] = useState({
     value: '',
@@ -81,7 +82,7 @@ const AddNewBoard = ({ setShowModal }) => {
     if (!isboardNameValueComplete) return;
 
     dispatch(addBoard({ name: boardName.value, columns }));
-    setShowModal(false);
+    dispatch(closeModal());
   };
 
   return (

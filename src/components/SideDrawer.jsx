@@ -7,6 +7,7 @@ import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
 import Modal from './Modal/Modal';
 import AddNewBoard from './forms/AddNewBoard';
+import { openModal } from '../features/ui/uiSlice';
 
 const drawerVariants = {
   hide: {
@@ -78,7 +79,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                     className='list-boards-item new-board'
                     role='button'
                     onClick={() => {
-                      setShowNewBoardMenu(true);
+                      dispatch(openModal('new-board-menu'));
                     }}
                   >
                     <div className='left' id='new-board'>

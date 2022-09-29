@@ -10,10 +10,11 @@ import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import OpenDrawer from './components/OpenDrawer';
 import TaskExpanded from './components/Boards/TaskExpanded';
+import AddNewBoard from './components/forms/AddNewBoard';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
-  const { isModalOpen } = useSelector((state) => state.ui);
+  const { isModalOpen, modalMode } = useSelector((state) => state.ui);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
   const [isDropNavOpen, setIsDropNavOpen] = useState(false);
 
@@ -34,9 +35,11 @@ function App() {
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
         <Modal showModal={isModalOpen}>
-          <TaskExpanded />
-          test test test
+          {modalMode === 'task-expanded' && <TaskExpanded />}
+          {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
+        {/* <AddNewBoard setShowModal={setShowNewBoardMenu} /> */}
+
         <OpenDrawer
           showSideDrawer={showSideDrawer}
           setShowSideDrawer={setShowSideDrawer}
