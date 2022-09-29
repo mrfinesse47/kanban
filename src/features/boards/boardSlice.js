@@ -40,7 +40,6 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     setSelectedExpandedTask: (state, action) => {
-      console.log(action.payload);
       state.selectedExpandedTask = action.payload;
     },
     selectBoardIndex: (state, action) => {

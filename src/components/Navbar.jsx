@@ -25,9 +25,6 @@ const Navbar = ({ isDropNavOpen, setIsDropNavOpen }) => {
             buttonOneText='Edit Board'
             buttonTwoText='Delete Board'
           />
-          {/* <button className='button-options'>
-            <img src='./assets/icon-vertical-ellipsis.svg' alt='options' />
-          </button> */}
         </div>
       </div>
     </StyledNav>

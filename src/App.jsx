@@ -16,7 +16,7 @@ import AddNewBoard from './components/forms/AddNewBoard';
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
-  const [showSideDrawer, setShowSideDrawer] = useState('initial');
+  const [setShowSideDrawer] = useState('initial');
   const [isDropNavOpen, setIsDropNavOpen] = useState(false);
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
@@ -34,15 +34,13 @@ function App() {
     >
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
+
         <Modal showModal={isModalOpen}>
           {modalMode === 'task-expanded' && <TaskExpanded />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
 
-        <OpenDrawerButton
-          showSideDrawer={showSideDrawer}
-          setShowSideDrawer={setShowSideDrawer}
-        />
+        <OpenDrawerButton />
 
         <Navbar
           isLight={isLight}
@@ -50,15 +48,8 @@ function App() {
           setIsDropNavOpen={setIsDropNavOpen}
         />
         <div className='App'>
-          <SideDrawer
-            showSideDrawer={showSideDrawer}
-            setShowSideDrawer={setShowSideDrawer}
-          ></SideDrawer>
-
-          <Boards
-            showSideDrawer={showSideDrawer}
-            setShowSideDrawer={setShowSideDrawer}
-          />
+          <SideDrawer />
+          <Boards />
         </div>
       </ThemeProvider>
     </div>

@@ -22,7 +22,8 @@ const mainVariants = {
   },
 };
 
-const Boards = ({ showSideDrawer }) => {
+const Boards = () => {
+  const { sideDrawerMode } = useSelector((state) => state.ui);
   const { boards, selectedIndex } = useSelector((state) => state.board);
 
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Boards = ({ showSideDrawer }) => {
   return (
     <motion.div
       variants={mainVariants}
-      animate={showSideDrawer}
+      animate={sideDrawerMode}
       className='main'
     >
       <DragDropContext onDragEnd={handleOnDragEnd}>

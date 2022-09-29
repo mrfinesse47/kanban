@@ -40,7 +40,7 @@ const getTheme = (isLight) => {
   };
 
   const media = {
-    mobile: '768px',
+    mobile: 'only screen and (max-width: 768px)',
   };
 
   return isLight

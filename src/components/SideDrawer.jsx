@@ -7,7 +7,7 @@ import IconBoard from './icons/IconBoard';
 import LightDarkSwitch from './LightDarkSwitch';
 import Modal from './Modal/Modal';
 import AddNewBoard from './forms/AddNewBoard';
-import { openModal } from '../features/ui/uiSlice';
+import { openModal, setSideDrawerMode } from '../features/ui/uiSlice';
 
 const drawerVariants = {
   hide: {
@@ -35,7 +35,8 @@ const drawerVariants = {
   },
 };
 
-const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
+const SideDrawer = () => {
+  const { sideDrawerMode } = useSelector((state) => state.ui);
   const { boards, selectedIndex } = useSelector((state) => state.board);
   const [showNewBoardMenu, setShowNewBoardMenu] = useState(false);
   const dispatch = useDispatch();
@@ -50,10 +51,10 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
         <motion.div
           variants={drawerVariants}
           initial='initial'
-          animate={showSideDrawer}
+          animate={sideDrawerMode}
           className='drawer'
         >
-          <StyledSideDrawer showSideDrawer={showSideDrawer}>
+          <StyledSideDrawer showSideDrawer={sideDrawerMode}>
             <div className='container'>
               <div className='menu'>
                 <h4>ALL BOARDS ({boards.length})</h4>
@@ -94,7 +95,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
                   <LightDarkSwitch />
                 </div>
                 <div className='close-container'>
-                  <button onClick={() => setShowSideDrawer('hide')}>
+                  <button onClick={() => dispatch(setSideDrawerMode('hide'))}>
                     <img
                       src='./assets/icon-hide-sidebar.svg'
                       alt='close menu'
