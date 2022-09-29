@@ -5,12 +5,15 @@ import { useMediaQuery } from '@react-hook/media-query';
 import getTheme from './theme/getTheme';
 import GlobalStyles from './components/styles/Global';
 import SideDrawer from './components/SideDrawer';
+import Modal from './components/Modal/Modal';
 import { useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import OpenDrawer from './components/OpenDrawer';
+import TaskExpanded from './components/Boards/TaskExpanded';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
+  const { isModalOpen } = useSelector((state) => state.ui);
   const [showSideDrawer, setShowSideDrawer] = useState('initial');
   const [isDropNavOpen, setIsDropNavOpen] = useState(false);
 
@@ -30,6 +33,10 @@ function App() {
     >
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
+        <Modal showModal={isModalOpen}>
+          <TaskExpanded />
+          test test test
+        </Modal>
         <OpenDrawer
           showSideDrawer={showSideDrawer}
           setShowSideDrawer={setShowSideDrawer}

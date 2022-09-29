@@ -2,8 +2,11 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { StyledModal } from './styles/Modal.styled';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../features/ui/uiSlice';
 
-const Modal = ({ children, setShowModal, showModal }) => {
+const Modal = ({ children, showModal }) => {
+  const dispatch = useDispatch();
   return createPortal(
     <AnimatePresence>
       {showModal && (
@@ -15,7 +18,7 @@ const Modal = ({ children, setShowModal, showModal }) => {
             transition={{ duration: 0.5 }}
             className='backdrop'
             onClick={(e) => {
-              setShowModal(false);
+              dispatch(closeModal());
             }}
           >
             <div className='modal' onClick={(e) => e.stopPropagation()}>

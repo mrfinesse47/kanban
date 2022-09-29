@@ -3,23 +3,11 @@ import boardService from './boardService';
 
 const initialState = {
   boards: [],
+  selectedExpandedTask: null,
   selectedIndex: null,
   isLoading: false,
   isSuccess: false,
 };
-
-//set boards
-export const setBoard = createAsyncThunk(
-  'boards/board/setAll',
-  async (boardData, thunkAPI) => {
-    try {
-      return await boardService.board.setBoard(boardData);
-    } catch (error) {
-      const message = 'error';
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
 
 //get all boards
 export const getBoards = createAsyncThunk(
@@ -51,6 +39,10 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
+    setSelectedExpandedTask: (state, action) => {
+      console.log(action.payload);
+      state.selectedExpandedTask = action.payload;
+    },
     selectBoardIndex: (state, action) => {
       state.selectedIndex = action.payload;
     },
@@ -100,23 +92,6 @@ export const boardSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      .addCase(setBoard.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(setBoard.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.boards = action.payload;
-        if (state?.boards && state.boards.length > 0) {
-          //should move to regular reducers
-          state.selectedIndex = 0;
-        }
-      })
-      .addCase(setBoard.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
       .addCase(addBoard.pending, (state) => {})
       .addCase(addBoard.fulfilled, (state, action) => {
         state.boards.push(action.payload);
@@ -125,8 +100,12 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { selectBoardIndex, reorderTasksOnDragDrop, reorderTask } =
-  boardSlice.actions;
+export const {
+  selectBoardIndex,
+  reorderTasksOnDragDrop,
+  reorderTask,
+  setSelectedExpandedTask,
+} = boardSlice.actions;
 // export of a normal reducer
 
 export default boardSlice.reducer;

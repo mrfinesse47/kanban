@@ -4,8 +4,8 @@ const initialState = {
   isLight: false,
 };
 
-export const boardSlice = createSlice({
-  name: 'board',
+export const lightDarkSlice = createSlice({
+  name: 'light-dark',
   initialState,
   reducers: {
     toggleIsLight: (state) => {
@@ -14,6 +14,6 @@ export const boardSlice = createSlice({
   },
 });
 
-export const { toggleIsLight } = boardSlice.actions;
+export const { toggleIsLight } = lightDarkSlice.actions;
 
-export default boardSlice.reducer;
+export default lightDarkSlice.reducer;

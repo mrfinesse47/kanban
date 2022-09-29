@@ -5,33 +5,27 @@ import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
 import { useSelector, useDispatch } from 'react-redux';
 import { reorderTask } from '../../features/boards/boardSlice';
-import { useEffect } from 'react';
 
-const TaskExpanded = ({ task, status, setShowModal }) => {
+const TaskExpanded = () => {
   const dispatch = useDispatch();
-
-  const { boards, selectedIndex } = useSelector((state) => state.board);
-  const [newStatus, setNewStatus] = useState(status);
+  const { boards, selectedIndex, selectedExpandedTask } = useSelector(
+    (state) => state.board
+  );
+  const { task, status } = selectedExpandedTask;
+  const [oldStatus, setOldStatus] = useState(status);
   const [isDropOpen, setIsDropOpen] = useState(false);
-  const [isSelectlOpen, setIsSelectOpen] = useState(false);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
   const handleTaskComplete = (index) => {
     console.log('handle task complete index', index);
   };
   const handleStatusChange = (dropDownStatus) => {
-    // dispatch(reorderTask({ oldStatus: status, newStatus, task }));
-    setNewStatus(dropDownStatus);
+    dispatch(reorderTask({ oldStatus, newStatus: dropDownStatus, task }));
+    setOldStatus(dropDownStatus);
+    setIsSelectOpen(false);
   };
   const allPossibleStatus = boards[selectedIndex].columns.map(
     (column) => column.name
   );
-
-  useEffect(() => {
-    return () => {
-      if (newStatus) {
-        dispatch(reorderTask({ oldStatus: status, newStatus, task }));
-      }
-    };
-  }, [dispatch, newStatus, task, status]);
 
   return (
     <StyledTaskExpanded
@@ -80,9 +74,9 @@ const TaskExpanded = ({ task, status, setShowModal }) => {
         <h4>Current Status</h4>
         <DropDown
           dropdownItems={allPossibleStatus}
-          currentSelection={newStatus}
+          currentSelection={oldStatus}
           handleSelectionChange={handleStatusChange}
-          isOpen={isSelectlOpen}
+          isOpen={isSelectOpen}
           setIsOpen={setIsSelectOpen}
         />
       </footer>

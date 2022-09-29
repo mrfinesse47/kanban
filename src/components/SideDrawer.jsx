@@ -41,7 +41,7 @@ const SideDrawer = ({ showSideDrawer, setShowSideDrawer }) => {
 
   return (
     <>
-      <Modal setShowModal={setShowNewBoardMenu} showModal={showNewBoardMenu}>
+      <Modal showModal={showNewBoardMenu}>
         <AddNewBoard setShowModal={setShowNewBoardMenu} />
       </Modal>
 

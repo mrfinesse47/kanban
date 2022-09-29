@@ -4,14 +4,18 @@ import { Draggable } from 'react-beautiful-dnd';
 import TaskExpanded from './TaskExpanded';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../features/ui/uiSlice';
+import { setSelectedExpandedTask } from '../../features/boards/boardSlice';
 
 const Task = ({ task, index, status }) => {
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+  // const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <Modal showModal={showModal} setShowModal={setShowModal}>
+      {/* <Modal showModal={showModal} setShowModal={setShowModal}>
         <TaskExpanded task={task} setShowModal={setShowModal} status={status} />
-      </Modal>
+      </Modal> */}
 
       <StyledTask>
         <Draggable key={task.id} draggableId={task.id} index={index}>
@@ -27,7 +31,8 @@ const Task = ({ task, index, status }) => {
               <button
                 className='open-expanded'
                 onClick={() => {
-                  setShowModal(true);
+                  dispatch(setSelectedExpandedTask({ task, status }));
+                  dispatch(openModal('task-expanded'));
                 }}
               >
                 <div className='completion'>
