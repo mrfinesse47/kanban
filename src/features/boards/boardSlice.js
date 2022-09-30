@@ -70,6 +70,37 @@ export const boardSlice = createSlice({
         (colTask) => colTask.id !== task.id
       );
       columns[NewStatusIndex].tasks.push(task);
+      //pushes to the boards array
+      state.selectedExpandedTask.task.status = newStatus;
+      //updates modal state, the reason to have them seperate is if the modal
+      //depends on changing state, the modal will change when it is open which we dont want
+      //pretty sure if this was just a regular form with submit button all fo this
+      //wouldnt be necessary
+    },
+    toggleSubTask: (state, action) => {
+      const task = state.selectedExpandedTask.task;
+      const columns = state.boards[state.selectedIndex].columns;
+      const isCompleted =
+        state.selectedExpandedTask.task.subtasks[action.payload].isCompleted;
+      //we need to find the indexes because it can change while the
+      //modal is open, so it cant count on information that is passed in
+      //when the modal opens,
+      //also the reason why everything is in arrays is so the drag and drop
+      //functionality works.
+      const colIndex = columns.findIndex(
+        (column) => column.name === task.status
+      );
+      const taskIndex = state.boards[state.selectedIndex].columns[
+        colIndex
+      ].tasks.findIndex((t) => t.id === task.id);
+
+      //update global state
+      state.boards[state.selectedIndex].columns[colIndex].tasks[
+        taskIndex
+      ].subtasks[action.payload].isCompleted = !isCompleted;
+      //update modal state
+      state.selectedExpandedTask.task.subtasks[action.payload].isCompleted =
+        !isCompleted;
     },
   },
 
@@ -104,6 +135,7 @@ export const {
   reorderTasksOnDragDrop,
   reorderTask,
   setSelectedExpandedTask,
+  toggleSubTask,
 } = boardSlice.actions;
 // export of a normal reducer
 

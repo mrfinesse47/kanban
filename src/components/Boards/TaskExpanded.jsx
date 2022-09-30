@@ -4,7 +4,7 @@ import CheckBox from '../ui/CheckBox';
 import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
 import { useSelector, useDispatch } from 'react-redux';
-import { reorderTask } from '../../features/boards/boardSlice';
+import { reorderTask, toggleSubTask } from '../../features/boards/boardSlice';
 
 const TaskExpanded = () => {
   const dispatch = useDispatch();
@@ -12,11 +12,13 @@ const TaskExpanded = () => {
     (state) => state.board
   );
   const { task, status } = selectedExpandedTask;
+  //console.log(boards[selectedIndex]);
+
   const [oldStatus, setOldStatus] = useState(status);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
-  const handleTaskComplete = (index) => {
-    console.log('handle task complete index', index);
+  const handleSubTaskComplete = (index) => {
+    dispatch(toggleSubTask(index));
   };
   const handleStatusChange = (dropDownStatus) => {
     dispatch(reorderTask({ oldStatus, newStatus: dropDownStatus, task }));
@@ -61,7 +63,7 @@ const TaskExpanded = () => {
                 <CheckBox
                   isChecked={subtask.isCompleted}
                   clickHandler={() => {
-                    handleTaskComplete(index);
+                    handleSubTaskComplete(index);
                   }}
                 ></CheckBox>
                 <span className='subtask-title'>{subtask.title}</span>

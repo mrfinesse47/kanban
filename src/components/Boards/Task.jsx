@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../features/ui/uiSlice';
 import { setSelectedExpandedTask } from '../../features/boards/boardSlice';
 
-const Task = ({ task, index, status }) => {
+const Task = ({ task, index, status, colIndex }) => {
   const dispatch = useDispatch();
 
   return (
@@ -24,7 +24,12 @@ const Task = ({ task, index, status }) => {
               <button
                 className='open-expanded'
                 onClick={() => {
-                  dispatch(setSelectedExpandedTask({ task, status }));
+                  dispatch(
+                    setSelectedExpandedTask({
+                      task,
+                      status,
+                    })
+                  );
                   dispatch(openModal('task-expanded'));
                 }}
               >

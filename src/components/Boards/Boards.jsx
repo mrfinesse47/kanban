@@ -45,15 +45,15 @@ const Boards = () => {
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <StyledBoards>
           {selectedIndex !== null &&
-            boards[selectedIndex].columns.map((column, index) => (
-              <div className='column' key={`column_${index}`}>
+            boards[selectedIndex].columns.map((column, colIndex) => (
+              <div className='column' key={`column_${colIndex}`}>
                 <div className='container-column-name'>
                   <div className='status'></div>
                   <h3>
                     {column.name.toUpperCase()} ({column.tasks.length})
                   </h3>
                 </div>
-                <Droppable droppableId={index.toString()}>
+                <Droppable droppableId={colIndex.toString()}>
                   {(provided) => (
                     <ul
                       {...provided.droppableProps}
@@ -64,6 +64,7 @@ const Boards = () => {
                         <Task
                           task={task}
                           key={`task_${index}`}
+                          colIndex={colIndex}
                           index={index}
                           status={column.name}
                         />
