@@ -55,6 +55,11 @@ export const boardSlice = createSlice({
       state.boards[state.selectedIndex].columns[
         destination.droppableId
       ].tasks.splice(destination.index, 0, taskToMove);
+
+      state.boards[state.selectedIndex].columns[destination.droppableId].tasks[
+        destination.index
+      ].status =
+        state.boards[state.selectedIndex].columns[destination.droppableId].name;
     },
     reorderTask: (state, action) => {
       const { oldStatus, newStatus, task } = action.payload;
@@ -83,7 +88,7 @@ export const boardSlice = createSlice({
       const isCompleted =
         state.selectedExpandedTask.task.subtasks[action.payload].isCompleted;
       //we need to find the indexes because it can change while the
-      //modal is open, so it cant count on information that is passed in
+      //modal is open, so it can't count on information that is passed in
       //when the modal opens,
       //also the reason why everything is in arrays is so the drag and drop
       //functionality works.

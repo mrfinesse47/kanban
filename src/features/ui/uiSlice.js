@@ -23,7 +23,6 @@ export const uiSlice = createSlice({
       state.sideDrawerMode = action.payload;
     },
     setIsDropNavOpen: (state, action) => {
-      console.log('setting');
       state.isDropNavOpen = action.payload;
     },
   },

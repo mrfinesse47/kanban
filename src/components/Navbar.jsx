@@ -8,7 +8,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isDropNavOpen } = useSelector((state) => state.ui);
   const { isLight } = useSelector((state) => state.lightDark);
-  console.log(isDropNavOpen);
   return (
     <StyledNav>
       <div className='logo-container'>
