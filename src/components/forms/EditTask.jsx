@@ -10,7 +10,23 @@ const EditTask = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <StyledForm>EditTask</StyledForm>
+      <StyledForm>
+        <h3>Edit Task</h3>
+        <div className='form-group'>
+          <label htmlFor='title'>Title</label>
+          <input type='text' id='title' placeholder='e.g. Take coffee break' />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='description'>Description</label>
+          <textarea
+            type='text'
+            id='description'
+            placeholder='e.g. It’s always good to take a break. This 15 minute break will 
+recharge the batteries a little.'
+          />
+        </div>
+        {/* need to turn input list into component see in add new board */}
+      </StyledForm>
     </motion.div>
   );
 };

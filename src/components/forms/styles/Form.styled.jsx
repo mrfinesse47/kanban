@@ -9,9 +9,7 @@ export const StyledForm = styled.form`
     color: ${({ theme }) => theme.colors.textMain};
     margin-bottom: 24px;
   }
-  textarea {
-    resize: none;
-  }
+
   .form-group {
     display: flex;
     flex-direction: column;
@@ -26,8 +24,9 @@ export const StyledForm = styled.form`
     .input-wrapper {
     }
     input {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       border: 1px solid rgba(130, 143, 163, 0.25);
-      background-color: ${({ theme }) => theme.colors.inputBackgroundMain};
+      background-color: ${({ theme }) => theme.colors.backgroundSecondary};
       color: ${({ theme }) => theme.colors.textMain};
       border-radius: 4px;
       padding: 11.25px 16px;
@@ -46,6 +45,24 @@ export const StyledForm = styled.form`
       line-height: 23px;
       text-align: right;
       color: #ea5555;
+    }
+    textarea {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      border: 1px solid rgba(130, 143, 163, 0.25);
+      background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+      color: ${({ theme }) => theme.colors.textMain};
+      padding: 8px 16px;
+      border-radius: 4px;
+      width: 100%;
+      height: 135px;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 23px;
+      resize: none;
+      outline: none;
+    }
+    textarea::placeholder {
+      color: ${({ theme }) => theme.colors.textAccent};
     }
   }
 
