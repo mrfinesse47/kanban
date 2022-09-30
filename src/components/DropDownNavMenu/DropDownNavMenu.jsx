@@ -8,6 +8,7 @@ const DropDownNavMenu = ({
   buttonOneText,
   buttonTwoText,
 }) => {
+  console.log('DROPNAVOPEN', isDropNavOpen);
   return (
     <StyledDropDownNavMenu onClick={(e) => e.stopPropagation()}>
       <button

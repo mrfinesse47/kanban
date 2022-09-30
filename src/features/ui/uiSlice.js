@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isModalOpen: false,
+  isDropNavOpen: false,
   modalMode: null,
   sideDrawerMode: 'initial',
 };
@@ -21,9 +22,14 @@ export const uiSlice = createSlice({
     setSideDrawerMode: (state, action) => {
       state.sideDrawerMode = action.payload;
     },
+    setIsDropNavOpen: (state, action) => {
+      console.log('setting');
+      state.isDropNavOpen = action.payload;
+    },
   },
 });
 
-export const { openModal, closeModal, setSideDrawerMode } = uiSlice.actions;
+export const { openModal, closeModal, setSideDrawerMode, setIsDropNavOpen } =
+  uiSlice.actions;
 
 export default uiSlice.reducer;

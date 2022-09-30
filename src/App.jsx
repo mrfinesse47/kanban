@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useMediaQuery } from '@react-hook/media-query';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Boards from './components/Boards/Boards';
 import getTheme from './theme/getTheme';
@@ -12,12 +12,14 @@ import Navbar from './components/Navbar';
 import OpenDrawerButton from './components/OpenDrawerButton';
 import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
+import { setIsDropNavOpen } from './features/ui/uiSlice';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
   const [setShowSideDrawer] = useState('initial');
-  const [isDropNavOpen, setIsDropNavOpen] = useState(false);
+  const dispatch = useDispatch();
+  // const [isDropNavOpen, setIsDropNavOpen] = useState(false);
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function App() {
   return (
     <div
       onClick={(e) => {
-        setIsDropNavOpen(false);
+        dispatch(setIsDropNavOpen(false));
       }}
     >
       <ThemeProvider theme={getTheme(isLight)}>
@@ -44,8 +46,8 @@ function App() {
 
         <Navbar
           isLight={isLight}
-          isDropNavOpen={isDropNavOpen}
-          setIsDropNavOpen={setIsDropNavOpen}
+          // isDropNavOpen={isDropNavOpen}
+          // setIsDropNavOpen={setIsDropNavOpen}
         />
         <div className='App'>
           <SideDrawer />

@@ -1,10 +1,14 @@
 import React from 'react';
 import { StyledNav } from './styles/Navbar.styled';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DropDownNavMenu from './DropDownNavMenu/DropDownNavMenu';
+import { setIsDropNavOpen } from '../features/ui/uiSlice';
 
-const Navbar = ({ isDropNavOpen, setIsDropNavOpen }) => {
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { isDropNavOpen } = useSelector((state) => state.ui);
   const { isLight } = useSelector((state) => state.lightDark);
+  console.log(isDropNavOpen);
   return (
     <StyledNav>
       <div className='logo-container'>
@@ -21,7 +25,9 @@ const Navbar = ({ isDropNavOpen, setIsDropNavOpen }) => {
           </button>
           <DropDownNavMenu
             isDropNavOpen={isDropNavOpen}
-            setIsDropNavOpen={setIsDropNavOpen}
+            setIsDropNavOpen={(isOpen) => {
+              dispatch(setIsDropNavOpen(isOpen));
+            }}
             buttonOneText='Edit Board'
             buttonTwoText='Delete Board'
           />
