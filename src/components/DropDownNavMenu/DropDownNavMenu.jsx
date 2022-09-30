@@ -7,6 +7,7 @@ const DropDownNavMenu = ({
   setIsDropNavOpen,
   buttonOneText,
   buttonTwoText,
+  editAction,
 }) => {
   return (
     <StyledDropDownNavMenu onClick={(e) => e.stopPropagation()}>
@@ -31,7 +32,7 @@ const DropDownNavMenu = ({
           >
             <ul>
               <li className='edit'>
-                <button>{buttonOneText}</button>
+                <button onClick={editAction}>{buttonOneText}</button>
               </li>
               <li className='delete'>
                 <button>{buttonTwoText}</button>

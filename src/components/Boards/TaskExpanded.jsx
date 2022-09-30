@@ -3,6 +3,7 @@ import { StyledTaskExpanded } from './styles/TaskExpanded.styled';
 import CheckBox from '../ui/CheckBox';
 import DropDownNavMenu from '../DropDownNavMenu/DropDownNavMenu';
 import DropDown from '../ui/DropDown';
+import { changeModalMode } from '../../features/ui/uiSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { reorderTask, toggleSubTask } from '../../features/boards/boardSlice';
 
@@ -45,6 +46,7 @@ const TaskExpanded = () => {
           setIsDropNavOpen={setIsDropOpen}
           buttonOneText='Edit Task'
           buttonTwoText='Delete Task'
+          editAction={() => dispatch(changeModalMode('edit-task-menu'))}
         />
       </header>
       <main>

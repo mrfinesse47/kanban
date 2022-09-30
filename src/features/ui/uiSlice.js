@@ -19,6 +19,11 @@ export const uiSlice = createSlice({
       state.isModalOpen = false;
       state.modalMode = null;
     },
+    changeModalMode: (state, action) => {
+      state.isModalOpen = false;
+      state.modalMode = action.payload;
+      state.isModalOpen = true;
+    },
     setSideDrawerMode: (state, action) => {
       state.sideDrawerMode = action.payload;
     },
@@ -28,7 +33,12 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, setSideDrawerMode, setIsDropNavOpen } =
-  uiSlice.actions;
+export const {
+  openModal,
+  closeModal,
+  setSideDrawerMode,
+  setIsDropNavOpen,
+  changeModalMode,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

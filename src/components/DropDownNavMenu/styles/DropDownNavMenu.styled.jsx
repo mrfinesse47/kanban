@@ -18,6 +18,7 @@ export const StyledDropDownNavMenu = styled.div`
       font-weight: 500;
       font-size: 13px;
       line-height: 23px;
+      width: 100%;
     }
     .edit {
       color: #828fa3;

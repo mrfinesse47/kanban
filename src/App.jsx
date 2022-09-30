@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import OpenDrawerButton from './components/OpenDrawerButton';
 import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
+import EditTask from './components/forms/EditTask';
 import { setIsDropNavOpen } from './features/ui/uiSlice';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 
         <Modal showModal={isModalOpen}>
           {modalMode === 'task-expanded' && <TaskExpanded />}
+          {modalMode === 'edit-task-menu' && <EditTask />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
 
