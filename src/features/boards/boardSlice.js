@@ -3,7 +3,7 @@ import boardService from './boardService';
 
 const initialState = {
   boards: [],
-  selectedExpandedTask: null,
+  modalTask: null, //need a copy of a task for modal
   selectedIndex: null,
   isLoading: false,
   isSuccess: false,
@@ -39,8 +39,8 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    setSelectedExpandedTask: (state, action) => {
-      state.selectedExpandedTask = action.payload;
+    setModalTask: (state, action) => {
+      state.modalTask = action.payload.task;
     },
     selectBoardIndex: (state, action) => {
       state.selectedIndex = action.payload;
@@ -56,13 +56,14 @@ export const boardSlice = createSlice({
         destination.droppableId
       ].tasks.splice(destination.index, 0, taskToMove);
 
+      //the task keeps track of its own status as well
       state.boards[state.selectedIndex].columns[destination.droppableId].tasks[
         destination.index
       ].status =
         state.boards[state.selectedIndex].columns[destination.droppableId].name;
     },
     reorderTask: (state, action) => {
-      const { oldStatus, newStatus, task } = action.payload;
+      const { oldStatus, newStatus } = action.payload;
       if (oldStatus === newStatus) return;
       const columns = state.boards[state.selectedIndex].columns;
       const oldStatusIndex = columns.findIndex(
@@ -71,30 +72,32 @@ export const boardSlice = createSlice({
       const NewStatusIndex = columns.findIndex(
         (column) => column.name === newStatus
       );
+
       columns[oldStatusIndex].tasks = columns[oldStatusIndex].tasks.filter(
-        (colTask) => colTask.id !== task.id
+        (colTask) => colTask.id !== state.modalTask.id
       );
-      columns[NewStatusIndex].tasks.push(task);
+      columns[NewStatusIndex].tasks.push(state.modalTask);
       //pushes to the boards array
-      state.selectedExpandedTask.task.status = newStatus;
+      state.modalTask.status = newStatus;
       //updates modal state, the reason to have them seperate is if the modal
       //depends on changing state, the modal will change when it is open which we dont want
       //pretty sure if this was just a regular form with submit button all fo this
       //wouldnt be necessary
     },
     toggleSubTask: (state, action) => {
-      const task = state.selectedExpandedTask.task;
+      const task = state.modalTask;
       const columns = state.boards[state.selectedIndex].columns;
-      const isCompleted =
-        state.selectedExpandedTask.task.subtasks[action.payload].isCompleted;
+      const isCompleted = state.modalTask.subtasks[action.payload].isCompleted;
       //we need to find the indexes because it can change while the
       //modal is open, so it can't count on information that is passed in
       //when the modal opens,
       //also the reason why everything is in arrays is so the drag and drop
       //functionality works.
+
       const colIndex = columns.findIndex(
         (column) => column.name === task.status
       );
+
       const taskIndex = state.boards[state.selectedIndex].columns[
         colIndex
       ].tasks.findIndex((t) => t.id === task.id);
@@ -104,8 +107,7 @@ export const boardSlice = createSlice({
         taskIndex
       ].subtasks[action.payload].isCompleted = !isCompleted;
       //update modal state
-      state.selectedExpandedTask.task.subtasks[action.payload].isCompleted =
-        !isCompleted;
+      state.modalTask.subtasks[action.payload].isCompleted = !isCompleted;
     },
   },
 
@@ -139,7 +141,7 @@ export const {
   selectBoardIndex,
   reorderTasksOnDragDrop,
   reorderTask,
-  setSelectedExpandedTask,
+  setModalTask,
   toggleSubTask,
 } = boardSlice.actions;
 // export of a normal reducer

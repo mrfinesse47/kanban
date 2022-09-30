@@ -7,21 +7,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { reorderTask, toggleSubTask } from '../../features/boards/boardSlice';
 
 const TaskExpanded = () => {
+  //cannot accept in props because it can change positions when changing modal
+  //options, so to keep it steady we use a redux state
   const dispatch = useDispatch();
-  const { boards, selectedIndex, selectedExpandedTask } = useSelector(
+  const { boards, selectedIndex, modalTask } = useSelector(
     (state) => state.board
   );
-  const { task, status } = selectedExpandedTask;
+
   //console.log(boards[selectedIndex]);
 
-  const [oldStatus, setOldStatus] = useState(status);
+  const [oldStatus, setOldStatus] = useState(modalTask.status);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const handleSubTaskComplete = (index) => {
     dispatch(toggleSubTask(index));
   };
   const handleStatusChange = (dropDownStatus) => {
-    dispatch(reorderTask({ oldStatus, newStatus: dropDownStatus, task }));
+    dispatch(reorderTask({ oldStatus, newStatus: dropDownStatus, modalTask }));
     setOldStatus(dropDownStatus);
     setIsSelectOpen(false);
   };
@@ -37,7 +39,7 @@ const TaskExpanded = () => {
       }}
     >
       <header>
-        <h2>{task.title}</h2>
+        <h2>{modalTask.title}</h2>
         <DropDownNavMenu
           isDropNavOpen={isDropOpen}
           setIsDropNavOpen={setIsDropOpen}
@@ -46,19 +48,20 @@ const TaskExpanded = () => {
         />
       </header>
       <main>
-        <p>{task.description}</p>
+        <p>{modalTask.description}</p>
         <div className='subtasks'>
           <h4>
             {' '}
             Subtasks (
             {
-              task.subtasks.filter((subtask) => subtask.isCompleted === true)
-                .length
+              modalTask.subtasks.filter(
+                (subtask) => subtask.isCompleted === true
+              ).length
             }{' '}
-            of {task.subtasks.length})
+            of {modalTask.subtasks.length})
           </h4>
           <ul>
-            {task.subtasks.map((subtask, index) => (
+            {modalTask.subtasks.map((subtask, index) => (
               <li key={`subtask-${index}`} className={'subtask'}>
                 <CheckBox
                   isChecked={subtask.isCompleted}

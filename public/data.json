@@ -346,7 +346,7 @@
             {
               "title": "Share on Show HN",
               "description": "",
-              "status": "",
+              "status": "Todo",
               "id": "0280000ba1773",
               "subtasks": [
                 {
@@ -366,7 +366,7 @@
             {
               "title": "Write launch article to publish on multiple channels",
               "description": "",
-              "status": "",
+              "status": "Todo",
               "id": "0280000ba1111",
               "subtasks": [
                 {
@@ -411,7 +411,7 @@
             {
               "title": "Launch version one",
               "description": "",
-              "status": "",
+              "status": "Now",
               "id": "f7f1728163c3",
               "subtasks": [
                 {
@@ -427,7 +427,7 @@
             {
               "title": "Review early feedback and plan next steps for roadmap",
               "description": "Beyond the initial launch, we're keeping the initial roadmap completely empty. This meeting will help us plan out our next steps based on actual customer feedback.",
-              "status": "",
+              "status": "Now",
               "id": "a72b42a77aef",
               "subtasks": [
                 {

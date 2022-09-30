@@ -3,9 +3,9 @@ import { StyledTask } from './styles/Task.styled';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../features/ui/uiSlice';
-import { setSelectedExpandedTask } from '../../features/boards/boardSlice';
+import { setModalTask } from '../../features/boards/boardSlice';
 
-const Task = ({ task, index, status, colIndex }) => {
+const Task = ({ task, index }) => {
   const dispatch = useDispatch();
 
   return (
@@ -25,9 +25,8 @@ const Task = ({ task, index, status, colIndex }) => {
                 className='open-expanded'
                 onClick={() => {
                   dispatch(
-                    setSelectedExpandedTask({
+                    setModalTask({
                       task,
-                      status,
                     })
                   );
                   dispatch(openModal('task-expanded'));
