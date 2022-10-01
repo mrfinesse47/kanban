@@ -105,4 +105,8 @@ export const StyledForm = styled.form`
   .task-btn {
     margin-top: 24px;
   }
+
+  .form-group-task {
+    margin-top: -24px;
+  }
 `;
