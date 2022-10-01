@@ -1,56 +1,20 @@
 import React, { useState } from 'react';
 import { StyledForm } from './styles/Form.styled';
-import { v4 as uuid } from 'uuid';
+
 import { useDispatch } from 'react-redux';
 import { addBoard } from '../../features/boards/boardSlice';
 import { closeModal } from '../../features/ui/uiSlice';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import DynamicList from './DynamicList';
 
 const AddNewBoard = () => {
+  const EMPTY_MESSAGE = "Can't be empty";
   const dispatch = useDispatch();
   const [boardName, setBoardName] = useState({
     value: '',
     error: { status: false, message: '' },
   }); //form data
-  const [columns, setColumns] = useState([]); //form data
-
-  const handleAddColumn = (e) => {
-    setColumns((prev) => {
-      const arr = [...prev];
-      arr.push({
-        id: uuid(),
-        name: '',
-        tasks: [],
-        error: { status: false, message: '' },
-      });
-      return arr;
-    });
-  };
-
-  const handleColumnChange = (e, index) => {
-    setColumns((prev) => {
-      const arr = [...prev];
-      arr[index].name = e.target.value;
-      return arr;
-    });
-  };
-
-  const handleColumnDelete = (index) => {
-    setColumns((prev) => {
-      const arr = [...prev];
-      arr.splice(index, 1);
-      return arr;
-    });
-  };
-
-  const setErrorMessageOnColFalse = (index) => {
-    setColumns((prev) => {
-      const arr = [...prev];
-      arr[index].error = { status: false, message: '' };
-      return arr;
-    });
-  };
+  const [items, setItems] = useState([]); //form data
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -61,28 +25,37 @@ const AddNewBoard = () => {
     if (boardName.value === '') {
       setBoardName((prev) => ({
         ...prev,
-        error: { status: true, message: "Can't be empty" },
+        error: { status: true, message: EMPTY_MESSAGE },
       }));
       isboardNameValueComplete = false;
     }
 
-    if (columns.some((column) => column.name === '')) {
-      return setColumns((prev) => {
-        return [...prev].map((column) => {
-          if (column.name === '') {
+    if (items.some((item) => item.value === '')) {
+      return setItems((prev) => {
+        return [...prev].map((item) => {
+          if (item.value === '') {
             return {
-              ...column,
-              error: { status: true, message: "Can't be empty" },
+              ...item,
+              error: { status: true, message: EMPTY_MESSAGE },
             };
           }
-          return column;
+          return item;
         });
       });
     }
     //if column names are ok but not name of board return and dont dispatch
     if (!isboardNameValueComplete) return;
 
-    dispatch(addBoard({ name: boardName.value, columns }));
+    dispatch(
+      addBoard({
+        name: boardName.value,
+        columns: items.map((item) => ({
+          id: item.id,
+          tasks: item.tasks,
+          name: item.value,
+        })),
+      })
+    );
     dispatch(closeModal());
   };
 
@@ -114,14 +87,7 @@ const AddNewBoard = () => {
         />
       </div>
 
-      <DynamicList
-        title={'Board Columns'}
-        items={columns}
-        handleItemChange={handleColumnChange}
-        handleItemDelete={handleColumnDelete}
-        setErrorMessageOnItemFalse={setErrorMessageOnColFalse}
-        handleAdditem={handleAddColumn}
-      />
+      <DynamicList title={'Board Columns'} items={items} setItems={setItems} />
       <button className='btn btn-dark'>Create New Board</button>
     </StyledForm>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledForm } from './styles/Form.styled';
 import { motion } from 'framer-motion';
 import { v4 as uuid } from 'uuid';
@@ -10,24 +10,18 @@ const EditTask = () => {
     (state) => state.board
   );
 
-  const subTasks = modalTask.subtasks.map((subtask) => ({
-    name: subtask.title,
-    error: { status: false, message: '' },
-    id: uuid(),
-  }));
-  console.log(subTasks);
-  const handleSubTaskChange = () => {
-    console.log('handle item change');
+  const onSubmit = () => {
+    console.log('submit');
   };
-  const handleSubTaskDelete = () => {
-    console.log('handle item delete');
-  };
-  const setErrorMessageOnSubTaskFalse = () => {
-    console.log('setErrorMessageOnItemFalse');
-  };
-  const handleAddSubTask = () => {
-    console.log('handleAdditem');
-  };
+
+  const [subTasks, setSubtasks] = useState(
+    //the form data
+    modalTask.subtasks.map((subtask) => ({
+      value: subtask.title,
+      error: { status: false, message: '' },
+      id: uuid(),
+    }))
+  );
 
   return (
     <motion.div
@@ -36,7 +30,7 @@ const EditTask = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <StyledForm>
+      <StyledForm onSubmit={onSubmit}>
         <h3>Edit Task</h3>
         <div className='form-group'>
           <label htmlFor='title'>Title</label>
@@ -55,10 +49,7 @@ recharge the batteries a little.'
         <DynamicList
           title={'Subtasks'}
           items={subTasks}
-          handleItemChange={handleSubTaskChange}
-          handleItemDelete={handleSubTaskDelete}
-          setErrorMessageOnItemFalse={setErrorMessageOnSubTaskFalse}
-          handleAdditem={handleAddSubTask}
+          setItems={setSubtasks}
         />
       </StyledForm>
     </motion.div>
