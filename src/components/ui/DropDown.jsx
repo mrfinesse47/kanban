@@ -14,6 +14,7 @@ const DropDown = ({
     <StyledDropDown
       onClick={(e) => {
         e.stopPropagation();
+        e.preventDefault();
       }}
     >
       <>

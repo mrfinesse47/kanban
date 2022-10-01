@@ -7,6 +7,8 @@ const initialState = {
   selectedIndex: null,
   isLoading: false,
   isSuccess: false,
+  columnIndex: {}, //should really be hash mapping it when the selected index updates
+  //wont have to find idexes
 };
 
 //get all boards
@@ -109,6 +111,39 @@ export const boardSlice = createSlice({
       //update modal state
       state.modalTask.subtasks[action.payload].isCompleted = !isCompleted;
     },
+    updateTask: (state, action) => {
+      const task = action.payload;
+      const columns = state.boards[state.selectedIndex].columns;
+
+      const colIndex = columns.findIndex(
+        (column) => column.name === state.modalTask.status
+      );
+
+      const taskIndex = state.boards[state.selectedIndex].columns[
+        colIndex
+      ].tasks.findIndex((t) => t.id === task.id);
+
+      //if it remains in the same column that is...
+
+      columns[colIndex].tasks[taskIndex] = task;
+
+      //if not got to move it
+      if (task.status !== state.modalTask.status) {
+        const newIndex = columns.findIndex(
+          (column) => column.name === task.status
+        );
+
+        // remove it from old array
+        columns[colIndex].tasks = columns[colIndex].tasks.filter(
+          (colTask) => colTask.id !== state.modalTask.id
+        );
+
+        //update modaltask just incase even though form closes
+        state.modalTask.status = task.status;
+
+        columns[newIndex].tasks.push(task);
+      }
+    },
   },
 
   extraReducers: (builder) => {
@@ -143,6 +178,7 @@ export const {
   reorderTask,
   setModalTask,
   toggleSubTask,
+  updateTask,
 } = boardSlice.actions;
 // export of a normal reducer
 
