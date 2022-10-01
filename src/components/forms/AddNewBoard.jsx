@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addBoard } from '../../features/boards/boardSlice';
 import { closeModal } from '../../features/ui/uiSlice';
 import { motion, AnimatePresence } from 'framer-motion';
+import DynamicList from './DynamicList';
 
 const AddNewBoard = () => {
   const dispatch = useDispatch();
@@ -112,71 +113,16 @@ const AddNewBoard = () => {
           placeholder='e.g. Web Design'
         />
       </div>
-      <div className='form-group'>
-        <AnimatePresence>
-          {columns.length > 0 && (
-            <motion.label
-              transition={{ duration: 0.45 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              Board Columns
-            </motion.label>
-          )}
-        </AnimatePresence>
-        <ul className='column-list'>
-          <AnimatePresence delay>
-            {columns.length > 0 &&
-              columns.map((column, index) => {
-                return (
-                  <motion.li
-                    transition={{ duration: 0.45 }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className='column-container'
-                    key={column.id}
-                  >
-                    <input
-                      autoFocus
-                      type='text'
-                      onClick={() => {
-                        setErrorMessageOnColFalse(index);
-                      }}
-                      className={`column ${
-                        column.error.status === true && 'error'
-                      }`}
-                      value={
-                        column.error.status === true
-                          ? column.error.message
-                          : column.name
-                      }
-                      onChange={(e) => handleColumnChange(e, index)}
-                    />
 
-                    <button
-                      className='delete'
-                      onClick={() => handleColumnDelete(index)}
-                      type='button'
-                    >
-                      <img src='./assets/icon-cross.svg' alt='delete' />
-                    </button>
-                  </motion.li>
-                );
-              })}
-          </AnimatePresence>
-
-          <button
-            className='btn btn-light'
-            type='button'
-            onClick={handleAddColumn}
-          >
-            + Add New Column
-          </button>
-          <button className='btn btn-dark'>Create New Board</button>
-        </ul>
-      </div>
+      <DynamicList
+        title={'Board Columns'}
+        items={columns}
+        handleItemChange={handleColumnChange}
+        handleItemDelete={handleColumnDelete}
+        setErrorMessageOnItemFalse={setErrorMessageOnColFalse}
+        handleAdditem={handleAddColumn}
+      />
+      <button className='btn btn-dark'>Create New Board</button>
     </StyledForm>
   );
 };

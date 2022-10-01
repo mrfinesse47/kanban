@@ -70,13 +70,13 @@ export const StyledForm = styled.form`
     margin-bottom: 0;
   }
 
-  .column-list {
-    .column-container {
+  .dynamic-list {
+    .dynamic-container {
       display: flex;
       align-items: center;
       margin-bottom: 12px;
     }
-    .column {
+    .dynamic {
       margin-right: 16px;
       flex-grow: 1;
     }
