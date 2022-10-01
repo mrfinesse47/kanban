@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledTaskExpanded = styled.div`
   width: 416px;
+
   header {
     display: flex;
     justify-content: space-between;

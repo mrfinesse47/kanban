@@ -4,13 +4,21 @@ import { motion } from 'framer-motion';
 import { v4 as uuid } from 'uuid';
 import { useSelector } from 'react-redux';
 import DynamicList from './DynamicList';
+import DropDown from '../ui/DropDown';
 
 const EditTask = () => {
   const { boards, selectedIndex, modalTask } = useSelector(
     (state) => state.board
   );
+  const [status, setStatus] = useState(modalTask.status);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
 
-  const onSubmit = () => {
+  const allPossibleStatus = boards[selectedIndex].columns.map(
+    (column) => column.name
+  );
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     console.log('submit');
   };
 
@@ -23,6 +31,10 @@ const EditTask = () => {
     }))
   );
 
+  const handleStatusChange = (status) => {
+    setStatus(status);
+    setIsSelectOpen(false);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -51,6 +63,17 @@ recharge the batteries a little.'
           items={subTasks}
           setItems={setSubtasks}
         />
+        <div className='form-group'>
+          <label>Status</label>
+          <DropDown
+            dropdownItems={allPossibleStatus}
+            currentSelection={status}
+            handleSelectionChange={handleStatusChange}
+            isOpen={isSelectOpen}
+            setIsOpen={setIsSelectOpen}
+          />
+        </div>
+        <button className='btn btn-dark task-btn'>Save Changes</button>
       </StyledForm>
     </motion.div>
   );

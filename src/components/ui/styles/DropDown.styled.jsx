@@ -24,7 +24,6 @@ export const StyledDropDown = styled.div`
     border: 1px solid #635fc7;
   }
   .drop-menu {
-    position: absolute;
     top: 45px;
     box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
     padding: 12px 16px;

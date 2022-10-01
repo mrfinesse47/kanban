@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledForm = styled.form`
   width: 416px;
+
   h3 {
     font-weight: 700;
     font-size: 18px;
@@ -99,5 +100,9 @@ export const StyledForm = styled.form`
     background-color: #635fc7;
     color: #fff;
     margin-bottom: 0;
+  }
+
+  .task-btn {
+    margin-top: 24px;
   }
 `;

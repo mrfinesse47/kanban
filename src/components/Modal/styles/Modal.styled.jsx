@@ -12,6 +12,8 @@ export const StyledModal = styled.div`
     align-items: center;
   }
   .modal {
+    max-height: 100vh;
+    overflow-y: auto;
     padding: 32px;
     border-radius: 6px;
     z-index: 101;

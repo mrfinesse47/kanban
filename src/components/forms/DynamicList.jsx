@@ -40,7 +40,7 @@ const DynamicList = ({ title, items, setItems }) => {
     });
   };
   return (
-    <div className='form-group'>
+    <div className='form-group dynamic-list'>
       <AnimatePresence>
         {items.length > 0 && (
           <motion.label
