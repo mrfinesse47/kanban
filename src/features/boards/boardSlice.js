@@ -8,8 +8,16 @@ const initialState = {
   selectedIndex: null,
   isLoading: false,
   isSuccess: false,
-  columnIndex: {}, //should really be hash mapping it when the selected index updates
+  columnNames: {}, //should really be hash mapping it when the selected index updates
   //wont have to find idexes
+};
+
+const updateColNamesIndex = (state, index) => {
+  const colNames = {};
+  state.boards[index].columns.forEach((col, index) => {
+    colNames[col.name] = index;
+  });
+  return colNames;
 };
 
 //get all boards
@@ -56,7 +64,10 @@ export const boardSlice = createSlice({
       }
     },
     selectBoardIndex: (state, action) => {
-      state.selectedIndex = action.payload;
+      const index = action.payload;
+
+      state.columnNames = updateColNamesIndex(state, index);
+      state.selectedIndex = index;
     },
     reorderTasksOnDragDrop: (state, action) => {
       const { source, destination } = action.payload;
@@ -172,6 +183,7 @@ export const boardSlice = createSlice({
         state.boards = action.payload;
         if (state?.boards && state.boards.length > 0) {
           state.selectedIndex = 0;
+          state.columnNames = updateColNamesIndex(state, 0);
         }
       })
       .addCase(getBoards.rejected, (state, action) => {
