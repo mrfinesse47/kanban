@@ -6,17 +6,14 @@ import { useSelector } from 'react-redux';
 import DynamicList from './DynamicList';
 import DropDown from '../ui/DropDown';
 import { closeModal } from '../../features/ui/uiSlice';
+import { v4 as uuid } from 'uuid';
 
-const TaskForm = ({
-  subTasks,
-  setSubtasks,
-  dispatchHandler,
-  formTitle,
-  modalTask,
-}) => {
+const TaskForm = ({ reduxTaskFormSubmitAction, formTitle }) => {
   const dispatch = useDispatch();
   const EMPTY_MESSAGE = "Can't be empty";
-  const { boards, selectedIndex } = useSelector((state) => state.board);
+  const { boards, selectedIndex, modalTask } = useSelector(
+    (state) => state.board
+  );
   const [title, setTitle] = useState({
     value: modalTask.title,
     error: { status: false, message: '' },
@@ -24,6 +21,14 @@ const TaskForm = ({
   const [description, setDescription] = useState(modalTask.description);
   const [status, setStatus] = useState(modalTask.status);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [subTasks, setSubtasks] = useState(
+    modalTask.subtasks.map((subtask) => ({
+      value: subtask.title,
+      error: { status: false, message: '' },
+      id: uuid(),
+      isCompleted: subtask.isCompleted,
+    }))
+  );
 
   const allPossibleStatus = boards[selectedIndex].columns.map(
     (column) => column.name
@@ -53,7 +58,18 @@ const TaskForm = ({
       });
     }
     if (!isTitleComplete) return;
-    dispatchHandler(title, description, modalTask, subTasks, status);
+    dispatch(
+      reduxTaskFormSubmitAction({
+        title: title.value,
+        description,
+        id: modalTask.id,
+        subtasks: subTasks.map((subtask) => ({
+          title: subtask.value,
+          isCompleted: subtask.isCompleted,
+        })),
+        status,
+      })
+    );
     dispatch(closeModal());
   };
 

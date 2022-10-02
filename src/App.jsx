@@ -21,7 +21,6 @@ function App() {
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
   const [setShowSideDrawer] = useState('initial');
   const dispatch = useDispatch();
-  // const [isDropNavOpen, setIsDropNavOpen] = useState(false);
   const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DropDownNavMenu from './DropDownNavMenu/DropDownNavMenu';
 import { setIsDropNavOpen } from '../features/ui/uiSlice';
 import { openModal } from '../features/ui/uiSlice';
+import { setModalTask } from '../features/boards/boardSlice';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -23,11 +24,7 @@ const Navbar = () => {
           <button
             className='button-add-new-task'
             onClick={() => {
-              // dispatch(
-              //   setModalTask({
-              //     task,
-              //   })
-              // );
+              dispatch(setModalTask());
               dispatch(openModal('task-new'));
             }}
           >

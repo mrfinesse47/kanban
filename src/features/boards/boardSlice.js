@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import boardService from './boardService';
+import { v4 as uuid } from 'uuid';
 
 const initialState = {
   boards: [],
@@ -42,7 +43,17 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     setModalTask: (state, action) => {
-      state.modalTask = action.payload.task;
+      if (!action.payload) {
+        state.modalTask = {
+          description: '',
+          id: uuid(),
+          status: state.boards[state.selectedIndex].columns[0].name,
+          subtasks: [],
+          title: '',
+        };
+      } else {
+        state.modalTask = action.payload.task;
+      }
     },
     selectBoardIndex: (state, action) => {
       state.selectedIndex = action.payload;
@@ -110,6 +121,10 @@ export const boardSlice = createSlice({
       ].subtasks[action.payload].isCompleted = !isCompleted;
       //update modal state
       state.modalTask.subtasks[action.payload].isCompleted = !isCompleted;
+    },
+    addTask: (state, action) => {
+      const task = action.payload;
+      console.log(task);
     },
     updateTask: (state, action) => {
       const task = action.payload;
@@ -179,6 +194,7 @@ export const {
   setModalTask,
   toggleSubTask,
   updateTask,
+  addTask,
 } = boardSlice.actions;
 // export of a normal reducer
 
