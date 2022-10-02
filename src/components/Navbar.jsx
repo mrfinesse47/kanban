@@ -37,6 +37,10 @@ const Navbar = () => {
             }}
             buttonOneText='Edit Board'
             buttonTwoText='Delete Board'
+            editAction={() => {
+              dispatch(setIsDropNavOpen(false));
+              dispatch(openModal('edit-board-menu'));
+            }}
           />
         </div>
       </div>

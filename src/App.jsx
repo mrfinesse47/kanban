@@ -13,6 +13,7 @@ import OpenDrawerButton from './components/OpenDrawerButton';
 import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
 import EditTask from './components/forms/EditTask';
+import EditBoard from './components/forms/EditBoard';
 import { setIsDropNavOpen } from './features/ui/uiSlice';
 import AddTask from './components/forms/AddTask';
 
@@ -42,6 +43,7 @@ function App() {
           {modalMode === 'task-expanded' && <TaskExpanded />}
           {modalMode === 'task-new' && <AddTask />}
           {modalMode === 'edit-task-menu' && <EditTask />}
+          {modalMode === 'edit-board-menu' && <EditBoard />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
 

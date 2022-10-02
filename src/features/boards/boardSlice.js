@@ -8,9 +8,12 @@ const initialState = {
   selectedIndex: null,
   isLoading: false,
   isSuccess: false,
-  columnNames: {}, //should really be hash mapping it when the selected index updates
-  //wont have to find idexes
+  columnNames: {},
 };
+
+//-------------------------------------------------------------------
+// Helper functions
+//-------------------------------------------------------------------
 
 const updateColNamesIndex = (state, index) => {
   const colNames = {};
@@ -19,6 +22,8 @@ const updateColNamesIndex = (state, index) => {
   });
   return colNames;
 };
+
+//-------------------------------------------------------------------
 
 //get all boards
 export const getBoards = createAsyncThunk(
@@ -90,37 +95,28 @@ export const boardSlice = createSlice({
       const { oldStatus, newStatus } = action.payload;
       if (oldStatus === newStatus) return;
       const columns = state.boards[state.selectedIndex].columns;
-      const oldStatusIndex = columns.findIndex(
-        (column) => column.name === oldStatus
-      );
-      const NewStatusIndex = columns.findIndex(
-        (column) => column.name === newStatus
-      );
+
+      const oldStatusIndex = state.columnNames[oldStatus];
+
+      const newStatusIndex = state.columnNames[newStatus];
 
       columns[oldStatusIndex].tasks = columns[oldStatusIndex].tasks.filter(
         (colTask) => colTask.id !== state.modalTask.id
       );
-      columns[NewStatusIndex].tasks.push(state.modalTask);
+      columns[newStatusIndex].tasks.push(state.modalTask);
       //pushes to the boards array
       state.modalTask.status = newStatus;
       //updates modal state, the reason to have them seperate is if the modal
       //depends on changing state, the modal will change when it is open which we dont want
-      //pretty sure if this was just a regular form with submit button all fo this
+      //pretty sure if this was just a regular form with submit button all of this
       //wouldnt be necessary
     },
     toggleSubTask: (state, action) => {
       const task = state.modalTask;
-      const columns = state.boards[state.selectedIndex].columns;
-      const isCompleted = state.modalTask.subtasks[action.payload].isCompleted;
-      //we need to find the indexes because it can change while the
-      //modal is open, so it can't count on information that is passed in
-      //when the modal opens,
-      //also the reason why everything is in arrays is so the drag and drop
-      //functionality works.
 
-      const colIndex = columns.findIndex(
-        (column) => column.name === task.status
-      );
+      const isCompleted = state.modalTask.subtasks[action.payload].isCompleted;
+
+      const colIndex = state.columnNames[task.status];
 
       const taskIndex = state.boards[state.selectedIndex].columns[
         colIndex
@@ -141,9 +137,7 @@ export const boardSlice = createSlice({
       const task = action.payload;
       const columns = state.boards[state.selectedIndex].columns;
 
-      const colIndex = columns.findIndex(
-        (column) => column.name === state.modalTask.status
-      );
+      const colIndex = state.columnNames[state.modalTask.status];
 
       const taskIndex = state.boards[state.selectedIndex].columns[
         colIndex
@@ -155,9 +149,7 @@ export const boardSlice = createSlice({
 
       //if not got to move it
       if (task.status !== state.modalTask.status) {
-        const newIndex = columns.findIndex(
-          (column) => column.name === task.status
-        );
+        const newIndex = state.columnNames[task.status];
 
         // remove it from old array
         columns[colIndex].tasks = columns[colIndex].tasks.filter(
@@ -169,6 +161,9 @@ export const boardSlice = createSlice({
 
         columns[newIndex].tasks.push(task);
       }
+    },
+    editBoard: (state, action) => {
+      //just basically update column names
     },
   },
 
@@ -207,7 +202,7 @@ export const {
   toggleSubTask,
   updateTask,
   addTask,
+  editBoard,
 } = boardSlice.actions;
-// export of a normal reducer
 
 export default boardSlice.reducer;
