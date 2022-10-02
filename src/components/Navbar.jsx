@@ -3,6 +3,7 @@ import { StyledNav } from './styles/Navbar.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import DropDownNavMenu from './DropDownNavMenu/DropDownNavMenu';
 import { setIsDropNavOpen } from '../features/ui/uiSlice';
+import { openModal } from '../features/ui/uiSlice';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,17 @@ const Navbar = () => {
       <div className='container'>
         <h1>Platform Launch</h1>
         <div className='actions-container'>
-          <button className='button-add-new-task'>
+          <button
+            className='button-add-new-task'
+            onClick={() => {
+              // dispatch(
+              //   setModalTask({
+              //     task,
+              //   })
+              // );
+              dispatch(openModal('task-new'));
+            }}
+          >
             <span className='plus'>+</span> Add New Task
           </button>
           <DropDownNavMenu

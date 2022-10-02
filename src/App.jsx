@@ -14,6 +14,7 @@ import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
 import EditTask from './components/forms/EditTask';
 import { setIsDropNavOpen } from './features/ui/uiSlice';
+import AddTask from './components/forms/AddTask';
 
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
@@ -40,17 +41,14 @@ function App() {
 
         <Modal showModal={isModalOpen}>
           {modalMode === 'task-expanded' && <TaskExpanded />}
+          {modalMode === 'task-new' && <AddTask />}
           {modalMode === 'edit-task-menu' && <EditTask />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
         </Modal>
 
         <OpenDrawerButton />
 
-        <Navbar
-          isLight={isLight}
-          // isDropNavOpen={isDropNavOpen}
-          // setIsDropNavOpen={setIsDropNavOpen}
-        />
+        <Navbar isLight={isLight} />
         <div className='App'>
           <SideDrawer />
           <Boards />

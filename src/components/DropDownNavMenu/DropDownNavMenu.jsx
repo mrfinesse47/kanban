@@ -8,6 +8,7 @@ const DropDownNavMenu = ({
   buttonOneText,
   buttonTwoText,
   editAction,
+  deleteAction,
 }) => {
   return (
     <StyledDropDownNavMenu onClick={(e) => e.stopPropagation()}>
@@ -35,7 +36,7 @@ const DropDownNavMenu = ({
                 <button onClick={editAction}>{buttonOneText}</button>
               </li>
               <li className='delete'>
-                <button>{buttonTwoText}</button>
+                <button onClick={deleteAction}>{buttonTwoText}</button>
               </li>
             </ul>
           </motion.div>
