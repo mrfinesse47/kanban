@@ -41,6 +41,10 @@ const Navbar = () => {
               dispatch(setIsDropNavOpen(false));
               dispatch(openModal('edit-board-menu'));
             }}
+            deleteAction={() => {
+              dispatch(setIsDropNavOpen(false));
+              dispatch(openModal('delete-board'));
+            }}
           />
         </div>
       </div>

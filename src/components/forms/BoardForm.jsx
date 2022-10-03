@@ -11,6 +11,7 @@ const BoardForm = ({
   initialName = '',
   formTitle,
   submitReduxAction,
+  callToAction,
 }) => {
   const EMPTY_MESSAGE = "Can't be empty";
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ const BoardForm = ({
       </div>
 
       <DynamicList title={'Board Columns'} items={items} setItems={setItems} />
-      <button className='btn btn-dark'>Create New Board</button>
+      <button className='btn btn-dark'>{callToAction}</button>
     </StyledForm>
   );
 };

@@ -163,7 +163,9 @@ export const boardSlice = createSlice({
       }
     },
     editBoard: (state, action) => {
-      //just basically update column names
+      // console.log(current(state.boards[state.selectedIndex].columns));
+      // console.log(action.payload);
+      state.boards[state.selectedIndex].columns = action.payload.columns;
     },
   },
 

@@ -47,6 +47,7 @@ const TaskExpanded = () => {
           buttonOneText='Edit Task'
           buttonTwoText='Delete Task'
           editAction={() => dispatch(changeModalMode('edit-task-menu'))}
+          deleteAction={() => dispatch(changeModalMode('delete-menu'))}
         />
       </header>
       <main>

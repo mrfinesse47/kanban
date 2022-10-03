@@ -14,6 +14,8 @@ import TaskExpanded from './components/Boards/TaskExpanded';
 import AddNewBoard from './components/forms/AddNewBoard';
 import EditTask from './components/forms/EditTask';
 import EditBoard from './components/forms/EditBoard';
+import DeleteTask from './components/forms/DeleteTask';
+import DeleteBoard from './components/forms/DeleteBoard';
 import { setIsDropNavOpen } from './features/ui/uiSlice';
 import AddTask from './components/forms/AddTask';
 
@@ -45,6 +47,8 @@ function App() {
           {modalMode === 'edit-task-menu' && <EditTask />}
           {modalMode === 'edit-board-menu' && <EditBoard />}
           {modalMode === 'new-board-menu' && <AddNewBoard />}
+          {modalMode === 'delete-menu' && <DeleteTask />}
+          {modalMode === 'delete-board' && <DeleteBoard />}
         </Modal>
 
         <OpenDrawerButton />
