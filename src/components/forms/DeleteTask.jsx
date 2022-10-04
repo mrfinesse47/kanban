@@ -3,6 +3,7 @@ import { StyledDeleteMenu } from './styles/DeleteMenu.styled';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeModal } from '../../features/ui/uiSlice';
+import { deleteTask } from '../../features/boards/boardSlice';
 
 const DeleteTask = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,15 @@ const DeleteTask = () => {
           subtasks? This action cannot be reversed.
         </p>
         <div className='buttons-container'>
-          <button className='delete'>Delete</button>
+          <button
+            className='delete'
+            onClick={() => {
+              dispatch(closeModal());
+              dispatch(deleteTask());
+            }}
+          >
+            Delete
+          </button>
           <button
             className='cancel'
             onClick={() => {

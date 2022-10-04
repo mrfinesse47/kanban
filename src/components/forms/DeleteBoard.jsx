@@ -4,9 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StyledDeleteMenu } from './styles/DeleteMenu.styled';
 import { closeModal } from '../../features/ui/uiSlice';
 
+import { deleteBoard } from '../../features/boards/boardSlice';
+
 const DeleteBoard = () => {
   const dispatch = useDispatch();
   const { boards, selectedIndex } = useSelector((state) => state.board);
+  if (!boards[selectedIndex]) {
+    <div>error cannot delete</div>;
+  }
   return (
     <StyledDeleteMenu>
       <motion.div
@@ -17,11 +22,20 @@ const DeleteBoard = () => {
       >
         <h3>Delete This Board</h3>
         <p>
-          Are you sure you want to delete the '{boards[selectedIndex].name}'
-          This action will remove all columns and tasks and cannot be reversed.
+          Are you sure you want to delete the '
+          {boards[selectedIndex] && boards[selectedIndex].name}' This action
+          will remove all columns and tasks and cannot be reversed.
         </p>
         <div className='buttons-container'>
-          <button className='delete'>Delete</button>
+          <button
+            className='delete'
+            onClick={() => {
+              dispatch(closeModal());
+              dispatch(deleteBoard());
+            }}
+          >
+            Delete
+          </button>
           <button
             className='cancel'
             onClick={() => {

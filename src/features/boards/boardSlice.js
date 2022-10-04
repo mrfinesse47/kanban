@@ -163,9 +163,19 @@ export const boardSlice = createSlice({
       }
     },
     editBoard: (state, action) => {
-      // console.log(current(state.boards[state.selectedIndex].columns));
-      // console.log(action.payload);
       state.boards[state.selectedIndex].columns = action.payload.columns;
+    },
+    deleteTask: (state, action) => {
+      console.log('delete task');
+    },
+    deleteBoard: (state, action) => {
+      // tasks.splice(source.index, 1);
+      state.boards.splice(state.selectedIndex, 1);
+      if (state.boards.length === 0) {
+        state.selectedIndex = null;
+      } else {
+        state.selectedIndex = 0;
+      }
     },
   },
 
@@ -205,6 +215,8 @@ export const {
   updateTask,
   addTask,
   editBoard,
+  deleteBoard,
+  deleteTask,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
