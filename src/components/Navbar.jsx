@@ -9,7 +9,9 @@ import { setModalTask } from '../features/boards/boardSlice';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isDropNavOpen } = useSelector((state) => state.ui);
+  const { boards, selectedIndex } = useSelector((state) => state.board);
   const { isLight } = useSelector((state) => state.lightDark);
+
   return (
     <StyledNav>
       <div className='logo-container'>
@@ -19,7 +21,11 @@ const Navbar = () => {
         />
       </div>
       <div className='container'>
-        <h1>Platform Launch</h1>
+        {boards.length > 0 ? (
+          <h1>{boards[selectedIndex].name}</h1>
+        ) : (
+          <h1>No Active Boards</h1>
+        )}
         <div className='actions-container'>
           <button
             className='button-add-new-task'

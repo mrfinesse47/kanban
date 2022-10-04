@@ -130,8 +130,9 @@ export const boardSlice = createSlice({
       state.modalTask.subtasks[action.payload].isCompleted = !isCompleted;
     },
     addTask: (state, action) => {
-      const task = action.payload;
-      console.log(task);
+      state.boards[state.selectedIndex].columns[
+        state.columnNames[action.payload.status]
+      ].tasks.push(action.payload);
     },
     updateTask: (state, action) => {
       const task = action.payload;
@@ -164,6 +165,8 @@ export const boardSlice = createSlice({
     },
     editBoard: (state, action) => {
       state.boards[state.selectedIndex].columns = action.payload.columns;
+      //need to update column names hash map
+      state.columnNames = updateColNamesIndex(state, state.selectedIndex);
     },
     deleteTask: (state, action) => {
       const taskIndex = state.boards[state.selectedIndex].columns[
@@ -205,6 +208,7 @@ export const boardSlice = createSlice({
       })
       .addCase(addBoard.pending, (state) => {})
       .addCase(addBoard.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.boards.push(action.payload);
       })
       .addCase(addBoard.rejected, (state, action) => {});

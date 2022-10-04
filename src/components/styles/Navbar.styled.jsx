@@ -44,6 +44,8 @@ export const StyledNav = styled.nav`
   .actions-container {
     display: flex;
     align-items: center;
+    float: right;
+
     padding-right: 32.38px;
   }
 `;

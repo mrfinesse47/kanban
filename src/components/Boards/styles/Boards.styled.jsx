@@ -50,8 +50,10 @@ export const StyledBoards = styled.main`
     button {
       color: #828fa3;
       width: 280px;
+      height: 100%;
       display: flex;
       justify-content: center;
+      align-items: center;
       font-weight: 700;
       font-size: 24px;
       line-height: 30px;

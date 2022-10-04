@@ -9,6 +9,7 @@ import { StyledBoards } from './styles/Boards.styled';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import Task from './Task';
+import { openModal } from '../../features/ui/uiSlice';
 
 const mainVariants = {
   hide: {
@@ -77,7 +78,23 @@ const Boards = () => {
             ))}
 
           <div className='new-column-option'>
-            <button>+ New Column</button>
+            {boards.length === 0 ? (
+              <button
+                onClick={() => {
+                  dispatch(openModal('new-board-menu'));
+                }}
+              >
+                + New Board
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  dispatch(openModal('edit-board-menu'));
+                }}
+              >
+                + New Column
+              </button>
+            )}
           </div>
         </StyledBoards>
       </DragDropContext>
