@@ -166,10 +166,15 @@ export const boardSlice = createSlice({
       state.boards[state.selectedIndex].columns = action.payload.columns;
     },
     deleteTask: (state, action) => {
-      console.log('delete task');
+      const taskIndex = state.boards[state.selectedIndex].columns[
+        state.columnNames[state.modalTask.status]
+      ].tasks.findIndex((task) => task.id === state.modalTask.id);
+
+      state.boards[state.selectedIndex].columns[
+        state.columnNames[state.modalTask.status]
+      ].tasks.splice(taskIndex, 1);
     },
-    deleteBoard: (state, action) => {
-      // tasks.splice(source.index, 1);
+    deleteBoard: (state, _) => {
       state.boards.splice(state.selectedIndex, 1);
       if (state.boards.length === 0) {
         state.selectedIndex = null;
