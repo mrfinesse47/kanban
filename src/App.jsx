@@ -19,6 +19,36 @@ import DeleteBoard from './components/forms/DeleteBoard';
 import { setIsDropNavOpen } from './features/ui/uiSlice';
 import AddTask from './components/forms/AddTask';
 
+const determineModalEl = (modalMode) => {
+  let modalEl = null;
+  switch (modalMode) {
+    case 'task-expanded':
+      modalEl = <TaskExpanded />;
+      break;
+    case 'task-new':
+      modalEl = <AddTask />;
+      break;
+    case 'edit-task-menu':
+      modalEl = <EditTask />;
+      break;
+    case 'edit-board-menu':
+      modalEl = <EditBoard />;
+      break;
+    case 'new-board-menu':
+      modalEl = <AddNewBoard />;
+      break;
+    case 'delete-menu':
+      modalEl = <DeleteTask />;
+      break;
+    case 'delete-board':
+      modalEl = <DeleteBoard />;
+      break;
+    default:
+      modalEl = <></>;
+  }
+  return modalEl;
+};
+
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
@@ -40,19 +70,8 @@ function App() {
     >
       <ThemeProvider theme={getTheme(isLight)}>
         <GlobalStyles />
-
-        <Modal showModal={isModalOpen}>
-          {modalMode === 'task-expanded' && <TaskExpanded />}
-          {modalMode === 'task-new' && <AddTask />}
-          {modalMode === 'edit-task-menu' && <EditTask />}
-          {modalMode === 'edit-board-menu' && <EditBoard />}
-          {modalMode === 'new-board-menu' && <AddNewBoard />}
-          {modalMode === 'delete-menu' && <DeleteTask />}
-          {modalMode === 'delete-board' && <DeleteBoard />}
-        </Modal>
-
+        <Modal showModal={isModalOpen}>{determineModalEl(modalMode)}</Modal>
         <OpenDrawerButton />
-
         <Navbar isLight={isLight} />
         <div className='App'>
           <SideDrawer />
