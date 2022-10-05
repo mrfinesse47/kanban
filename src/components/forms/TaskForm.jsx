@@ -125,7 +125,7 @@ const TaskForm = ({ reduxTaskFormSubmitAction, formTitle }) => {
 recharge the batteries a little.'
           />
         </div>
-        {/* need to turn input list into component see in add new board */}
+
         <DynamicList
           title={'Subtasks'}
           items={subTasks}
