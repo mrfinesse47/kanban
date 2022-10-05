@@ -41,13 +41,14 @@ Users should be able to:
 
 ![Main View Sidebar Open](./main-view-sidebar-open.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+##### -The Main View With Sidebar Open Light Theming
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+![Main View Sidebar Open Light](./main-view-sidebar-open-light.png 'The Main View Sidebar Open Light')
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+##### - Add Task Menu Light
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Add Task Menu Light](./add-task-menu-light.png 'Add Task Menu Light
+')
 
 ### Links
 
@@ -58,53 +59,44 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
+- [Rect Beautiful DND](https://www.npmjs.com/package/react-beautiful-dnd) - NPM Package for drag and drop
+- [Redux Toolkit](https://redux-toolkit.js.org/) - State Manager
+- [Framer Motion](https://www.framer.com/motion/) - Motion Library for React
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
 - [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+Learned how to drag and drop elements in React not just within a list but from list to list as well, or in the case of the Kanban board column to column. I Also got a chance to practice Redux state management. This was my first shot at Framer Motion as well in a project. Also, this was my first project which used Styled Components. I found that the Styled Components worked great for switching themes quickly through a ThemeProvider component.
 
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
-};
+<ThemeProvider theme={getTheme(isLight)}>
+  <>app content...</>
+</ThemeProvider>
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I ended up keeping the original data structure more or less that was given with the template of the project from Front End Mentor. I really should have thought about refactoring it before jumping in. This led to some extreme craziness with modifying state. But, it may have been necessary to keep it in this form of arrays so it could work with React Beautiful DND. This made it a little overcomplicated at times. Here is what some of the Redux state updating with React Beautiful DND looked like:
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```js
+const [taskToMove] = state.boards[state.selectedIndex].columns[
+  source.droppableId
+].tasks.splice(source.index, 1);
+
+state.boards[state.selectedIndex].columns[destination.droppableId].tasks.splice(
+  destination.index,
+  0,
+  taskToMove
+);
+```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I haven't completed media queries for smaller screens yet. And I don't think I will. The app is basically made for larger screens due to its centerpiece drag and drop feature. I may come back to it, I may not. But for now I really want to begin work on something new.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Drag and Drop With Multiple Lists](https://github.com/mrfinesse47/react-beautiful-dnd-tut) - This is where I learned to implement drag and drop the first time in React. This then inspired me to create the Kanban board.
+- [DND tutorial](https://www.youtube.com/watch?v=aYZRRyukuIw&ab_channel=ColbyFayock) - This is the tutorial I followed to learn React beautiful dnd. I then modified it to work with multiple columns.
 
 ## Author
 
