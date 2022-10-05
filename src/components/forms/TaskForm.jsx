@@ -130,6 +130,7 @@ recharge the batteries a little.'
           title={'Subtasks'}
           items={subTasks}
           setItems={setSubtasks}
+          typeToAdd='Subtask'
         />
         <div className='form-group form-group-task'>
           <label>Status</label>

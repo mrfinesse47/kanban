@@ -6,8 +6,6 @@ const initialState = {
   boards: [],
   modalTask: null, //need a copy of a task for modal
   selectedIndex: null,
-  isLoading: false,
-  isSuccess: false,
   columnNames: {},
 };
 
@@ -189,32 +187,19 @@ export const boardSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(getBoards.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(getBoards.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
         state.boards = action.payload;
         if (state?.boards && state.boards.length > 0) {
           state.selectedIndex = 0;
           state.columnNames = updateColNamesIndex(state, 0);
         }
       })
-      .addCase(getBoards.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(addBoard.pending, (state) => {})
       .addCase(addBoard.fulfilled, (state, action) => {
-        console.log(action.payload);
         if (state.selectedIndex === null) {
           state.selectedIndex = 0;
         }
         state.boards.push(action.payload);
-      })
-      .addCase(addBoard.rejected, (state, action) => {});
+      });
   },
 });
 

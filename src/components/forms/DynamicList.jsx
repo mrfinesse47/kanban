@@ -2,7 +2,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { v4 as uuid } from 'uuid';
 
-const DynamicList = ({ title, items, setItems }) => {
+const DynamicList = ({ title, items, setItems, typeToAdd = 'item' }) => {
   const handleItemChange = (e, index) => {
     setItems((prev) => {
       const arr = [...prev];
@@ -100,7 +100,7 @@ const DynamicList = ({ title, items, setItems }) => {
           type='button'
           onClick={() => handleAddItem()}
         >
-          + Add New item
+          + Add New {typeToAdd}
         </button>
       </ul>
     </div>

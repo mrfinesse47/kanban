@@ -92,7 +92,12 @@ const BoardForm = ({
         />
       </div>
 
-      <DynamicList title={'Board Columns'} items={items} setItems={setItems} />
+      <DynamicList
+        title={'Board Columns'}
+        items={items}
+        setItems={setItems}
+        typeToAdd='Column'
+      />
       <button className='btn btn-dark'>{callToAction}</button>
     </StyledForm>
   );
