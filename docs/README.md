@@ -52,8 +52,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://mrfinesse47.github.io/kanban/)
+- Solution URL: [](https://your-solution-url.com)
+- Live Site URL: [Github Live Site](https://mrfinesse47.github.io/kanban/)
 
 ## My process
 
