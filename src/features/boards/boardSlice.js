@@ -209,6 +209,9 @@ export const boardSlice = createSlice({
       .addCase(addBoard.pending, (state) => {})
       .addCase(addBoard.fulfilled, (state, action) => {
         console.log(action.payload);
+        if (state.selectedIndex === null) {
+          state.selectedIndex = 0;
+        }
         state.boards.push(action.payload);
       })
       .addCase(addBoard.rejected, (state, action) => {});

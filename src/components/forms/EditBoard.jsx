@@ -6,6 +6,10 @@ import { useSelector } from 'react-redux';
 const EditBoard = () => {
   const { boards, selectedIndex } = useSelector((state) => state.board);
 
+  if (!boards[selectedIndex]) {
+    return <></>;
+  }
+
   const initialItems = boards[selectedIndex].columns.map((column) => ({
     value: column.name,
     id: column.id,
