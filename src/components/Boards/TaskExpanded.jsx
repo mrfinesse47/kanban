@@ -15,8 +15,6 @@ const TaskExpanded = () => {
     (state) => state.board
   );
 
-  //console.log(boards[selectedIndex]);
-
   const [oldStatus, setOldStatus] = useState(modalTask.status);
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isSelectOpen, setIsSelectOpen] = useState(false);

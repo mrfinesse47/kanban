@@ -1,6 +1,4 @@
-# Frontend Mentor - Kanban task management web app solution
-
-This is a solution to the [Kanban task management web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/kanban-task-management-web-app-wgQLt-HlbB). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+Live Site URL: [Live Site](https://mrfinesse47.github.io/kanban/)
 
 ## Table of contents
 
@@ -16,16 +14,16 @@ This is a solution to the [Kanban task management web app challenge on Frontend 
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
+
+The Kanban board is a tool for workflow visualization, designed to bring clarity to your work process, and enhance productivity by minimizing work in progress.
 
 ### The challenge
 
 Users should be able to:
 
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
+- View the optimal layout for the app depending on their device's screen size -- not completed yet
+- See hover states for all interactive elements on the page -- not completed yet
 - Create, read, update, and delete boards and tasks
 - Receive form validations when trying to create/edit boards and tasks
 - Mark subtasks as complete and move tasks between columns
@@ -33,9 +31,15 @@ Users should be able to:
 - Toggle the theme between light/dark modes
 - Drag and drop tasks to change their status and re-order them in a column
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.jpg)
+##### -The Main View
+
+![Main View](./main-view.png 'The Main View')
+
+##### -The Main View With Sidebar Open
+
+![Main View Sidebar Open](./main-view-sidebar-open.png)
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
@@ -48,7 +52,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://mrfinesse47.github.io/kanban/)
 
 ## My process
 
@@ -102,18 +106,13 @@ Use this section to outline areas that you want to continue focusing on in futur
 - [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
 - [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
-
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+Created By: Kevin Mason
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+- Linkedin - [@kevin-mason-7b83b3228](https://www.linkedin.com/in/kevin-mason-7b83b3228/)
+- Front End Mentor - [@@mrfinesse47](https://www.frontendmentor.io/profile/mrfinesse47)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+As usual, I would like to thank the Youtube/ article/ blog/ forum respnders of the world for sharing the knowledge of web development.
