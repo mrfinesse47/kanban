@@ -21,7 +21,7 @@ const Navbar = () => {
         />
       </div>
       <div className='container'>
-        {boards.length && boards[selectedIndex] > 0 ? (
+        {boards.length ? (
           <h1>{boards[selectedIndex].name}</h1>
         ) : (
           <h1>No Active Boards</h1>

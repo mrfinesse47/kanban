@@ -24,6 +24,7 @@ const mainVariants = {
 };
 
 const Boards = () => {
+  const STATUS_COLORS = ['#49C4E5', '#8471F2', '#67E2AE', '#EA5555'];
   const { sideDrawerMode } = useSelector((state) => state.ui);
   const { boards, selectedIndex } = useSelector((state) => state.board);
 
@@ -49,7 +50,10 @@ const Boards = () => {
             boards[selectedIndex].columns.map((column, colIndex) => (
               <div className='column' key={`column_${colIndex}`}>
                 <div className='container-column-name'>
-                  <div className='status'></div>
+                  <div
+                    className='status'
+                    style={{ backgroundColor: STATUS_COLORS[colIndex % 4] }}
+                  ></div>
                   <h3>
                     {column.name.toUpperCase()} ({column.tasks.length})
                   </h3>
