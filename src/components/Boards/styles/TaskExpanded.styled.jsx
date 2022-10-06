@@ -37,7 +37,14 @@ export const StyledTaskExpanded = styled.div`
       background-color: ${({ theme }) => theme.colors.backgroundMain};
       padding: 12px;
       margin-bottom: 8px;
+      border-radius: 4px;
     }
+
+    .subtask:hover {
+      cursor: pointer;
+      background-color: rgba(99, 95, 199, 0.25);
+    }
+
     .subtask-title {
       width: 362px;
     }

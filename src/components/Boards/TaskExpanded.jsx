@@ -63,13 +63,14 @@ const TaskExpanded = () => {
           </h4>
           <ul>
             {modalTask.subtasks.map((subtask, index) => (
-              <li key={`subtask-${index}`} className={'subtask'}>
-                <CheckBox
-                  isChecked={subtask.isCompleted}
-                  clickHandler={() => {
-                    handleSubTaskComplete(index);
-                  }}
-                ></CheckBox>
+              <li
+                key={`subtask-${index}`}
+                className={'subtask'}
+                onClick={() => {
+                  handleSubTaskComplete(index);
+                }}
+              >
+                <CheckBox isChecked={subtask.isCompleted} />
                 <span
                   className={`subtask-title ${
                     subtask.isCompleted && 'task-complete'
