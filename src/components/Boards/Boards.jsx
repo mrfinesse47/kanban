@@ -10,6 +10,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import Task from './Task';
 import { openModal } from '../../features/ui/uiSlice';
+import NoColumns from './NoColumns';
 
 const mainVariants = {
   hide: {
@@ -44,64 +45,68 @@ const Boards = () => {
       animate={sideDrawerMode}
       className='main'
     >
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <StyledBoards>
-          {selectedIndex !== null &&
-            boards[selectedIndex].columns.map((column, colIndex) => (
-              <div className='column' key={`column_${colIndex}`}>
-                <div className='container-column-name'>
-                  <div
-                    className='status'
-                    style={{ backgroundColor: STATUS_COLORS[colIndex % 4] }}
-                  ></div>
-                  <h3>
-                    {column.name.toUpperCase()} ({column.tasks.length})
-                  </h3>
+      {selectedIndex !== null && boards[selectedIndex].columns.length === 0 ? (
+        <NoColumns />
+      ) : (
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <StyledBoards>
+            {selectedIndex !== null &&
+              boards[selectedIndex].columns.map((column, colIndex) => (
+                <div className='column' key={`column_${colIndex}`}>
+                  <div className='container-column-name'>
+                    <div
+                      className='status'
+                      style={{ backgroundColor: STATUS_COLORS[colIndex % 4] }}
+                    ></div>
+                    <h3>
+                      {column.name.toUpperCase()} ({column.tasks.length})
+                    </h3>
+                  </div>
+                  <Droppable droppableId={colIndex.toString()}>
+                    {(provided) => (
+                      <ul
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className='drop-zone'
+                      >
+                        {column.tasks.map((task, index) => (
+                          <Task
+                            task={task}
+                            key={`task_${index}`}
+                            colIndex={colIndex}
+                            index={index}
+                            status={column.name}
+                          />
+                        ))}
+                        {provided.placeholder}
+                      </ul>
+                    )}
+                  </Droppable>
                 </div>
-                <Droppable droppableId={colIndex.toString()}>
-                  {(provided) => (
-                    <ul
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      className='drop-zone'
-                    >
-                      {column.tasks.map((task, index) => (
-                        <Task
-                          task={task}
-                          key={`task_${index}`}
-                          colIndex={colIndex}
-                          index={index}
-                          status={column.name}
-                        />
-                      ))}
-                      {provided.placeholder}
-                    </ul>
-                  )}
-                </Droppable>
-              </div>
-            ))}
+              ))}
 
-          <div className='new-column-option'>
-            {boards.length === 0 ? (
-              <button
-                onClick={() => {
-                  dispatch(openModal('new-board-menu'));
-                }}
-              >
-                + New Board
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  dispatch(openModal('edit-board-menu'));
-                }}
-              >
-                + New Column
-              </button>
-            )}
-          </div>
-        </StyledBoards>
-      </DragDropContext>
+            <div className='new-column-option'>
+              {boards.length === 0 ? (
+                <button
+                  onClick={() => {
+                    dispatch(openModal('new-board-menu'));
+                  }}
+                >
+                  + New Board
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    dispatch(openModal('edit-board-menu'));
+                  }}
+                >
+                  + New Column
+                </button>
+              )}
+            </div>
+          </StyledBoards>
+        </DragDropContext>
+      )}
     </motion.div>
   );
 };

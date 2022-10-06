@@ -7,6 +7,20 @@ export const StyledBoards = styled.main`
   max-width: 100vw;
   height: 100%;
 
+  .no-columns {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    text-align: center;
+    color: #828fa3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-columns p {
+    text-align: center;
+  }
+
   .container-column-name {
     margin-bottom: 24px;
     display: flex;

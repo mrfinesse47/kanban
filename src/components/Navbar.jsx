@@ -11,6 +11,11 @@ const Navbar = () => {
   const { isDropNavOpen } = useSelector((state) => state.ui);
   const { boards, selectedIndex } = useSelector((state) => state.board);
   const { isLight } = useSelector((state) => state.lightDark);
+  let isOneColExist = false;
+
+  if (boards[selectedIndex]) {
+    isOneColExist = !!boards[selectedIndex].columns.length;
+  }
 
   return (
     <StyledNav>
@@ -28,10 +33,12 @@ const Navbar = () => {
         )}
         <div className='actions-container'>
           <button
-            className='button-add-new-task'
+            className={`button-add-new-task ${!isOneColExist && 'disabled'}`}
             onClick={() => {
-              dispatch(setModalTask());
-              dispatch(openModal('task-new'));
+              if (isOneColExist) {
+                dispatch(setModalTask());
+                dispatch(openModal('task-new'));
+              }
             }}
           >
             <span className='plus'>+</span> Add New Task

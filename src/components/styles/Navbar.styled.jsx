@@ -41,6 +41,15 @@ export const StyledNav = styled.nav`
     background-color: #a8a4ff;
   }
 
+  .disabled {
+    opacity: 0.25;
+    cursor: unset;
+  }
+
+  .disabled.button-add-new-task:hover {
+    background-color: ${({ theme }) => theme.colors.buttonMain};
+  }
+
   .button-add-new-task .plus {
     position: relative;
     top: 0.5px;
