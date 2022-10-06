@@ -52,7 +52,11 @@ const Navbar = () => {
             buttonTwoText='Delete Board'
             editAction={() => {
               dispatch(setIsDropNavOpen(false));
-              dispatch(openModal('edit-board-menu'));
+              if (selectedIndex === null) {
+                dispatch(openModal('new-board-menu'));
+              } else {
+                dispatch(openModal('edit-board-menu'));
+              }
             }}
             deleteAction={() => {
               dispatch(setIsDropNavOpen(false));
