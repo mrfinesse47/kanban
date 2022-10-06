@@ -42,4 +42,8 @@ export const StyledTaskExpanded = styled.div`
       width: 362px;
     }
   }
+  .task-complete {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
 `;

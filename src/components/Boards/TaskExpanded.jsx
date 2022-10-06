@@ -70,7 +70,13 @@ const TaskExpanded = () => {
                     handleSubTaskComplete(index);
                   }}
                 ></CheckBox>
-                <span className='subtask-title'>{subtask.title}</span>
+                <span
+                  className={`subtask-title ${
+                    subtask.isCompleted && 'task-complete'
+                  }`}
+                >
+                  {subtask.title}
+                </span>
               </li>
             ))}
           </ul>
