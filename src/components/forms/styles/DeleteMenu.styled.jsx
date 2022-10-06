@@ -30,13 +30,19 @@ export const StyledDeleteMenu = styled.div`
       height: 40px;
     }
     .delete {
+      color: #fff;
       background-color: #ea5555;
       margin-right: 16px;
     }
+    .delete:hover {
+      background: #ff9898;
+    }
     .cancel {
       color: #635fc7;
-      background-color: ${({ theme }) =>
-        theme.colors.buttonSecondaryBackground};
+      background-color: ${({ theme }) => theme.colors.buttonSecondary};
+    }
+    .cancel:hover {
+      background-color: ${({ theme }) => theme.colors.buttonSecondaryHover};
     }
   }
 `;

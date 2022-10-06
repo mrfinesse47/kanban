@@ -83,7 +83,7 @@ export const StyledForm = styled.form`
     }
   }
   .btn {
-    background-color: ${({ theme }) => theme.colors.buttonSecondaryBackground};
+    background-color: ${({ theme }) => theme.colors.buttonSecondary};
     color: #635fc7;
     border-radius: 20px;
     width: 100%;
@@ -94,6 +94,14 @@ export const StyledForm = styled.form`
     line-height: 23px;
     text-align: center;
     margin-bottom: 24px;
+  }
+
+  .btn:hover {
+    background-color: ${({ theme }) => theme.colors.buttonSecondaryHover};
+  }
+
+  .btn-dark:hover {
+    background-color: #a8a4ff;
   }
 
   .btn-dark {

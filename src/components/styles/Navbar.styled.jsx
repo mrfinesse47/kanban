@@ -37,6 +37,10 @@ export const StyledNav = styled.nav`
     border-radius: 24px;
     margin-right: 24px;
   }
+  .button-add-new-task:hover {
+    background-color: #a8a4ff;
+  }
+
   .button-add-new-task .plus {
     position: relative;
     top: 0.5px;
