@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useMediaQuery } from '@react-hook/media-query';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import Boards from './components/Boards/Boards';
@@ -52,15 +52,8 @@ const determineModalEl = (modalMode) => {
 function App() {
   const { isLight } = useSelector((state) => state.lightDark);
   const { isModalOpen, modalMode } = useSelector((state) => state.ui);
-  const [setShowSideDrawer] = useState('initial');
-  const dispatch = useDispatch();
-  const isMobile = useMediaQuery('only screen and (max-width: 768px)');
 
-  useEffect(() => {
-    if (isMobile) {
-      setShowSideDrawer('hide'); //to smoothly close drawer on window resize
-    }
-  }, [isMobile]);
+  const dispatch = useDispatch();
 
   return (
     <div
