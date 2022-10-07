@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledDropDownNavMenu = styled.div`
   position: relative;
+  z-index: 1001;
   .button-options {
     padding: 4px 8px;
   }
