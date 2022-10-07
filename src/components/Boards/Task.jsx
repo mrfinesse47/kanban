@@ -14,6 +14,14 @@ const Task = ({ task, index }) => {
         <Draggable key={task.id} draggableId={task.id} index={index}>
           {(provided) => (
             <li
+              onClick={() => {
+                dispatch(
+                  setModalTask({
+                    task,
+                  })
+                );
+                dispatch(openModal('task-expanded'));
+              }}
               id={task.id}
               className='task'
               ref={provided.innerRef}
@@ -21,26 +29,15 @@ const Task = ({ task, index }) => {
               {...provided.dragHandleProps}
             >
               <h4>{task.title}</h4>
-              <button
-                className='open-expanded'
-                onClick={() => {
-                  dispatch(
-                    setModalTask({
-                      task,
-                    })
-                  );
-                  dispatch(openModal('task-expanded'));
-                }}
-              >
-                <div className='completion'>
-                  {
-                    task.subtasks.filter(
-                      (subtask) => subtask.isCompleted === true
-                    ).length
-                  }
-                  of {task.subtasks.length} Subtasks
-                </div>
-              </button>
+
+              <div className='completion'>
+                {
+                  task.subtasks.filter(
+                    (subtask) => subtask.isCompleted === true
+                  ).length
+                }
+                of {task.subtasks.length} Subtasks
+              </div>
             </li>
           )}
         </Draggable>

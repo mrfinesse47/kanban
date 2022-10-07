@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const StyledTask = styled.div`
   height: (100vh - 97px);
+  .task:hover {
+    cursor: pointer;
+  }
   .task {
     box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
     background-color: ${({ theme }) => theme.colors.backgroundSecondary};
