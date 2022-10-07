@@ -74,4 +74,7 @@ export const StyledBoards = styled.main`
       text-align: center;
     }
   }
+  .new-column-option button:hover {
+    color: #635fc7;
+  }
 `;
