@@ -1,4 +1,4 @@
-Live Site URL: [Live Site](https://mrfinesse47.github.io/kanban/)
+Live Site URL: [Live Site](https://mrfinesse47.github.io/kanban/) --best viewed with Desktop Browser Not Mobile As of yet
 
 ## Table of contents
 
